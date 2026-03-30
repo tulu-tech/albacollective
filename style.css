@@ -1172,3 +1172,12 @@ p { font-size: 1rem; line-height: 1.75; color: var(--ash-light); }
 }
 .af-req { color: #D63A8F; font-size: 0.75em; }
 .af-note { font-size: 0.72rem; color: rgba(158,154,173,0.55); margin-top: 0.75rem; line-height: 1.5; }
+
+.footer__linkedin {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.04em;
+  color: rgba(242,240,245,0.45);
+  text-decoration: none; margin-top: 0.6rem;
+  transition: color 0.2s;
+}
+.footer__linkedin:hover { color: #D63A8F; }
