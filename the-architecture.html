@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Architecture — Alba Collective</title>
-  <meta name="description" content="The six disciplines that comprise Alba Collective's revenue architecture system. Not services. A fully integrated commercial operating model." />
+  <meta name="description" content="Every specific thing Tulu does at Alba Collective — from Google Ads to sales coaching, CRM architecture, brand positioning, and AI implementation." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -14,8 +14,7 @@
       --black:     #09090f;
       --black-soft:#0f0e18;
       --pink:      #D63A8F;
-      --pink-dim:  rgba(214,58,143,0.25);
-      --pink-glow: rgba(214,58,143,0.12);
+      --pink-dim:  rgba(214,58,143,0.22);
       --off-white: #f2f0f5;
       --ash:       #9e9aad;
       --serif:     'Playfair Display', Georgia, serif;
@@ -24,446 +23,154 @@
       --max-w:     1240px;
     }
     html { scroll-behavior: smooth; }
-    body {
-      background: var(--black);
-      color: var(--off-white);
-      font-family: var(--sans);
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
+    body { background: var(--black); color: var(--off-white); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 0 3rem;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      background: rgba(9,9,15,0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px;
-    }
-    .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 3rem; border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(9,9,15,0.9); backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
     .nav-logo svg { width: 100px; height: 32px; }
     .nav-links { display: flex; align-items: center; gap: 2.5rem; }
-    .nav-links a {
-      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em;
-      text-transform: uppercase; color: var(--ash); text-decoration: none;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--off-white); }
-    .nav-links a.active { color: var(--pink); }
-    .nav-cta {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-family: var(--sans); font-size: 0.78rem; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--black); background: var(--pink);
-      padding: 0.55rem 1.4rem; border-radius: 2px;
-      text-decoration: none; transition: opacity 0.2s, transform 0.2s var(--ease);
-    }
-    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+    .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ash); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--off-white); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--sans); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); background: var(--pink); padding: 0.55rem 1.4rem; border-radius: 2px; text-decoration: none; transition: opacity 0.2s; }
+    .nav-cta:hover { opacity: 0.85; }
 
-    /* ── HERO ── */
-    .arch-hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 0 3rem 7rem;
-      position: relative; overflow: hidden;
+    /* HERO */
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 3rem 7rem; position: relative; overflow: hidden;
     }
-    .arch-hero__bg {
-      position: absolute; inset: 0; pointer-events: none;
-      background:
-        radial-gradient(ellipse 60% 50% at 80% 20%, rgba(214,58,143,0.10) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(214,58,143,0.06) 0%, transparent 70%);
-    }
-    /* Animated grid lines */
-    .arch-hero__grid {
-      position: absolute; inset: 0; pointer-events: none; opacity: 0.04;
-      background-image:
-        linear-gradient(var(--off-white) 1px, transparent 1px),
-        linear-gradient(90deg, var(--off-white) 1px, transparent 1px);
-      background-size: 80px 80px;
-    }
-    .arch-hero__eyebrow {
-      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.22em;
-      text-transform: uppercase; color: var(--pink);
-      margin-bottom: 2.5rem;
-      max-width: var(--max-w); width: 100%;
-      display: flex; align-items: center; gap: 1rem;
-    }
-    .arch-hero__eyebrow::before {
-      content: ''; width: 32px; height: 1px; background: var(--pink);
-    }
-    .arch-hero__inner { max-width: var(--max-w); width: 100%; position: relative; z-index: 1; }
-    .arch-hero__h1 {
-      font-family: var(--serif); font-weight: 400;
-      font-size: clamp(4rem, 9vw, 10rem);
-      line-height: 0.92; letter-spacing: -0.04em;
-      color: var(--off-white);
-      margin-bottom: 3rem;
-    }
-    .arch-hero__h1 em { color: var(--pink); font-style: italic; }
-    .arch-hero__sub {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
-      align-items: end;
-    }
-    .arch-hero__desc {
-      font-size: 1.05rem; line-height: 1.75; color: var(--ash);
-      max-width: 480px;
-    }
-    .arch-hero__desc strong { color: var(--off-white); font-weight: 500; }
-    .arch-hero__meta {
-      display: flex; flex-direction: column; gap: 1.25rem;
-      align-items: flex-end;
-    }
-    .arch-meta-tag {
-      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: rgba(242,240,245,0.3);
-    }
-    .arch-meta-tag span { color: var(--off-white); margin-left: 0.5rem; }
-    .arch-hero__cta {
-      display: inline-flex; align-items: center; gap: 0.75rem;
-      font-family: var(--sans); font-size: 0.85rem; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--black); background: var(--pink);
-      padding: 1rem 2.2rem; border-radius: 2px; text-decoration: none;
-      transition: opacity 0.2s, transform 0.2s var(--ease);
-      align-self: flex-end;
-    }
-    .arch-hero__cta:hover { opacity: 0.85; transform: translateY(-2px); }
+    .hero-bg { position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 55% 50% at 75% 15%, rgba(214,58,143,0.11) 0%, transparent 70%),
+                  radial-gradient(ellipse 40% 55% at 12% 85%, rgba(214,58,143,0.06) 0%, transparent 70%); }
+    .hero-grid { position: absolute; inset: 0; pointer-events: none; opacity: 0.035;
+      background-image: linear-gradient(var(--off-white) 1px, transparent 1px), linear-gradient(90deg, var(--off-white) 1px, transparent 1px);
+      background-size: 80px 80px; }
+    .hero-label { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--pink); margin-bottom: 2.5rem; display: flex; align-items: center; gap: 1rem; }
+    .hero-label::before { content: ''; width: 28px; height: 1px; background: var(--pink); }
+    .hero-inner { max-width: var(--max-w); width: 100%; position: relative; z-index: 1; }
+    .hero-h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(3.5rem, 8vw, 9rem); line-height: 0.93; letter-spacing: -0.04em; color: var(--off-white); margin-bottom: 3rem; }
+    .hero-h1 em { color: var(--pink); font-style: italic; }
+    .hero-bottom { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: end; }
+    .hero-desc { font-size: 1.05rem; line-height: 1.78; color: var(--ash); }
+    .hero-desc strong { color: var(--off-white); font-weight: 500; }
+    .hero-aside { display: flex; flex-direction: column; gap: 1.25rem; align-items: flex-end; }
+    .hero-stat { font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(242,240,245,0.3); }
+    .hero-stat span { color: var(--off-white); margin-left: 0.5rem; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.75rem; font-family: var(--sans); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); background: var(--pink); padding: 1rem 2.2rem; border-radius: 2px; text-decoration: none; transition: opacity 0.2s, transform 0.2s var(--ease); }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
 
-    /* ── STATEMENT BAND ── */
-    .statement-band {
-      border-top: 1px solid rgba(255,255,255,0.05);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      padding: 3.5rem 3rem;
-      overflow: hidden;
-    }
-    .statement-band__track {
-      display: flex; gap: 4rem; white-space: nowrap;
-      animation: marquee 22s linear infinite;
-      font-family: var(--serif); font-size: 1.1rem; font-style: italic;
-      color: rgba(242,240,245,0.25);
-    }
-    .statement-band__track span { color: var(--pink); font-style: normal; font-family: var(--sans); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; margin: 0 1rem; }
-    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    /* TICKER */
+    .ticker { border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 1.6rem 0; overflow: hidden; }
+    .ticker-track { display: flex; gap: 3rem; white-space: nowrap; animation: ticker 28s linear infinite; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(242,240,245,0.22); }
+    .ticker-track em { color: var(--pink); font-style: normal; margin: 0 0.5rem; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    /* ── PHILOSOPHY ── */
-    .philosophy {
-      padding: 9rem 3rem;
-      max-width: var(--max-w); margin: 0 auto;
-    }
-    .philosophy__top {
-      display: grid; grid-template-columns: 1fr 1.6fr; gap: 6rem;
-      align-items: start; margin-bottom: 6rem;
-    }
-    .sec-tag {
-      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--pink);
-      display: flex; align-items: center; gap: 0.75rem;
-    }
-    .sec-tag::before { content: ''; width: 24px; height: 1px; background: var(--pink); }
-    .phil-h2 {
-      font-family: var(--serif); font-size: clamp(2.2rem, 3.5vw, 3.8rem);
-      font-weight: 400; line-height: 1.05; letter-spacing: -0.03em;
-      color: var(--off-white); margin-top: 1.5rem;
-    }
-    .phil-h2 em { color: var(--pink); font-style: italic; }
-    .phil-body { padding-top: 1.5rem; }
-    .phil-body p {
-      font-size: 1rem; line-height: 1.85; color: var(--ash);
-      margin-bottom: 1.5rem;
-    }
-    .phil-body p strong { color: var(--off-white); font-weight: 500; }
-    .phil-body p:last-child { margin-bottom: 0; }
+    /* SECTION HEADER */
+    .sec-intro { max-width: var(--max-w); margin: 0 auto; padding: 8rem 3rem 5rem; }
+    .sec-tag { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pink); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .sec-tag::before { content: ''; width: 22px; height: 1px; background: var(--pink); }
+    .sec-h2 { font-family: var(--serif); font-size: clamp(2.8rem, 4.5vw, 5rem); font-weight: 400; line-height: 0.97; letter-spacing: -0.035em; color: var(--off-white); }
+    .sec-h2 em { color: var(--pink); font-style: italic; }
+    .sec-intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 3rem; }
+    .sec-intro-desc { font-size: 1rem; line-height: 1.82; color: var(--ash); }
+    .sec-intro-desc strong { color: var(--off-white); font-weight: 500; }
 
-    .phil-principles {
+    /* CAPABILITY CLUSTERS */
+    .clusters { padding: 0 3rem 10rem; }
+
+    .cluster { max-width: var(--max-w); margin: 0 auto 6rem; }
+    .cluster-header {
+      display: grid; grid-template-columns: 56px 1fr; gap: 2.5rem;
+      align-items: start; padding: 3.5rem 0 2rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .cluster-num { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.18em; color: var(--pink); text-transform: uppercase; padding-top: 0.5rem; }
+    .cluster-title-block { }
+    .cluster-area { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ash); margin-bottom: 0.75rem; }
+    .cluster-h3 { font-family: var(--serif); font-size: clamp(1.8rem, 2.8vw, 2.8rem); font-weight: 400; line-height: 1.08; letter-spacing: -0.025em; color: var(--off-white); margin-bottom: 1.25rem; }
+    .cluster-h3 em { color: var(--pink); font-style: italic; }
+    .cluster-lead { font-size: 0.95rem; line-height: 1.78; color: var(--ash); max-width: 680px; }
+    .cluster-lead strong { color: var(--off-white); font-weight: 500; }
+
+    /* Service cards within a cluster */
+    .services-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1px; border: 1px solid rgba(255,255,255,0.06);
-      background: rgba(255,255,255,0.04);
+      gap: 1px; margin-top: 2.5rem;
+      background: rgba(255,255,255,0.05);
     }
-    .principle {
-      background: var(--black); padding: 2.5rem;
-      transition: background 0.3s var(--ease);
-    }
-    .principle:hover { background: rgba(214,58,143,0.04); }
-    .principle__num {
-      font-family: var(--sans); font-size: 0.6rem; font-weight: 600;
-      letter-spacing: 0.18em; color: var(--pink); text-transform: uppercase;
-      margin-bottom: 1.25rem;
-    }
-    .principle h3 {
-      font-family: var(--serif); font-size: 1.4rem; font-weight: 400;
-      color: var(--off-white); margin-bottom: 1rem; line-height: 1.15;
-    }
-    .principle p {
-      font-size: 0.85rem; line-height: 1.7; color: var(--ash);
-    }
-
-    /* ── DISCIPLINES ── */
-    .disciplines {
-      padding: 0 3rem 10rem;
-    }
-    .disciplines__header {
-      max-width: var(--max-w); margin: 0 auto 5rem;
-      display: flex; align-items: end; justify-content: space-between;
-    }
-    .disciplines__h2 {
-      font-family: var(--serif); font-size: clamp(2.5rem, 4vw, 4.5rem);
-      font-weight: 400; line-height: 1.0; letter-spacing: -0.03em;
-      color: var(--off-white);
-    }
-    .disciplines__h2 em { color: var(--pink); font-style: italic; }
-    .disc-count { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ash); }
-
-    .disc-item {
-      max-width: var(--max-w); margin: 0 auto;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      display: grid; grid-template-columns: 80px 1.1fr 1fr;
-      gap: 4rem; padding: 4rem 0;
-      transition: background 0.3s var(--ease);
-      cursor: default;
-    }
-    .disc-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .disc-item:hover { background: transparent; }
-    .disc-item:hover .disc-num { color: var(--pink); }
-    .disc-item:hover .disc-arrow { opacity: 1; transform: translate(4px,-4px); }
-
-    .disc-num {
-      font-family: var(--sans); font-size: 0.62rem; font-weight: 600;
-      letter-spacing: 0.18em; color: rgba(242,240,245,0.2);
-      text-transform: uppercase; padding-top: 0.4rem;
-      transition: color 0.3s var(--ease);
-    }
-    .disc-main { }
-    .disc-title {
-      font-family: var(--serif); font-size: clamp(1.8rem, 2.5vw, 2.6rem);
-      font-weight: 400; line-height: 1.1; letter-spacing: -0.02em;
-      color: var(--off-white); margin-bottom: 0.5rem;
-    }
-    .disc-title em { color: var(--pink); font-style: italic; }
-    .disc-subtitle {
-      font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--pink); margin-bottom: 2rem;
-    }
-    .disc-desc {
-      font-size: 0.95rem; line-height: 1.8; color: var(--ash);
-      max-width: 520px;
-    }
-    .disc-desc p { margin-bottom: 1rem; }
-    .disc-desc p:last-child { margin-bottom: 0; }
-    .disc-desc strong { color: var(--off-white); font-weight: 500; }
-
-    .disc-detail { display: flex; flex-direction: column; justify-content: space-between; padding-top: 0.4rem; }
-    .disc-what {
-      margin-bottom: 2.5rem;
-    }
-    .disc-what h4 {
-      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--ash); margin-bottom: 1rem;
-    }
-    .disc-what ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-    .disc-what ul li {
-      font-size: 0.85rem; color: rgba(242,240,245,0.65);
-      display: flex; align-items: baseline; gap: 0.6rem;
-    }
-    .disc-what ul li::before {
-      content: '—'; color: var(--pink); font-size: 0.7rem; flex-shrink: 0;
-    }
-    .disc-outcome {
-      padding: 1.5rem;
-      background: rgba(214,58,143,0.06);
-      border-left: 2px solid var(--pink);
-    }
-    .disc-outcome h4 {
-      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--pink); margin-bottom: 0.75rem;
-    }
-    .disc-outcome p { font-size: 0.82rem; line-height: 1.65; color: rgba(242,240,245,0.7); }
-    .disc-arrow {
-      font-size: 1.2rem; color: var(--pink); opacity: 0;
-      transition: opacity 0.3s, transform 0.3s var(--ease);
-      align-self: flex-start;
-    }
-
-    /* ── HOW IT WORKS ── */
-    .how-section {
-      background: var(--black-soft);
-      padding: 9rem 3rem;
-      border-top: 1px solid rgba(255,255,255,0.04);
-    }
-    .how-section__inner { max-width: var(--max-w); margin: 0 auto; }
-    .how-top {
-      display: grid; grid-template-columns: 1fr 1.5fr; gap: 6rem;
-      align-items: center; margin-bottom: 6rem;
-    }
-    .how-h2 {
-      font-family: var(--serif); font-size: clamp(2.5rem, 4vw, 4.5rem);
-      font-weight: 400; line-height: 1.0; letter-spacing: -0.03em;
-      color: var(--off-white);
-    }
-    .how-h2 em { color: var(--pink); font-style: italic; }
-    .how-intro { font-size: 1rem; line-height: 1.8; color: var(--ash); }
-    .how-intro strong { color: var(--off-white); font-weight: 500; }
-
-    .how-phases {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
-      background: rgba(255,255,255,0.04);
-    }
-    .phase {
-      background: var(--black-soft); padding: 2.5rem 2rem;
+    .svc {
+      background: var(--black); padding: 2rem 1.75rem;
+      display: flex; flex-direction: column; gap: 0.9rem;
+      transition: background 0.25s var(--ease);
       position: relative;
     }
-    .phase::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: var(--pink); opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .phase:hover::before { opacity: 1; }
-    .phase__n {
-      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--pink); display: block;
-      margin-bottom: 1.5rem;
-    }
-    .phase h3 {
-      font-family: var(--sans); font-size: 1rem; font-weight: 600;
-      color: var(--off-white); margin-bottom: 1rem; line-height: 1.2;
-    }
-    .phase p { font-size: 0.82rem; line-height: 1.65; color: var(--ash); }
-    .phase__duration {
-      margin-top: 1.5rem; padding-top: 1.5rem;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: rgba(242,240,245,0.3);
-    }
-    .phase__duration span { color: var(--ash); }
+    .svc::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--pink); transform: scaleX(0); transform-origin: left; transition: transform 0.3s var(--ease); }
+    .svc:hover { background: rgba(214,58,143,0.04); }
+    .svc:hover::before { transform: scaleX(1); }
+    .svc-icon { font-size: 1.2rem; line-height: 1; }
+    .svc-name { font-family: var(--sans); font-size: 0.95rem; font-weight: 600; color: var(--off-white); line-height: 1.2; }
+    .svc-desc { font-size: 0.82rem; line-height: 1.68; color: var(--ash); flex: 1; }
+    .svc-desc strong { color: var(--off-white); font-weight: 500; }
+    .svc-why { font-size: 0.72rem; line-height: 1.5; color: rgba(214,58,143,0.75); font-style: italic; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 0.85rem; margin-top: 0.25rem; }
 
-    /* ── WHO IT'S FOR ── */
-    .who-section {
-      padding: 9rem 3rem;
-    }
-    .who-section__inner { max-width: var(--max-w); margin: 0 auto; }
-    .who-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
-      align-items: start;
-    }
-    .who-h2 {
-      font-family: var(--serif); font-size: clamp(2.5rem, 4vw, 4.5rem);
-      font-weight: 400; line-height: 1.0; letter-spacing: -0.03em;
-      color: var(--off-white); margin-top: 1.5rem; margin-bottom: 2rem;
-    }
-    .who-h2 em { color: var(--pink); font-style: italic; }
-    .who-desc { font-size: 1rem; line-height: 1.8; color: var(--ash); margin-bottom: 2rem; }
-    .who-desc strong { color: var(--off-white); font-weight: 500; }
+    /* 2-col services variant */
+    .services-grid--2 { grid-template-columns: repeat(2, 1fr); }
+    .services-grid--4 { grid-template-columns: repeat(4, 1fr); }
 
-    .fit-list, .notfit-list { display: flex; flex-direction: column; gap: 0; }
-    .fit-item, .notfit-item {
-      padding: 1.25rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      display: flex; align-items: baseline; gap: 1rem;
-      font-size: 0.92rem; line-height: 1.6;
-    }
-    .fit-item { color: var(--off-white); }
-    .fit-item::before { content: '✓'; color: var(--pink); flex-shrink: 0; font-weight: 600; }
-    .notfit-item { color: rgba(242,240,245,0.4); }
-    .notfit-item::before { content: '✕'; color: rgba(242,240,245,0.2); flex-shrink: 0; }
-    .who-col-title {
-      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--ash);
-      margin-bottom: 1.5rem;
-    }
-    .who-right { display: flex; flex-direction: column; gap: 3rem; }
+    /* STATEMENT BREAK */
+    .break-section { background: var(--black-soft); padding: 7rem 3rem; border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .break-inner { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .break-h2 { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 3.8rem); font-weight: 400; line-height: 1.05; letter-spacing: -0.03em; color: var(--off-white); }
+    .break-h2 em { color: var(--pink); font-style: italic; }
+    .break-body { font-size: 0.95rem; line-height: 1.82; color: var(--ash); }
+    .break-body strong { color: var(--off-white); font-weight: 500; }
 
-    /* ── CTA SECTION ── */
-    .arch-cta {
-      background: var(--black-soft);
-      padding: 10rem 3rem;
-      border-top: 1px solid rgba(255,255,255,0.04);
-      position: relative; overflow: hidden;
-    }
-    .arch-cta__orb {
-      position: absolute; width: 700px; height: 700px; border-radius: 50%;
-      background: radial-gradient(ellipse, rgba(214,58,143,0.1) 0%, transparent 70%);
-      filter: blur(80px); top: -20%; right: -10%; pointer-events: none;
-    }
-    .arch-cta__inner {
-      max-width: var(--max-w); margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
-      align-items: center; position: relative; z-index: 1;
-    }
-    .arch-cta__h2 {
-      font-family: var(--serif); font-size: clamp(2.5rem, 4.5vw, 5rem);
-      font-weight: 400; line-height: 1.0; letter-spacing: -0.03em;
-      color: var(--off-white);
-    }
-    .arch-cta__h2 em { color: var(--pink); font-style: italic; }
-    .arch-cta__body { display: flex; flex-direction: column; align-items: flex-start; gap: 2rem; }
-    .arch-cta__body p { font-size: 1rem; line-height: 1.8; color: var(--ash); }
-    .arch-cta__body p strong { color: var(--off-white); font-weight: 500; }
-    .cta-btn {
-      display: inline-flex; align-items: center; gap: 0.75rem;
-      font-family: var(--sans); font-size: 0.85rem; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--black); background: var(--pink);
-      padding: 1.1rem 2.5rem; border-radius: 2px; text-decoration: none;
-      transition: opacity 0.2s, transform 0.2s var(--ease);
-    }
-    .cta-btn:hover { opacity: 0.85; transform: translateY(-2px); }
-    .cta-note {
-      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(242,240,245,0.3);
-    }
+    /* CTA */
+    .cta-section { padding: 10rem 3rem; position: relative; overflow: hidden; }
+    .cta-orb { position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(ellipse, rgba(214,58,143,0.1) 0%, transparent 70%); filter: blur(80px); top: -10%; right: -5%; pointer-events: none; }
+    .cta-inner { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; position: relative; z-index: 1; }
+    .cta-h2 { font-family: var(--serif); font-size: clamp(2.5rem, 4vw, 5rem); font-weight: 400; line-height: 0.97; letter-spacing: -0.035em; color: var(--off-white); }
+    .cta-h2 em { color: var(--pink); font-style: italic; }
+    .cta-body { display: flex; flex-direction: column; align-items: flex-start; gap: 2rem; }
+    .cta-body p { font-size: 1rem; line-height: 1.8; color: var(--ash); }
+    .cta-body p strong { color: var(--off-white); }
+    .cta-note { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(242,240,245,0.3); }
 
-    /* ── FOOTER ── */
-    .arch-footer {
-      padding: 2.5rem 3rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .arch-footer a {
-      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em;
-      color: var(--ash); text-decoration: none; transition: color 0.2s;
-    }
-    .arch-footer a:hover { color: var(--off-white); }
+    /* FOOTER */
+    footer { padding: 2.5rem 3rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; }
+    footer a { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ash); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--off-white); }
+    footer span { font-size: 0.65rem; color: rgba(242,240,245,0.2); letter-spacing: 0.08em; text-transform: uppercase; }
 
-    /* ── REVEAL ANIMATIONS ── */
-    [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 0.65s var(--ease), transform 0.65s var(--ease); }
-    [data-reveal].visible { opacity: 1; transform: none; }
-    [data-reveal-left] { opacity: 0; transform: translateX(-32px); transition: opacity 0.65s var(--ease), transform 0.65s var(--ease); }
-    [data-reveal-left].visible { opacity: 1; transform: none; }
-    [data-reveal-right] { opacity: 0; transform: translateX(32px); transition: opacity 0.65s var(--ease), transform 0.65s var(--ease); }
-    [data-reveal-right].visible { opacity: 1; transform: none; }
+    /* ANIMATIONS */
+    [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+    [data-reveal].vis { opacity: 1; transform: none; }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
       nav { padding: 0 1.5rem; }
       .nav-links { display: none; }
-      .arch-hero { padding: 0 1.5rem 5rem; min-height: 100svh; }
-      .arch-hero__h1 { font-size: clamp(3rem, 11vw, 5rem); }
-      .arch-hero__sub { grid-template-columns: 1fr; gap: 2rem; }
-      .arch-hero__meta { align-items: flex-start; }
-      .philosophy__top { grid-template-columns: 1fr; gap: 3rem; }
-      .phil-principles { grid-template-columns: 1fr; }
-      .disciplines { padding: 0 1.5rem 6rem; }
-      .disc-item { grid-template-columns: 40px 1fr; gap: 1.5rem; padding: 3rem 0; }
-      .disc-detail { display: none; }
-      .how-top { grid-template-columns: 1fr; gap: 3rem; }
-      .how-phases { grid-template-columns: 1fr 1fr; }
-      .who-grid { grid-template-columns: 1fr; gap: 4rem; }
-      .arch-cta__inner { grid-template-columns: 1fr; gap: 3rem; }
-      .philosophy { padding: 6rem 1.5rem; }
-      .how-section { padding: 6rem 1.5rem; }
-      .who-section { padding: 6rem 1.5rem; }
-      .arch-cta { padding: 7rem 1.5rem; }
+      .hero { padding: 0 1.5rem 5rem; }
+      .hero-bottom { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-aside { align-items: flex-start; }
+      .sec-intro { padding: 6rem 1.5rem 4rem; }
+      .sec-intro-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .clusters { padding: 0 1.5rem 6rem; }
+      .cluster-header { grid-template-columns: 1fr; gap: 0.5rem; padding: 2.5rem 0 1.5rem; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .services-grid--4 { grid-template-columns: 1fr 1fr; }
+      .break-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .cta-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .break-section, .cta-section { padding: 6rem 1.5rem; }
     }
     @media (max-width: 600px) {
-      .how-phases { grid-template-columns: 1fr; }
+      .services-grid, .services-grid--2, .services-grid--4 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <a href="index.html" class="nav-logo" aria-label="Alba Collective">
       <svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -471,7 +178,7 @@
         <polygon points="22.5,32 30,17 37.5,32" fill="#09090f"/>
         <rect x="28.5" y="24" width="3" height="8" fill="#D63A8F"/>
         <path d="M56,8 A16,16 0 1,0 56,32 L56,27 A11,11 0 1,1 56,13 Z" fill="white"/>
-        <text x="0" y="40" font-family="'Space Grotesk', sans-serif" font-size="7" font-weight="600" letter-spacing="3" fill="white">ALBA COLLECTIVE</text>
+        <text x="0" y="40" font-family="'Space Grotesk',sans-serif" font-size="7" font-weight="600" letter-spacing="3" fill="white">ALBA COLLECTIVE</text>
       </svg>
     </a>
     <div class="nav-links">
@@ -479,477 +186,581 @@
       <a href="index.html#model">How It Works</a>
       <a href="index.html#founder">Tulu</a>
     </div>
-    <a href="index.html#apply" class="nav-cta">Apply → </a>
+    <a href="index.html#apply" class="nav-cta">Apply →</a>
   </nav>
 
   <!-- HERO -->
-  <section class="arch-hero">
-    <div class="arch-hero__bg"></div>
-    <div class="arch-hero__grid"></div>
-    <div class="arch-hero__eyebrow" data-reveal>Alba Collective — The Architecture</div>
-    <div class="arch-hero__inner">
-      <h1 class="arch-hero__h1" data-reveal style="transition-delay:0.08s">
-        Not services.<br /><em>A system.</em>
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-label" data-reveal>Alba Collective — What I Do, Exactly</div>
+    <div class="hero-inner">
+      <h1 class="hero-h1" data-reveal style="transition-delay:.07s">
+        Everything.<br /><em>In one place.</em>
       </h1>
-      <div class="arch-hero__sub">
-        <p class="arch-hero__desc" data-reveal style="transition-delay:0.16s">
-          What I do cannot be ordered à la carte. These six disciplines exist as a
-          <strong>fully integrated commercial operating model</strong> — each one connected to the others,
-          each one feeding the system that drives sustainable revenue growth.
-          <br /><br />
-          The work begins with a diagnosis. What you think the problem is, is rarely the problem.
+      <div class="hero-bottom">
+        <p class="hero-desc" data-reveal style="transition-delay:.14s">
+          Most consultants do one thing well. I do the full commercial system —
+          <strong>paid advertising, sales coaching, CRM architecture, brand positioning,
+          email automation, conversion design, and AI implementation</strong> — because the
+          system only performs when every part is connected. Here is exactly what that means.
         </p>
-        <div class="arch-hero__meta" data-reveal style="transition-delay:0.24s">
-          <div class="arch-meta-tag">Markets <span>B2C · B2B · B2G</span></div>
-          <div class="arch-meta-tag">Geography <span>Europe & USA</span></div>
-          <div class="arch-meta-tag">Engagement <span>Founder-led, always</span></div>
-          <a href="index.html#apply" class="arch-hero__cta" style="margin-top:1rem">Apply to Work Together →</a>
+        <div class="hero-aside" data-reveal style="transition-delay:.21s">
+          <div class="hero-stat">Markets <span>B2C · B2B · B2G</span></div>
+          <div class="hero-stat">Geography <span>Europe & USA</span></div>
+          <div class="hero-stat">Delivery <span>Founder-led, always</span></div>
+          <a href="index.html#apply" class="btn-primary" style="margin-top:1rem">Apply to Work Together →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- STATEMENT BAND -->
-  <div class="statement-band">
-    <div class="statement-band__track">
-      <span>Revenue Architecture</span> · <span>Commercial Strategy</span> · <span>Sales System Design</span> · <span>CRM Architecture</span> · <span>Conversion Engineering</span> · <span>AI-Enhanced Operations</span> · <span>Digital Experience</span> · <span>Revenue Architecture</span> · <span>Commercial Strategy</span> · <span>Sales System Design</span> · <span>CRM Architecture</span> · <span>Conversion Engineering</span> · <span>AI-Enhanced Operations</span> · <span>Digital Experience</span>
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-track">
+      Google Ads <em>·</em> Sales Coaching <em>·</em> HubSpot Architecture <em>·</em> Email Automation <em>·</em> Brand Positioning <em>·</em> CRO <em>·</em> Sales Process Design <em>·</em> AI Workflows <em>·</em> Funnel Strategy <em>·</em> Revenue Operations <em>·</em> LinkedIn Outbound <em>·</em> Pricing Strategy <em>·</em>
+      Google Ads <em>·</em> Sales Coaching <em>·</em> HubSpot Architecture <em>·</em> Email Automation <em>·</em> Brand Positioning <em>·</em> CRO <em>·</em> Sales Process Design <em>·</em> AI Workflows <em>·</em> Funnel Strategy <em>·</em> Revenue Operations <em>·</em> LinkedIn Outbound <em>·</em> Pricing Strategy <em>·</em>
     </div>
   </div>
 
-  <!-- PHILOSOPHY -->
-  <section class="philosophy">
-    <div class="philosophy__top">
-      <div data-reveal-left>
-        <div class="sec-tag">The Philosophy</div>
-        <h2 class="phil-h2">
-          Growth is not a<br />marketing problem.<br />
-          It is a <em>systems problem.</em>
-        </h2>
-      </div>
-      <div class="phil-body" data-reveal>
-        <p>
-          Most businesses approaching revenue stagnation or growth plateaus make the same mistake:
-          they hire more people, run more campaigns, try more channels.
-          <strong>Activity is abundant. Alignment is absent.</strong>
-        </p>
-        <p>
-          Alba Collective operates on a single conviction: revenue growth is an architectural challenge.
-          It requires diagnosing the full commercial system — not optimising isolated elements of it.
-          Your lead generation cannot improve if your CRM is broken. Your CRM cannot work if your
-          sales process is undefined. Your sales process cannot close if your positioning is unclear.
-          <strong>Everything is connected.</strong>
-        </p>
-        <p>
-          This is not a consultancy that produces reports. It is a practice that produces outcomes.
-          The distinction matters. I am embedded in the work — not above it.
-        </p>
-      </div>
+  <!-- INTRO -->
+  <div class="sec-intro" data-reveal>
+    <div class="sec-tag">The Full Scope</div>
+    <h2 class="sec-h2">Six areas. <em>Dozens of specifics.</em><br />One connected system.</h2>
+    <div class="sec-intro-grid">
+      <p class="sec-intro-desc">
+        Below is every specific thing I do — broken down by area, named explicitly, and explained in plain language.
+        <strong>No vague "strategy consulting."</strong> No abstract frameworks. Just the real work that moves revenue.
+      </p>
+      <p class="sec-intro-desc">
+        Every service below is something I have done repeatedly, for real businesses, in real markets.
+        When you engage Alba Collective, you are not hiring a generalist agency.
+        <strong>You are hiring the person who has done each of these things — and knows how they connect.</strong>
+      </p>
     </div>
+  </div>
 
-    <div class="phil-principles">
-      <div class="principle" data-reveal>
-        <div class="principle__num">Principle 01</div>
-        <h3>Diagnosis before prescription</h3>
-        <p>Every engagement begins with a structured commercial review. What you believe is wrong and what is actually wrong are almost never the same thing. The work starts there.</p>
-      </div>
-      <div class="principle" data-reveal style="transition-delay:0.08s">
-        <div class="principle__num">Principle 02</div>
-        <h3>Systems over tactics</h3>
-        <p>Tactics produce spikes. Systems produce compounding. Every recommendation is evaluated against its contribution to the whole — not its performance in isolation.</p>
-      </div>
-      <div class="principle" data-reveal style="transition-delay:0.16s">
-        <div class="principle__num">Principle 03</div>
-        <h3>Implementation, not just strategy</h3>
-        <p>Strategy without execution is a document. Alba Collective is structured to move from insight to implementation without the handoff that kills most consulting engagements.</p>
-      </div>
-    </div>
-  </section>
+  <div class="clusters">
 
-  <!-- DISCIPLINES -->
-  <section class="disciplines">
-    <div class="disciplines__header" data-reveal>
-      <div>
-        <div class="sec-tag" style="margin-bottom:1.5rem">The Six Disciplines</div>
-        <h2 class="disciplines__h2">
-          Six disciplines.<br /><em>One architecture.</em>
-        </h2>
-      </div>
-      <div class="disc-count">Each discipline is a<br />subsystem of the whole.</div>
-    </div>
-
-    <!-- Discipline 01 -->
-    <div class="disc-item" data-reveal>
-      <div class="disc-num">01</div>
-      <div class="disc-main">
-        <div class="disc-subtitle">Commercial Strategy & Revenue Architecture</div>
-        <h3 class="disc-title">The <em>Foundation</em></h3>
-        <div class="disc-desc">
-          <p>
-            Before anything else, the commercial model must be legible — to you, to your team, and to the market.
-            <strong>Revenue Architecture is the process of making your growth logic explicit.</strong>
-            Where does revenue come from? Why does it not come from more places? Why are conversion rates where they are?
-            What is the actual cost of acquisition, and does it make the model viable at scale?
-          </p>
-          <p>
-            This discipline begins every engagement. It establishes the baseline, identifies the highest-leverage constraints,
-            and creates the commercial roadmap that everything else is built upon. Without this, all other work is optimisation
-            on top of a flawed foundation.
+    <!-- ═══ CLUSTER 0: THE DIAGNOSTIC ═══ -->
+    <div class="cluster">
+      <div class="cluster-header" data-reveal>
+        <div class="cluster-num">00</div>
+        <div class="cluster-title-block">
+          <div class="cluster-area">Commercial Diagnostic & Business Analysis</div>
+          <h3 class="cluster-h3">Before any solution,<br /><em>a precise diagnosis.</em></h3>
+          <p class="cluster-lead">
+            Every engagement begins here. <strong>What you believe is the problem is almost never the actual problem.</strong>
+            The diagnostic phase is where I examine the full commercial organism — from the data to the team,
+            from the funnel to the offer. Nothing is assumed. Nothing is skipped.
+            The work that follows is only as good as the understanding that precedes it.
           </p>
         </div>
       </div>
-      <div class="disc-detail">
-        <div class="disc-what">
-          <h4>This covers</h4>
-          <ul>
-            <li>Commercial model audit & diagnostic</li>
-            <li>Revenue stream mapping & prioritisation</li>
-            <li>Pricing architecture & margin analysis</li>
-            <li>Market segmentation & ICP definition</li>
-            <li>Competitive positioning & differentiation strategy</li>
-            <li>Growth roadmap design (90-day, 12-month)</li>
-          </ul>
+      <div class="services-grid" data-reveal>
+        <div class="svc">
+          <div class="svc-icon">⊕</div>
+          <div class="svc-name">Business Analysis & Commercial Review</div>
+          <div class="svc-desc">A structured analysis of the entire business model — revenue streams, cost structure, unit economics, growth levers, and constraints. <strong>Understanding where money comes from, where it goes, and where it should come from next.</strong></div>
+          <div class="svc-why">Why it matters: Most commercial problems are symptoms. Business analysis finds the cause — and the cause is almost always structural, not tactical.</div>
         </div>
-        <div class="disc-outcome">
-          <h4>The outcome</h4>
-          <p>A fully legible commercial architecture — the north star that aligns every decision across the business to a single growth logic.</p>
+        <div class="svc">
+          <div class="svc-icon">⊕</div>
+          <div class="svc-name">SWOT Analysis (Commercial Focus)</div>
+          <div class="svc-desc">Not the generic SWOT you fill in a template — a rigorous commercial SWOT that maps internal capabilities to external market conditions, identifies asymmetric advantages, and exposes hidden vulnerabilities. <strong>Strategic honesty, not executive comfort.</strong></div>
+          <div class="svc-why">Why it matters: The most dangerous weaknesses are the ones leadership is not looking at. A commercially honest SWOT creates the clarity that produces decisive strategy.</div>
         </div>
-      </div>
-    </div>
-
-    <!-- Discipline 02 -->
-    <div class="disc-item" data-reveal>
-      <div class="disc-num">02</div>
-      <div class="disc-main">
-        <div class="disc-subtitle">Sales System Design & Optimisation</div>
-        <h3 class="disc-title">The <em>Engine</em></h3>
-        <div class="disc-desc">
-          <p>
-            A sales function that relies on talent, luck, or individual heroics is not a system — it is a dependency.
-            <strong>Sales performance is predictable when it is designed.</strong>
-            The process, the cadence, the criteria for qualification, the handoff points, the objection protocols —
-            each element shapes what the pipeline produces.
-          </p>
-          <p>
-            I design and rebuild sales architectures that create consistent, repeatable output. The goal is not a better
-            salesperson — it is a system that makes any capable person in that role more effective,
-            and makes the results forecastable.
-          </p>
+        <div class="svc">
+          <div class="svc-icon">⊕</div>
+          <div class="svc-name">Competitor Analysis</div>
+          <div class="svc-desc">Structured review of direct and indirect competitors — positioning, pricing, messaging, channels, product, and customer perception. <strong>Where the market is leaving gaps, and where you have defensible ground.</strong></div>
+          <div class="svc-why">Why it matters: Businesses that do not map their competitive landscape consistently undercharge, over-explain, and position against the wrong alternatives.</div>
         </div>
-      </div>
-      <div class="disc-detail">
-        <div class="disc-what">
-          <h4>This covers</h4>
-          <ul>
-            <li>Sales process mapping & gap analysis</li>
-            <li>Pipeline design & stage definition</li>
-            <li>Qualification frameworks (MEDDIC, SPIN, custom)</li>
-            <li>Outbound & inbound playbook development</li>
-            <li>Sales team structure & role clarity</li>
-            <li>Forecasting models & performance cadence</li>
-            <li>Objection handling & closing protocol design</li>
-          </ul>
+        <div class="svc">
+          <div class="svc-icon">⊕</div>
+          <div class="svc-name">Customer Journey Analysis</div>
+          <div class="svc-desc">Full mapping of every touchpoint from first awareness to post-purchase — identifying where buyers drop off, what creates hesitation, and what accelerates decisions. <strong>Seeing the business the way the customer experiences it.</strong></div>
+          <div class="svc-why">Why it matters: The gap between the journey you believe customers take and the one they actually take is where revenue is lost — visibly and invisibly.</div>
         </div>
-        <div class="disc-outcome">
-          <h4>The outcome</h4>
-          <p>A sales system where revenue is no longer dependent on individual performance — it is a reliable output of a well-designed process.</p>
+        <div class="svc">
+          <div class="svc-icon">⊕</div>
+          <div class="svc-name">CRM & Pipeline Review</div>
+          <div class="svc-desc">Deep audit of existing CRM data, pipeline structure, deal stages, data quality, and process adherence. <strong>What the pipeline says is happening versus what is actually happening.</strong></div>
+          <div class="svc-why">Why it matters: Most pipelines are optimistic fictions. A rigorous pipeline review produces an accurate forecast and reveals process failures hiding inside clean-looking data.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">⊕</div>
+          <div class="svc-name">Website Teardown</div>
+          <div class="svc-desc">Page-by-page commercial critique of the website — messaging clarity, conversion architecture, UX friction, social proof, and call-to-action effectiveness. <strong>The site through the eyes of a sceptical buyer, not the internal team.</strong></div>
+          <div class="svc-why">Why it matters: Every business is too close to its own website to see what visitors actually experience. An objective teardown consistently reveals conversion failures that are simple to fix.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">⊕</div>
+          <div class="svc-name">Funnel Diagnosis</div>
+          <div class="svc-desc">Quantitative and qualitative analysis of the full marketing and sales funnel — traffic volumes, conversion rates at each stage, drop-off points, and revenue attribution. <strong>Finding exactly where the funnel leaks and why.</strong></div>
+          <div class="svc-why">Why it matters: A leaky funnel cannot be fixed by pouring more traffic in. Diagnosis identifies the smallest change with the largest impact on downstream revenue.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">⊕</div>
+          <div class="svc-name">Sales Call Analysis</div>
+          <div class="svc-desc">Review of recorded sales calls — identifying patterns in objections, qualification failures, missed discovery, premature closing attempts, and verbal positioning errors. <strong>The truth about what is happening in the room where the deal is made or lost.</strong></div>
+          <div class="svc-why">Why it matters: Sales managers review results. I review conversations. Results are outputs — conversations are where they are determined. Call analysis is where performance improvement actually lives.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">⊕</div>
+          <div class="svc-name">Team Interviews & Capability Assessment</div>
+          <div class="svc-desc">Structured interviews with commercial team members — sales, marketing, customer success — to surface ground-level intelligence, process gaps, and team dynamics that leadership often cannot see. <strong>The diagnosis the org chart cannot give you.</strong></div>
+          <div class="svc-why">Why it matters: The people closest to the customer almost always know where the problems are. They are rarely asked. Team interviews surface what dashboards conceal.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">⊕</div>
+          <div class="svc-name">Data Health Analysis</div>
+          <div class="svc-desc">Audit of data quality across CRM, analytics, advertising platforms, and email — identifying tracking gaps, data inconsistencies, attribution errors, and reporting blind spots. <strong>Because decisions built on bad data are worse than no data at all.</strong></div>
+          <div class="svc-why">Why it matters: Most businesses are making strategic decisions on data they have never audited. Bad tracking produces false confidence. Data health is the prerequisite to everything analytical.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">⊕</div>
+          <div class="svc-name">Offer Evaluation</div>
+          <div class="svc-desc">Commercial critique of the core offer — what is being sold, how it is packaged, what it is priced at, how it is communicated, and whether it is the right offer for the right market. <strong>The offer is the atom of the commercial model. Everything else orbits it.</strong></div>
+          <div class="svc-why">Why it matters: Many businesses with excellent products are selling the wrong version of them, to the wrong segment, at the wrong price, with the wrong emphasis. Offer evaluation resets the foundation.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">⊕</div>
+          <div class="svc-name">Channel Analysis</div>
+          <div class="svc-desc">Performance review of all active acquisition and revenue channels — paid, organic, outbound, referral, partnership — with efficiency metrics, attribution analysis, and strategic prioritisation. <strong>Which channels deserve more investment and which are burning budget with no path to scale.</strong></div>
+          <div class="svc-why">Why it matters: Most businesses spread effort across channels without a clear understanding of relative performance. Channel analysis produces the focus that accelerates growth without adding cost.</div>
         </div>
       </div>
     </div>
 
-    <!-- Discipline 03 -->
-    <div class="disc-item" data-reveal>
-      <div class="disc-num">03</div>
-      <div class="disc-main">
-        <div class="disc-subtitle">CRM Architecture & Revenue Operations</div>
-        <h3 class="disc-title">The <em>Memory</em></h3>
-        <div class="disc-desc">
-          <p>
-            CRM systems fail not because of the software — but because of the thinking behind them.
-            <strong>A CRM is a map of how your business makes money.</strong>
-            When it reflects your actual commercial logic, it becomes one of the highest-leverage assets in the business.
-            When it does not, it becomes an administrative burden that sales teams abandon.
-          </p>
-          <p>
-            I design CRM architectures from first principles — structure, data model, automation logic, and integration
-            with the broader revenue stack. The result is a system that your team actually uses, that leadership can
-            trust for forecasting, and that scales without breaking.
+    <!-- ═══ CLUSTER 1: PAID ADVERTISING ═══ -->
+    <div class="cluster">
+      <div class="cluster-header" data-reveal>
+        <div class="cluster-num">01</div>
+        <div class="cluster-title-block">
+          <div class="cluster-area">Paid Advertising & Demand Generation</div>
+          <h3 class="cluster-h3">Getting the right people<br />to find you — <em>profitably.</em></h3>
+          <p class="cluster-lead">
+            Paid media is not about spending more. It is about spending correctly.
+            <strong>Most businesses waste 40–60% of their ad budget on the wrong audiences, wrong messages,
+            or broken funnels.</strong> I fix the full system — the targeting, the creative strategy,
+            the landing page, the follow-up — so every euro spent has a coherent path to revenue.
           </p>
         </div>
       </div>
-      <div class="disc-detail">
-        <div class="disc-what">
-          <h4>This covers</h4>
-          <ul>
-            <li>CRM audit & rebuild (HubSpot, Salesforce, Pipedrive)</li>
-            <li>Pipeline & lifecycle stage configuration</li>
-            <li>Lead scoring & routing logic</li>
-            <li>Automation design (nurture, alerts, tasks)</li>
-            <li>Revenue operations workflow design</li>
-            <li>Reporting architecture & dashboard build</li>
-            <li>Tech stack integration & data hygiene protocols</li>
-          </ul>
+      <div class="services-grid" data-reveal>
+        <div class="svc">
+          <div class="svc-icon">◎</div>
+          <div class="svc-name">Google Ads (Search & Shopping)</div>
+          <div class="svc-desc">Full campaign setup, keyword architecture, bid strategy, match type structure, negative keyword management, and ongoing optimisation. <strong>Search ads that capture intent at the exact moment of decision.</strong></div>
+          <div class="svc-why">Why it matters: Search is the highest-intent channel that exists. Done right, it is revenue on demand. Done wrong, it burns budget with nothing to show.</div>
         </div>
-        <div class="disc-outcome">
-          <h4>The outcome</h4>
-          <p>A CRM that is the single source of truth for revenue — used by the team, trusted by leadership, and built to scale with the business.</p>
+        <div class="svc">
+          <div class="svc-icon">◎</div>
+          <div class="svc-name">Google Ads (Performance Max & Display)</div>
+          <div class="svc-desc">Asset group architecture, audience signal design, creative strategy, and feed optimisation for e-commerce and lead generation. <strong>Automated campaigns that are actually controlled.</strong></div>
+          <div class="svc-why">Why it matters: PMax can be the highest-performing or highest-wasting campaign type in your account — it entirely depends on structure and oversight.</div>
         </div>
-      </div>
-    </div>
-
-    <!-- Discipline 04 -->
-    <div class="disc-item" data-reveal>
-      <div class="disc-num">04</div>
-      <div class="disc-main">
-        <div class="disc-subtitle">Brand Positioning & Market Narrative</div>
-        <h3 class="disc-title">The <em>Signal</em></h3>
-        <div class="disc-desc">
-          <p>
-            Positioning is not a tagline. It is the answer to a question every potential buyer asks:
-            <strong>"Why this, and why now?"</strong> When that question is answered clearly and credibly,
-            everything downstream becomes easier — the pitch, the price, the objections, the close.
-          </p>
-          <p>
-            Poor positioning is the silent killer of commercial performance. Businesses consistently underestimate
-            how much revenue they leave on the table because their market narrative is muddled, generic, or misaligned
-            with what the buyer actually needs to believe to say yes.
-            I build positioning frameworks that create commercial gravity — where the right buyer arrives already
-            half-convinced.
-          </p>
+        <div class="svc">
+          <div class="svc-icon">◎</div>
+          <div class="svc-name">Meta Ads (Facebook & Instagram)</div>
+          <div class="svc-desc">Campaign architecture, audience strategy (cold / warm / retargeting), creative briefing and testing frameworks, and funnel alignment. <strong>Social advertising that converts, not just reaches.</strong></div>
+          <div class="svc-why">Why it matters: Meta's power is in audience targeting and creative. Without a systematic testing approach, you are paying for data you never use.</div>
         </div>
-      </div>
-      <div class="disc-detail">
-        <div class="disc-what">
-          <h4>This covers</h4>
-          <ul>
-            <li>Positioning diagnosis & competitive audit</li>
-            <li>Buyer persona & decision-maker mapping</li>
-            <li>Value proposition architecture</li>
-            <li>Messaging hierarchy & narrative framework</li>
-            <li>Category design & market narrative</li>
-            <li>Proof architecture (case studies, social proof)</li>
-            <li>Sales & marketing alignment on narrative</li>
-          </ul>
+        <div class="svc">
+          <div class="svc-icon">◎</div>
+          <div class="svc-name">LinkedIn Advertising & Outbound</div>
+          <div class="svc-desc">Sponsored content, Lead Gen Forms, message campaigns, and outbound sequencing for B2B markets. <strong>The channel where decision-makers actually live.</strong></div>
+          <div class="svc-why">Why it matters: LinkedIn is expensive and underused strategically. When positioned correctly, it produces the highest-quality B2B leads of any paid channel.</div>
         </div>
-        <div class="disc-outcome">
-          <h4>The outcome</h4>
-          <p>Positioning that creates commercial gravity — a market narrative so clear and credible that the right buyer arrives already predisposed to say yes.</p>
+        <div class="svc">
+          <div class="svc-icon">◎</div>
+          <div class="svc-name">Ad Account Audit & Recovery</div>
+          <div class="svc-desc">Full structural audit of existing Google or Meta accounts — identifying wasted spend, structural errors, tracking failures, and missed opportunities. <strong>Most accounts have 30–50% recoverable budget within 30 days.</strong></div>
+          <div class="svc-why">Why it matters: Before adding budget, know where current budget is going. Audits consistently uncover 5-figure annual waste in mid-size accounts.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">◎</div>
+          <div class="svc-name">Conversion Tracking & Analytics Setup</div>
+          <div class="svc-desc">GA4 configuration, Google Tag Manager setup, conversion event mapping, server-side tracking, and attribution modelling. <strong>If you cannot measure it, you cannot manage it.</strong></div>
+          <div class="svc-why">Why it matters: Most businesses are optimising campaigns based on wrong or incomplete data. Tracking is the foundation everything else stands on.</div>
         </div>
       </div>
     </div>
 
-    <!-- Discipline 05 -->
-    <div class="disc-item" data-reveal>
-      <div class="disc-num">05</div>
-      <div class="disc-main">
-        <div class="disc-subtitle">Digital Growth & Experience Design</div>
-        <h3 class="disc-title">The <em>Surface</em></h3>
-        <div class="disc-desc">
-          <p>
-            The digital surface of a business is where positioning is tested in real time.
-            <strong>Your website, your funnel, your checkout, your email sequences</strong> — each is a moment where
-            the buyer decides to continue or leave. Most businesses optimise each of these elements in isolation,
-            rarely understanding how they interact as a system.
-          </p>
-          <p>
-            I approach digital growth holistically: channel performance, website conversion architecture,
-            UX redesign for commercial outcomes, and customer journey mapping from first touch to loyal customer.
-            The goal is not traffic — it is conversion, retention, and compounding growth.
+    <!-- ═══ CLUSTER 2: SALES ═══ -->
+    <div class="cluster">
+      <div class="cluster-header" data-reveal>
+        <div class="cluster-num">02</div>
+        <div class="cluster-title-block">
+          <div class="cluster-area">Sales Systems & Coaching</div>
+          <h3 class="cluster-h3">Building the machine<br />that actually <em>closes.</em></h3>
+          <p class="cluster-lead">
+            Sales performance is not about talent — it is about design.
+            <strong>When a sales process is well-designed, an average person performs above average.
+            When it is not, even great salespeople struggle.</strong>
+            I design the systems, coach the people, and build the infrastructure that makes closing consistent.
           </p>
         </div>
       </div>
-      <div class="disc-detail">
-        <div class="disc-what">
-          <h4>This covers</h4>
-          <ul>
-            <li>Full-funnel conversion audit</li>
-            <li>Website architecture & UX for commercial performance</li>
-            <li>Customer journey mapping (acquisition to retention)</li>
-            <li>Email marketing & lifecycle automation</li>
-            <li>Paid channel strategy & performance review</li>
-            <li>Landing page design & A/B testing frameworks</li>
-            <li>Digital trust mechanics & social proof architecture</li>
-          </ul>
+      <div class="services-grid" data-reveal>
+        <div class="svc">
+          <div class="svc-icon">◈</div>
+          <div class="svc-name">Sales Coaching (1:1 & Team)</div>
+          <div class="svc-desc">Structured coaching for founders selling their own product, sales leaders, and individual reps. Discovery, objection handling, closing, negotiation, and deal review. <strong>Practical, deal-specific coaching — not theory.</strong></div>
+          <div class="svc-why">Why it matters: The founder's ability to sell is the single fastest lever for early-stage revenue. Most founders undersell what they have built because they were never coached.</div>
         </div>
-        <div class="disc-outcome">
-          <h4>The outcome</h4>
-          <p>A digital presence that converts — where every touchpoint is intentional, every handoff is smooth, and the system compounds rather than leaks.</p>
+        <div class="svc">
+          <div class="svc-icon">◈</div>
+          <div class="svc-name">Sales Process Design</div>
+          <div class="svc-desc">End-to-end sales process documentation — stages, criteria, actions, handoffs, and exit conditions. <strong>A written, shared, executable process that the whole team follows.</strong></div>
+          <div class="svc-why">Why it matters: Without a defined process, every salesperson is improvising. Improvisation produces inconsistent results. Process produces predictable revenue.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">◈</div>
+          <div class="svc-name">Sales Playbook Development</div>
+          <div class="svc-desc">Full sales playbook: ICP profiles, opening scripts, qualification frameworks, objection responses, competitive positioning, and closing sequences. <strong>The document that onboards, trains, and aligns your whole sales function.</strong></div>
+          <div class="svc-why">Why it matters: Without a playbook, sales knowledge lives in the heads of individuals. When they leave, the knowledge leaves. A playbook makes the team the asset, not the person.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">◈</div>
+          <div class="svc-name">Pipeline Architecture & CRM Stage Design</div>
+          <div class="svc-desc">Sales pipeline structure designed to reflect actual buyer behaviour — stages, probability weighting, required fields per stage, and stall triggers. <strong>A pipeline that tells the truth about what is happening and what comes next.</strong></div>
+          <div class="svc-why">Why it matters: Most pipelines are wishful thinking. A well-designed pipeline is a forecasting tool — it tells you what revenue is coming before it arrives.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">◈</div>
+          <div class="svc-name">Outbound Sales Strategy & Sequencing</div>
+          <div class="svc-desc">Outbound prospecting strategy, lead list architecture, cold email sequences, call scripts, and LinkedIn outreach cadences. <strong>A systematic approach to creating pipeline that does not wait for inbound.</strong></div>
+          <div class="svc-why">Why it matters: Businesses that rely entirely on inbound are at the mercy of algorithms and attention. Outbound is controlled, predictable demand generation.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">◈</div>
+          <div class="svc-name">Pricing Strategy & Deal Structuring</div>
+          <div class="svc-desc">Pricing model design, packaging architecture, discount policies, and negotiation frameworks. <strong>Price is the highest-leverage variable in any commercial decision — and the most underworked.</strong></div>
+          <div class="svc-why">Why it matters: A 10% price increase with no volume loss improves profit more than a 20% volume increase at the same margin. Pricing is where the most uncaptured value sits.</div>
         </div>
       </div>
     </div>
 
-    <!-- Discipline 06 -->
-    <div class="disc-item" data-reveal>
-      <div class="disc-num">06</div>
-      <div class="disc-main">
-        <div class="disc-subtitle">AI-Enhanced Commercial Operations</div>
-        <h3 class="disc-title">The <em>Intelligence</em></h3>
-        <div class="disc-desc">
-          <p>
-            AI is not a feature. It is infrastructure — and the businesses that treat it that way are building moats
-            that their competitors cannot replicate quickly.
-            <strong>The question is not whether to use AI. It is how to integrate it in a way that creates
-            compounding commercial advantage.</strong>
-          </p>
-          <p>
-            I implement AI as a force-multiplier across the revenue architecture — not as a novelty layer on top of
-            existing processes, but as a structural redesign of how decisions are made, workflows are executed,
-            and intelligence is deployed. The result is an organisation that moves faster, decides better,
-            and scales without proportional headcount growth.
-          </p>
-        </div>
-      </div>
-      <div class="disc-detail">
-        <div class="disc-what">
-          <h4>This covers</h4>
-          <ul>
-            <li>AI readiness audit & opportunity mapping</li>
-            <li>Decision-support system design</li>
-            <li>Sales enablement AI tools & playbooks</li>
-            <li>Marketing automation & personalisation at scale</li>
-            <li>Workflow intelligence & process automation</li>
-            <li>Custom GPT / AI agent development</li>
-            <li>AI governance & implementation roadmap</li>
-          </ul>
-        </div>
-        <div class="disc-outcome">
-          <h4>The outcome</h4>
-          <p>An organisation where AI is embedded in operations — not as a tool people occasionally use, but as an intelligence layer that makes every commercial function faster, smarter, and more scalable.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class="how-section">
-    <div class="how-section__inner">
-      <div class="how-top">
-        <div data-reveal-left>
-          <div class="sec-tag" style="margin-bottom:1.5rem">The Engagement</div>
-          <h2 class="how-h2">
-            How the<br />work <em>unfolds.</em>
-          </h2>
-        </div>
-        <p class="how-intro" data-reveal>
-          Every engagement follows a structured sequence designed to move from clarity to
-          confidence to outcomes. <strong>Nothing is skipped.</strong> The phases cannot be
-          reordered because each one creates the conditions for the next.
-          The result is a rhythm of work that builds understanding before it builds solutions.
+    <!-- BREAK -->
+    <div class="break-section" data-reveal>
+      <div class="break-inner">
+        <h2 class="break-h2">The difference between<br /><em>a consultant</em> and<br />someone who does the work.</h2>
+        <p class="break-body">
+          I do not write reports and leave. I set up the HubSpot pipeline. I write the email sequence.
+          I sit on the call and coach the objection in real time. I rebuild the Google Ads account.
+          <strong>The strategy and the execution live in the same place — with me.</strong>
+          That is unusual. It is also the only way this level of commercial change actually happens.
         </p>
       </div>
-
-      <div class="how-phases">
-        <div class="phase" data-reveal>
-          <span class="phase__n">Phase 01</span>
-          <h3>Commercial Diagnostic</h3>
-          <p>A structured, deep review of the full commercial system. Revenue streams, sales process, digital presence, CRM, positioning, and team dynamics. This is where the real constraints surface.</p>
-          <div class="phase__duration">Duration <span>2–3 weeks</span></div>
-        </div>
-        <div class="phase" data-reveal style="transition-delay:0.06s">
-          <span class="phase__n">Phase 02</span>
-          <h3>Architecture Design</h3>
-          <p>Based on the diagnostic, a full revenue architecture is designed. Priorities are set. The roadmap is built. Not everything is fixed at once — the highest-leverage interventions come first.</p>
-          <div class="phase__duration">Duration <span>1–2 weeks</span></div>
-        </div>
-        <div class="phase" data-reveal style="transition-delay:0.12s">
-          <span class="phase__n">Phase 03</span>
-          <h3>Implementation Sprint</h3>
-          <p>Execution begins. Systems are rebuilt, processes are redesigned, infrastructure is put in place. This is where most consultancies exit — Alba Collective remains embedded throughout.</p>
-          <div class="phase__duration">Duration <span>6–12 weeks</span></div>
-        </div>
-        <div class="phase" data-reveal style="transition-delay:0.18s">
-          <span class="phase__n">Phase 04</span>
-          <h3>Calibration & Handover</h3>
-          <p>The system is reviewed, adjusted, and transferred to the internal team with full documentation, protocols, and the knowledge to maintain and evolve it. The work outlasts the engagement.</p>
-          <div class="phase__duration">Duration <span>2–4 weeks</span></div>
-        </div>
-      </div>
     </div>
-  </section>
 
-  <!-- WHO IT'S FOR -->
-  <section class="who-section">
-    <div class="who-section__inner">
-      <div class="who-grid">
-        <div data-reveal-left>
-          <div class="sec-tag">The Right Fit</div>
-          <h2 class="who-h2">
-            This work is<br />not for <em>everyone.</em>
-          </h2>
-          <p class="who-desc">
-            Alba Collective is <strong>deliberately selective</strong>. Capacity is finite.
-            Impact is the standard. I only take on engagements where I believe I can create
-            material, measurable commercial change.
-            <br /><br />
-            If the fit is not right, I will say so — clearly and without ambiguity.
-            If the fit is strong, I will move quickly.
+    <!-- ═══ CLUSTER 3: CRM & REVENUE OPS ═══ -->
+    <div class="cluster" style="margin-top:6rem">
+      <div class="cluster-header" data-reveal>
+        <div class="cluster-num">03</div>
+        <div class="cluster-title-block">
+          <div class="cluster-area">CRM Architecture & Revenue Operations</div>
+          <h3 class="cluster-h3">The system that remembers<br /><em>everything</em> so you don't have to.</h3>
+          <p class="cluster-lead">
+            A CRM is not software. It is the operational memory of your commercial organisation.
+            <strong>When it reflects how your business actually makes money, it becomes one of your most
+            powerful assets.</strong> When it does not, it is an administrative burden that slows your team down.
+            I build CRMs that your team uses, leadership can trust, and that scale.
           </p>
         </div>
-        <div class="who-right" data-reveal>
-          <div>
-            <div class="who-col-title">This engagement is for you if</div>
-            <div class="fit-list">
-              <div class="fit-item">You are a founder, CEO, or commercial leader with decision-making authority</div>
-              <div class="fit-item">You have a functioning business with real revenue — not a pre-revenue startup</div>
-              <div class="fit-item">You know something is broken in the commercial system but cannot diagnose it precisely</div>
-              <div class="fit-item">You are ready to invest in the work, not just the strategy</div>
-              <div class="fit-item">You want one senior person accountable for outcomes — not a team of juniors</div>
-              <div class="fit-item">You operate in Europe or the USA, in B2C, B2B, or B2G markets</div>
-            </div>
-          </div>
-          <div>
-            <div class="who-col-title">This engagement is not right if</div>
-            <div class="notfit-list">
-              <div class="notfit-item">You need a campaign manager or marketing executor</div>
-              <div class="notfit-item">You are looking for a low-cost audit with a slide deck at the end</div>
-              <div class="notfit-item">You are not willing to change how the business operates</div>
-              <div class="notfit-item">You want a vendor who will validate your existing thinking</div>
-            </div>
-          </div>
+      </div>
+      <div class="services-grid" data-reveal>
+        <div class="svc">
+          <div class="svc-icon">⬡</div>
+          <div class="svc-name">HubSpot Setup & Architecture</div>
+          <div class="svc-desc">Full HubSpot implementation — CRM, Sales Hub, Marketing Hub, pipelines, contact properties, deal stages, workflows, and reporting. <strong>Built to match your actual commercial model, not a generic template.</strong></div>
+          <div class="svc-why">Why it matters: HubSpot out of the box solves nothing. Architecture is everything — the same tool will either transform or frustrate your team depending on how it is set up.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">⬡</div>
+          <div class="svc-name">CRM Audit & Rebuild (any platform)</div>
+          <div class="svc-desc">Diagnostic of existing CRM (HubSpot, Salesforce, Pipedrive, or other) and full structural rebuild. Data hygiene, deduplication, property rationalisation, and workflow cleanup. <strong>The CRM your team actually inherited vs. the one that serves them.</strong></div>
+          <div class="svc-why">Why it matters: Most CRMs degrade over time. Stale data, broken automations, and ignored pipelines are the norm. A rebuild restores trust in the data — and the tool.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">⬡</div>
+          <div class="svc-name">Lead Scoring & Routing</div>
+          <div class="svc-desc">Behavioural and firmographic lead scoring models, automated routing rules, and SLA-based assignment. <strong>The right lead goes to the right person at the right moment — automatically.</strong></div>
+          <div class="svc-why">Why it matters: Without scoring and routing, your best leads receive the same attention as unqualified ones. Speed to response on high-fit leads directly determines conversion rates.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">⬡</div>
+          <div class="svc-name">Workflow & Automation Design</div>
+          <div class="svc-desc">CRM automation for lead nurturing, deal progression, task creation, internal alerts, and lifecycle transitions. <strong>The work that used to require a person — now happens automatically, without errors.</strong></div>
+          <div class="svc-why">Why it matters: Manual CRM management means missed follow-ups, inconsistent timing, and forgotten leads. Automation is the difference between a systematic business and a reactive one.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">⬡</div>
+          <div class="svc-name">Revenue Reporting & Dashboard Design</div>
+          <div class="svc-desc">Custom reporting dashboards for pipeline health, conversion rates by stage, source attribution, sales cycle analysis, and forecasting. <strong>Data that answers real business questions — not vanity metrics.</strong></div>
+          <div class="svc-why">Why it matters: You cannot manage what you cannot see. Most reporting shows activity. Good reporting shows revenue — where it comes from, why it stalls, and where it will come from next.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">⬡</div>
+          <div class="svc-name">Tech Stack Integration & Data Flow</div>
+          <div class="svc-desc">Integration of CRM with advertising platforms, email tools, calendar systems, payment processors, and data warehouses. <strong>One clean data flow instead of siloed systems that cannot talk to each other.</strong></div>
+          <div class="svc-why">Why it matters: Disconnected tools mean manual data entry, reporting gaps, and attribution blind spots. Integration turns a collection of tools into a coherent revenue system.</div>
         </div>
       </div>
     </div>
-  </section>
+
+    <!-- ═══ CLUSTER 4: EMAIL & MARKETING AUTOMATION ═══ -->
+    <div class="cluster">
+      <div class="cluster-header" data-reveal>
+        <div class="cluster-num">04</div>
+        <div class="cluster-title-block">
+          <div class="cluster-area">Email Marketing & Marketing Automation</div>
+          <h3 class="cluster-h3">The channel that prints money<br />when it is <em>done right.</em></h3>
+          <p class="cluster-lead">
+            Email is the highest-ROI marketing channel in existence — and the most underused by businesses
+            that have real audiences. <strong>The difference between email that converts and email that
+            gets ignored is architecture: the right message, to the right segment, at the right moment,
+            triggered by the right behaviour.</strong>
+          </p>
+        </div>
+      </div>
+      <div class="services-grid" data-reveal>
+        <div class="svc">
+          <div class="svc-icon">✉</div>
+          <div class="svc-name">Email Funnel & Sequence Design</div>
+          <div class="svc-desc">Welcome sequences, lead nurture flows, sales sequences, post-purchase flows, and re-engagement campaigns — written and built. <strong>Every email designed to move the reader one step closer to a decision.</strong></div>
+          <div class="svc-why">Why it matters: A single well-designed welcome sequence often generates more revenue than years of ad spend on the same list. Email converts because it is personal, direct, and owned.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">✉</div>
+          <div class="svc-name">Behavioural Automation</div>
+          <div class="svc-desc">Trigger-based email flows responding to specific user actions — page visits, product views, form fills, cart abandonment, purchase events. <strong>Emails that arrive because they are relevant, not because it is Tuesday.</strong></div>
+          <div class="svc-why">Why it matters: Behavioural emails have 3–5x the open rate and 10x the click-through rate of broadcast emails. Relevance is the most powerful deliverability and conversion factor.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">✉</div>
+          <div class="svc-name">List Segmentation & Database Architecture</div>
+          <div class="svc-desc">Contact database segmentation by behaviour, lifecycle stage, source, product interest, engagement level, and custom properties. <strong>Sending to the right segment is more powerful than writing better copy.</strong></div>
+          <div class="svc-why">Why it matters: The same email sent to 3 different segments will have 3 completely different conversion rates. Segmentation is where email performance lives or dies.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">✉</div>
+          <div class="svc-name">Email Deliverability & Technical Setup</div>
+          <div class="svc-desc">DNS configuration (SPF, DKIM, DMARC), domain warm-up protocols, list hygiene, bounce management, and sender reputation monitoring. <strong>Emails that actually arrive in the inbox, not the spam folder.</strong></div>
+          <div class="svc-why">Why it matters: Perfect copy and design is worthless if the email lands in spam. Deliverability is invisible until it fails — then it fails expensively.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">✉</div>
+          <div class="svc-name">Marketing Automation Platform Setup</div>
+          <div class="svc-desc">Full setup and configuration of Klaviyo, ActiveCampaign, HubSpot Marketing Hub, or Mailchimp — flows, forms, tags, and integrations. <strong>The platform configured to do the work, not just store the contacts.</strong></div>
+          <div class="svc-why">Why it matters: Most businesses are paying for automation platforms they use at 10% of their capability. A proper setup multiplies the tool's value without adding tool cost.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">✉</div>
+          <div class="svc-name">Campaign Strategy & Broadcast Planning</div>
+          <div class="svc-desc">Monthly email calendar, campaign briefs, A/B testing strategy, performance review, and iterative optimisation. <strong>A system for consistently sending emails that people want to open.</strong></div>
+          <div class="svc-why">Why it matters: Ad-hoc email sends produce ad-hoc results. A planned, tested campaign calendar is what separates email that grows revenue from email that maintains a list.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ CLUSTER 5: POSITIONING & BRAND ═══ -->
+    <div class="cluster">
+      <div class="cluster-header" data-reveal>
+        <div class="cluster-num">05</div>
+        <div class="cluster-title-block">
+          <div class="cluster-area">Brand Positioning & Commercial Narrative</div>
+          <h3 class="cluster-h3">Why someone chooses you<br />over everyone <em>else.</em></h3>
+          <p class="cluster-lead">
+            Positioning is the answer to a question every buyer asks silently:
+            <em>"Why this, and not the alternative?"</em>
+            <strong>When that answer is not immediately clear, the default response is price comparison,
+            delay, or no decision.</strong> I build the commercial narrative that makes the right buyer choose you —
+            and charges for it accordingly.
+          </p>
+        </div>
+      </div>
+      <div class="services-grid services-grid--2" data-reveal>
+        <div class="svc">
+          <div class="svc-icon">◆</div>
+          <div class="svc-name">Positioning Strategy & Differentiation</div>
+          <div class="svc-desc">Market category audit, competitive analysis, and positioning framework — identifying the specific claim you can make credibly that no direct competitor can match. <strong>The strategic foundation every other message is built on.</strong></div>
+          <div class="svc-why">Why it matters: Without a defensible position, marketing is just noise. Positioning is the force that multiplies everything downstream — ads, outreach, sales conversations, and pricing power.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">◆</div>
+          <div class="svc-name">Messaging Hierarchy & Copywriting</div>
+          <div class="svc-desc">Full messaging framework — headline, subheadline, value propositions, proof points, and objection responses — applied to website, ads, pitch decks, and sales materials. <strong>Every customer-facing word saying the right thing.</strong></div>
+          <div class="svc-why">Why it matters: Most businesses communicate features, not outcomes. Buyers buy outcomes. The gap between what you say and what buyers need to hear is revenue sitting on the table.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">◆</div>
+          <div class="svc-name">ICP Definition & Buyer Persona Design</div>
+          <div class="svc-desc">Ideal Customer Profile mapping with firmographic, psychographic, and behavioural attributes. Decision-maker identification and buying committee mapping for complex B2B sales. <strong>Knowing exactly who you are selling to — and who you are not.</strong></div>
+          <div class="svc-why">Why it matters: Businesses that try to serve everyone end up compelling no one. Precision targeting of the right ICP reduces CAC, improves LTV, and accelerates sales cycles.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">◆</div>
+          <div class="svc-name">Pricing & Premium Positioning</div>
+          <div class="svc-desc">Pricing architecture, price anchoring strategy, packaging design, and premium positioning — how to charge what you are worth and win the buyers who will pay it. <strong>Pricing is positioning made concrete.</strong></div>
+          <div class="svc-why">Why it matters: Premium buyers distrust low prices. The right positioning creates permission to charge more — and makes price comparison less relevant because the value frame is different.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ CLUSTER 6: DIGITAL & AI ═══ -->
+    <div class="cluster">
+      <div class="cluster-header" data-reveal>
+        <div class="cluster-num">06</div>
+        <div class="cluster-title-block">
+          <div class="cluster-area">Digital Growth, UX & AI Implementation</div>
+          <h3 class="cluster-h3">The surface and the intelligence<br />that makes it all <em>faster.</em></h3>
+          <p class="cluster-lead">
+            Your digital presence is where every other investment either converts or evaporates.
+            And AI is the infrastructure layer that now separates businesses that scale efficiently
+            from those that add headcount to add output.
+            <strong>I work at both layers — the visible commercial surface and the operational intelligence beneath it.</strong>
+          </p>
+        </div>
+      </div>
+      <div class="services-grid" data-reveal>
+        <div class="svc">
+          <div class="svc-icon">◉</div>
+          <div class="svc-name">Website Conversion Audit & Redesign</div>
+          <div class="svc-desc">Full CRO audit of existing site — identifying friction, message misalignment, and structural issues. Redesign recommendations and implementation for commercial performance. <strong>A website that converts visitors, not just impresses them.</strong></div>
+          <div class="svc-why">Why it matters: Most websites are designed for aesthetics, not conversion. A 1% improvement in conversion rate on an existing traffic base can be worth more than doubling ad spend.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">◉</div>
+          <div class="svc-name">Landing Page Strategy & Build</div>
+          <div class="svc-desc">High-converting landing pages for paid campaigns, product launches, and lead generation — designed around the specific intent of incoming traffic. <strong>Pages that match the promise of the ad that sent people there.</strong></div>
+          <div class="svc-why">Why it matters: Sending paid traffic to a homepage is one of the most common and expensive mistakes in digital marketing. A dedicated, aligned landing page can double conversion rates overnight.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">◉</div>
+          <div class="svc-name">Customer Journey Mapping</div>
+          <div class="svc-desc">Full mapping of the buyer journey from first awareness to loyal customer — touchpoints, friction points, decision moments, and drop-off analysis. <strong>Understanding the journey is the prerequisite to improving it.</strong></div>
+          <div class="svc-why">Why it matters: Most businesses optimise isolated touchpoints. Journey mapping reveals where customers actually leave — often somewhere unexpected and easily fixable.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">◉</div>
+          <div class="svc-name">AI Workflow Design & Implementation</div>
+          <div class="svc-desc">Practical AI integration into commercial workflows — lead qualification, content generation pipelines, proposal automation, meeting prep, and internal knowledge systems. <strong>AI as a productivity multiplier, not a novelty feature.</strong></div>
+          <div class="svc-why">Why it matters: Businesses that implement AI correctly are completing in 2 hours what takes competitors 2 days. That asymmetry compounds over time into a structural competitive advantage.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">◉</div>
+          <div class="svc-name">Custom GPT & AI Agent Development</div>
+          <div class="svc-desc">Custom AI assistants built for specific commercial functions — sales prep, objection handling, proposal generation, customer support, and internal knowledge bases. <strong>AI tools that know your business, your customers, and your language.</strong></div>
+          <div class="svc-why">Why it matters: Generic AI tools produce generic outputs. Custom agents trained on your data, your positioning, and your process produce outputs that are actually usable — and proprietary.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">◉</div>
+          <div class="svc-name">SEO & Organic Growth Strategy</div>
+          <div class="svc-desc">Search intent mapping, content architecture, technical SEO audit, and organic growth roadmap. <strong>Traffic that compounds for free — the long game that most businesses under-invest in.</strong></div>
+          <div class="svc-why">Why it matters: Paid traffic stops the moment you stop paying. Organic traffic is an asset that builds over time. The combination of both is what creates sustainable, defensible growth.</div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ CLUSTER 7: IMPLEMENTATION & DELIVERY ═══ -->
+    <div class="cluster" style="margin-top:6rem">
+      <div class="cluster-header" data-reveal>
+        <div class="cluster-num">07</div>
+        <div class="cluster-title-block">
+          <div class="cluster-area">Implementation Capability & Delivery</div>
+          <h3 class="cluster-h3">The rare combination:<br />thinking it <em>and</em> building it.</h3>
+          <p class="cluster-lead">
+            Most consultants deliver a strategy. I deliver the strategy <em>and</em> the implementation.
+            <strong>Conversion strategy means nothing without the technical build behind it.
+            Automation design means nothing if no one executes it.</strong>
+            The capabilities below are what allow Alba Collective to close the gap between
+            what needs to happen and what actually gets done.
+          </p>
+        </div>
+      </div>
+      <div class="services-grid services-grid--2" data-reveal>
+        <div class="svc">
+          <div class="svc-icon">▲</div>
+          <div class="svc-name">Conversion Strategy</div>
+          <div class="svc-desc">End-to-end conversion strategy across the full funnel — from traffic source to closed revenue. Identifying the highest-impact conversion levers at each stage and sequencing interventions for compounding effect. <strong>Not CRO tactics. A complete conversion architecture.</strong></div>
+          <div class="svc-why">Why it matters: Conversion is not a single moment — it is a chain of micro-decisions across dozens of touchpoints. Strategy that addresses the full chain produces exponentially better results than optimising individual pages.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">▲</div>
+          <div class="svc-name">Technical Build Capability</div>
+          <div class="svc-desc">Direct technical execution across CRM platforms, marketing automation tools, ad accounts, landing page builders, and website systems. <strong>I do not brief an agency. I build it — correctly, the first time.</strong></div>
+          <div class="svc-why">Why it matters: The gap between what an agency is briefed to build and what actually serves commercial goals is where most implementation fails. Removing that gap removes the most common source of consulting disappointment.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">▲</div>
+          <div class="svc-name">Automation Design & Build</div>
+          <div class="svc-desc">Design and implementation of marketing, sales, and operational automations — workflows, triggers, sequences, routing rules, and AI-assisted processes. <strong>Systems that do the work so your team can focus on what requires human intelligence.</strong></div>
+          <div class="svc-why">Why it matters: Well-designed automation is the closest thing to scaling without hiring. It removes human error, ensures consistency, and frees senior capacity for high-value activity.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">▲</div>
+          <div class="svc-name">Leadership-Level Communication</div>
+          <div class="svc-desc">Board-ready commercial presentations, investor updates, executive briefings, and strategic summaries — translating complex commercial analysis into the clear, decisive language that leadership needs to act on. <strong>The insight is only as valuable as the communication of it.</strong></div>
+          <div class="svc-why">Why it matters: Brilliant analysis presented poorly produces no decisions. I communicate at the level of the room — whether that is a founder, a board, or an investor — without losing precision or nuance.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">▲</div>
+          <div class="svc-name">Sales Coaching & Performance Interpretation</div>
+          <div class="svc-desc">Ongoing coaching tied to real deal data — reviewing pipeline movement, call recordings, win/loss patterns, and rep-level metrics to deliver coaching that is specific, actionable, and immediately applicable. <strong>Performance interpretation that tells the salesperson not just what happened, but exactly why.</strong></div>
+          <div class="svc-why">Why it matters: Generic sales coaching produces generic improvement. Performance interpretation connects coaching to the specific behaviours and deal patterns that are limiting each individual's output — producing targeted, measurable change.</div>
+        </div>
+        <div class="svc">
+          <div class="svc-icon">▲</div>
+          <div class="svc-name">Implementation Thinking & Roadmapping</div>
+          <div class="svc-desc">Translating strategic priorities into a sequenced, resource-aware implementation roadmap — with clear owners, dependencies, timelines, and success criteria. <strong>Strategy that knows what it costs to execute, and plans accordingly.</strong></div>
+          <div class="svc-why">Why it matters: Most strategic plans fail at implementation because they were designed without understanding what implementation actually requires. A roadmap built by someone who can also execute it is a fundamentally different document.</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /clusters -->
+
 
   <!-- CTA -->
-  <section class="arch-cta">
-    <div class="arch-cta__orb"></div>
-    <div class="arch-cta__inner">
-      <h2 class="arch-cta__h2" data-reveal-left>
-        Ready to build<br />the <em>architecture?</em>
+  <section class="cta-section">
+    <div class="cta-orb"></div>
+    <div class="cta-inner">
+      <h2 class="cta-h2" data-reveal>
+        One person.<br />All of <em>this.</em><br />Fully committed.
       </h2>
-      <div class="arch-cta__body" data-reveal>
+      <div class="cta-body" data-reveal style="transition-delay:.08s">
         <p>
-          The first step is an application. Not a sales call — a structured form that helps me
-          understand your situation before we speak. <strong>I review every application personally.</strong>
+          Every service above is something I do myself, directly, as the person you hired.
+          <strong>Not delegated to a junior. Not outsourced to a subcontractor.</strong>
+          When you engage Alba Collective, you are getting the person who has read this page —
+          and built everything on it — working exclusively on your business.
           <br /><br />
-          If there is strong fit, I will reach out within 48 hours to schedule a 30-minute conversation.
-          That conversation is not a pitch. It is a direct, informed discussion about your business
-          and whether this is the right engagement.
+          Engagements are limited. I work with a small number of clients at any one time to maintain
+          the standard of work that makes this worthwhile for both sides.
         </p>
-        <a href="index.html#apply" class="cta-btn">Apply to Work Together →</a>
+        <a href="index.html#apply" class="btn-primary">Apply to Work Together →</a>
         <span class="cta-note">By application only · Limited engagements per quarter</span>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="arch-footer">
+  <footer>
     <a href="index.html">← Back to Alba Collective</a>
     <a href="mailto:hello@albacollective.co">hello@albacollective.co</a>
-    <span style="font-size:0.65rem;color:rgba(242,240,245,0.2);letter-spacing:0.1em;text-transform:uppercase;">© 2025 Alba Collective</span>
+    <span>© 2025 Alba Collective</span>
   </footer>
 
   <script>
-    // Reveal engine
     document.addEventListener('DOMContentLoaded', () => {
       const io = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-        });
-      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-      document.querySelectorAll('[data-reveal],[data-reveal-left],[data-reveal-right]').forEach(el => io.observe(el));
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); } });
+      }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+      document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
     });
   </script>
-
 </body>
 </html>
