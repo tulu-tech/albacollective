@@ -4,7 +4,7 @@
  * Replace GA_MEASUREMENT_ID with your actual G-XXXXXXXX ID
  */
 
-const GA_ID = 'G-XXXXXXXXXX'; // ← Replace with your Measurement ID
+const GA_ID = 'G-FXY4K6LT51';
 
 const CONSENT_KEY = 'ac_consent';
 const CONSENT_VERSION = '1';
