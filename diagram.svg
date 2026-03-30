@@ -1,0 +1,320 @@
+<svg viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+  <defs>
+    <!-- Glow filter for pink elements -->
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-strong" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Signal dot gradient -->
+    <radialGradient id="dotGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff6bc8"/>
+      <stop offset="100%" stop-color="#D63A8F" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Line colors -->
+    <style>
+      .line-dim     { stroke: rgba(214,58,143,0.18); fill: none; stroke-width: 1; }
+      .line-main    { stroke: rgba(214,58,143,0.55); fill: none; stroke-width: 1.2; }
+      .line-bright  { stroke: #D63A8F; fill: none; stroke-width: 1.5; filter: url(#glow); }
+      .node-ring    { fill: none; stroke: rgba(214,58,143,0.45); }
+      .node-fill    { fill: #D63A8F; }
+      .node-center  { fill: #ff6bc8; filter: url(#glow-strong); }
+      .label-box    { fill: none; stroke: rgba(214,58,143,0.6); stroke-width: 0.8; rx: 2; }
+      .label-text   { font-family: 'Space Grotesk', sans-serif; font-size: 8px; font-weight: 600;
+                      fill: #D63A8F; letter-spacing: 1.5px; }
+      .tick         { stroke: rgba(214,58,143,0.3); stroke-width: 1; }
+
+      /* Flowing signal animation */
+      @keyframes flow1 {
+        0%   { stroke-dashoffset: 400; opacity: 0; }
+        10%  { opacity: 1; }
+        90%  { opacity: 1; }
+        100% { stroke-dashoffset: 0; opacity: 0; }
+      }
+      @keyframes flow2 {
+        0%   { stroke-dashoffset: 300; opacity: 0; }
+        10%  { opacity: 1; }
+        90%  { opacity: 1; }
+        100% { stroke-dashoffset: 0; opacity: 0; }
+      }
+      @keyframes flow3 {
+        0%   { stroke-dashoffset: 250; opacity: 0; }
+        15%  { opacity: 1; }
+        85%  { opacity: 1; }
+        100% { stroke-dashoffset: 0; opacity: 0; }
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 0.4; r: 4; }
+        50%       { opacity: 1;   r: 5.5; }
+      }
+      @keyframes pulse-center {
+        0%, 100% { opacity: 0.7; r: 10; }
+        50%       { opacity: 1;   r: 12; }
+      }
+      @keyframes pulse-ring {
+        0%   { r: 12; opacity: 0.5; }
+        100% { r: 24; opacity: 0; }
+      }
+      @keyframes pulse-ring2 {
+        0%   { r: 8;  opacity: 0.4; }
+        100% { r: 20; opacity: 0; }
+      }
+      @keyframes blink {
+        0%, 100% { opacity: 0.2; }
+        50%       { opacity: 0.9; }
+      }
+
+      .signal-flow {
+        fill: none; stroke: #ff6bc8; stroke-width: 2;
+        stroke-linecap: round;
+        filter: url(#glow);
+      }
+      .sf1 { stroke-dasharray: 6 300; animation: flow1 3.5s linear infinite; }
+      .sf2 { stroke-dasharray: 6 250; animation: flow1 4.2s linear infinite 0.8s; }
+      .sf3 { stroke-dasharray: 6 200; animation: flow2 3.8s linear infinite 1.5s; }
+      .sf4 { stroke-dasharray: 6 280; animation: flow1 4.5s linear infinite 0.3s; }
+      .sf5 { stroke-dasharray: 6 220; animation: flow2 3.2s linear infinite 2.1s; }
+      .sf6 { stroke-dasharray: 6 190; animation: flow3 4.0s linear infinite 0.6s; }
+      .sf7 { stroke-dasharray: 6 310; animation: flow1 3.7s linear infinite 1.2s; }
+      .sf8 { stroke-dasharray: 6 240; animation: flow2 4.3s linear infinite 1.8s; }
+
+      .node-pulse   { animation: pulse 2.5s ease-in-out infinite; }
+      .node-pulse2  { animation: pulse 3s ease-in-out infinite 0.5s; }
+      .node-pulse3  { animation: pulse 2.8s ease-in-out infinite 1s; }
+      .center-pulse { animation: pulse-center 2s ease-in-out infinite; }
+
+      .ring-expand  { fill: none; stroke: #D63A8F; stroke-width: 1;
+                      animation: pulse-ring 2.5s ease-out infinite; }
+      .ring-expand2 { fill: none; stroke: #D63A8F; stroke-width: 1;
+                      animation: pulse-ring2 2.5s ease-out infinite 1.2s; }
+    </style>
+  </defs>
+
+  <!-- Dark background fill -->
+  <rect width="700" height="700" fill="#09090f"/>
+
+  <!-- ═══════════════════════════════
+       CENTER HUB — 350,350
+  ═══════════════════════════════ -->
+  <!-- Expanding pulse rings -->
+  <circle class="ring-expand" cx="350" cy="350" r="12"/>
+  <circle class="ring-expand2" cx="350" cy="350" r="8"/>
+
+  <!-- Outer structural ring -->
+  <circle cx="350" cy="350" r="18" fill="none" stroke="rgba(214,58,143,0.3)" stroke-width="1.5"/>
+  <circle cx="350" cy="350" r="13" fill="none" stroke="rgba(214,58,143,0.5)" stroke-width="1"/>
+  <!-- Center node -->
+  <circle class="center-pulse" cx="350" cy="350" r="10" fill="#D63A8F" opacity="0.9"/>
+  <circle cx="350" cy="350" r="5" fill="#ff6bc8" filter="url(#glow-strong)"/>
+  <!-- Hub tick marks -->
+  <line x1="350" y1="330" x2="350" y2="324" class="tick"/>
+  <line x1="350" y1="370" x2="350" y2="376" class="tick"/>
+  <line x1="330" y1="350" x2="324" y2="350" class="tick"/>
+  <line x1="370" y1="350" x2="376" y2="350" class="tick"/>
+
+  <!-- ═══════════════════════════════
+       RADIAL ARMS — 8 directions
+  ═══════════════════════════════ -->
+
+  <!-- ARM 1: UP  350→350,150 -->
+  <line x1="350" y1="332" x2="350" y2="195" class="line-main"/>
+  <line x1="350" y1="195" x2="350" y2="150" class="line-dim"/>
+  <!-- ticks -->
+  <line x1="344" y1="240" x2="356" y2="240" class="tick"/>
+  <line x1="344" y1="220" x2="356" y2="220" class="tick"/>
+  <line x1="344" y1="200" x2="356" y2="200" class="tick"/>
+  <!-- node -->
+  <circle class="node-pulse" cx="350" cy="185" r="4" fill="#D63A8F" filter="url(#glow)"/>
+  <circle cx="350" cy="185" r="8" fill="none" stroke="rgba(214,58,143,0.35)" stroke-width="1"/>
+  <circle cx="350" cy="155" r="4" fill="none" stroke="rgba(214,58,143,0.3)" stroke-width="1"/>
+  <!-- H branch from arm1 -->
+  <line x1="295" y1="185" x2="350" y2="185" class="line-dim"/>
+  <line x1="295" y1="185" x2="295" y2="210" class="line-dim"/>
+  <rect x="288" y="210" width="14" height="14" fill="none" stroke="rgba(214,58,143,0.35)" stroke-width="1"/>
+  <line x1="304" y1="155" x2="340" y2="155" class="line-dim"/>
+
+  <!-- ARM 2: UP-RIGHT  350→490,210 -->
+  <line x1="361" y1="339" x2="460" y2="238" class="line-bright"/>
+  <line x1="460" y1="238" x2="490" y2="208" class="line-dim"/>
+  <!-- Hexagon node -->
+  <polygon points="490,195 502,201 502,215 490,221 478,215 478,201" fill="none" stroke="#D63A8F" stroke-width="1.5" filter="url(#glow)"/>
+  <circle class="node-pulse2" cx="490" cy="208" r="4" fill="#D63A8F"/>
+  <line x1="490" y1="175" x2="490" y2="195" class="line-dim"/>
+  <circle cx="490" cy="170" r="4" fill="none" stroke="rgba(214,58,143,0.3)" stroke-width="1"/>
+  <line x1="502" y1="208" x2="540" y2="208" class="line-dim"/>
+  <line x1="540" y1="175" x2="540" y2="208" class="line-dim"/>
+  <circle cx="540" cy="170" r="4" fill="none" stroke="rgba(214,58,143,0.3)" stroke-width="1"/>
+  <!-- Ticks on diagonal -->
+  <line x1="415" y1="278" x2="421" y2="272" class="tick"/>
+  <line x1="430" y1="263" x2="436" y2="257" class="tick"/>
+  <line x1="445" y1="248" x2="451" y2="242" class="tick"/>
+
+  <!-- ARM 3: RIGHT  350→560,350 -->
+  <line x1="368" y1="350" x2="510" y2="350" class="line-main"/>
+  <line x1="510" y1="350" x2="560" y2="350" class="line-dim"/>
+  <!-- double ticks -->
+  <line x1="420" y1="344" x2="420" y2="356" class="tick"/>
+  <line x1="424" y1="344" x2="424" y2="356" class="tick"/>
+  <line x1="460" y1="344" x2="460" y2="356" class="tick"/>
+  <line x1="464" y1="344" x2="464" y2="356" class="tick"/>
+  <line x1="500" y1="344" x2="500" y2="356" class="tick"/>
+  <!-- Right node (big circle) -->
+  <circle cx="570" cy="350" r="12" fill="none" stroke="rgba(214,58,143,0.5)" stroke-width="1.5"/>
+  <circle class="node-pulse3" cx="570" cy="350" r="6" fill="#D63A8F" filter="url(#glow)"/>
+  <circle cx="570" cy="350" r="18" fill="none" stroke="rgba(214,58,143,0.2)" stroke-width="1"/>
+  <!-- Branch right -->
+  <line x1="582" y1="350" x2="620" y2="350" class="line-dim"/>
+  <line x1="620" y1="320" x2="620" y2="380" class="line-dim"/>
+  <circle cx="620" cy="315" r="4" fill="none" stroke="rgba(214,58,143,0.25)" stroke-width="1"/>
+  <circle cx="620" cy="385" r="4" fill="none" stroke="rgba(214,58,143,0.25)" stroke-width="1"/>
+
+  <!-- ARM 4: DOWN-RIGHT  350→490,490 -->
+  <line x1="361" y1="361" x2="440" y2="440" class="line-main"/>
+  <line x1="440" y1="440" x2="490" y2="490" class="line-dim"/>
+  <polygon points="490,478 502,484 502,498 490,504 478,498 478,484" fill="none" stroke="rgba(214,58,143,0.4)" stroke-width="1"/>
+  <circle cx="490" cy="491" r="3" fill="rgba(214,58,143,0.5)"/>
+  <line x1="502" y1="491" x2="540" y2="491" class="line-dim"/>
+  <line x1="540" y1="491" x2="540" y2="520" class="line-dim"/>
+  <rect x="533" y="520" width="14" height="14" fill="none" stroke="rgba(214,58,143,0.3)" stroke-width="1"/>
+  <!-- Ticks -->
+  <line x1="410" y1="415" x2="416" y2="421" class="tick"/>
+  <line x1="426" y1="431" x2="432" y2="437" class="tick"/>
+
+  <!-- ARM 5: DOWN  350→350,560 -->
+  <line x1="350" y1="368" x2="350" y2="490" class="line-main"/>
+  <line x1="350" y1="490" x2="350" y2="560" class="line-dim"/>
+  <!-- node -->
+  <circle class="node-pulse" cx="350" cy="505" r="4" fill="#D63A8F" filter="url(#glow)"/>
+  <circle cx="350" cy="505" r="9" fill="none" stroke="rgba(214,58,143,0.35)" stroke-width="1"/>
+  <circle cx="350" cy="550" r="3" fill="none" stroke="rgba(214,58,143,0.25)" stroke-width="1"/>
+  <!-- ticks -->
+  <line x1="344" y1="430" x2="356" y2="430" class="tick"/>
+  <line x1="344" y1="450" x2="356" y2="450" class="tick"/>
+  <!-- Branch down -->
+  <line x1="350" y1="514" x2="380" y2="514" class="line-dim"/>
+  <line x1="380" y1="514" x2="380" y2="545" class="line-dim"/>
+  <line x1="310" y1="505" x2="350" y2="505" class="line-dim"/>
+  <line x1="310" y1="475" x2="310" y2="505" class="line-dim"/>
+  <circle cx="310" cy="470" r="3" fill="none" stroke="rgba(214,58,143,0.3)" stroke-width="1"/>
+
+  <!-- ARM 6: DOWN-LEFT  350→210,490 -->
+  <line x1="339" y1="361" x2="260" y2="440" class="line-bright"/>
+  <line x1="260" y1="440" x2="210" y2="490" class="line-dim"/>
+  <!-- Big circle node cluster -->
+  <circle cx="200" cy="500" r="14" fill="none" stroke="#D63A8F" stroke-width="1.5" filter="url(#glow)"/>
+  <circle cx="200" cy="500" r="8" fill="none" stroke="rgba(214,58,143,0.5)" stroke-width="1"/>
+  <circle class="node-pulse2" cx="200" cy="500" r="4" fill="#D63A8F"/>
+  <circle cx="235" cy="500" r="8" fill="none" stroke="rgba(214,58,143,0.4)" stroke-width="1"/>
+  <circle cx="235" cy="500" r="3" fill="rgba(214,58,143,0.4)"/>
+  <line x1="214" y1="500" x2="227" y2="500" class="line-main"/>
+  <!-- Branches -->
+  <line x1="200" y1="514" x2="200" y2="545" class="line-dim"/>
+  <circle cx="200" cy="550" r="4" fill="none" stroke="rgba(214,58,143,0.25)" stroke-width="1"/>
+  <line x1="150" y1="500" x2="186" y2="500" class="line-dim"/>
+  <circle cx="145" cy="500" r="4" fill="none" stroke="rgba(214,58,143,0.25)" stroke-width="1"/>
+  <!-- ticks -->
+  <line x1="295" y1="404" x2="289" y2="410" class="tick"/>
+  <line x1="280" y1="419" x2="274" y2="425" class="tick"/>
+
+  <!-- ARM 7: LEFT  350→140,350 -->
+  <line x1="332" y1="350" x2="195" y2="350" class="line-main"/>
+  <line x1="195" y1="350" x2="140" y2="350" class="line-dim"/>
+  <!-- Square node -->
+  <rect x="120" y="340" width="22" height="22" fill="none" stroke="rgba(214,58,143,0.45)" stroke-width="1.5"/>
+  <rect x="126" y="346" width="10" height="10" fill="rgba(214,58,143,0.2)" stroke="rgba(214,58,143,0.4)" stroke-width="1"/>
+  <!-- horizontal branch from square -->
+  <line x1="120" y1="351" x2="90" y2="351" class="line-dim"/>
+  <line x1="90" y1="330" x2="90" y2="380" class="line-dim"/>
+  <circle cx="90" cy="325" r="3" fill="none" stroke="rgba(214,58,143,0.25)" stroke-width="1"/>
+  <circle cx="90" cy="385" r="3" fill="none" stroke="rgba(214,58,143,0.25)" stroke-width="1"/>
+  <!-- ticks -->
+  <line x1="275" y1="344" x2="275" y2="356" class="tick"/>
+  <line x1="255" y1="344" x2="255" y2="356" class="tick"/>
+  <line x1="215" y1="344" x2="215" y2="356" class="tick"/>
+  <line x1="211" y1="344" x2="211" y2="356" class="tick"/>
+  <line x1="170" y1="344" x2="170" y2="356" class="tick"/>
+
+  <!-- ARM 8: UP-LEFT  350→210,210 -->
+  <line x1="339" y1="339" x2="260" y2="260" class="line-main"/>
+  <line x1="260" y1="260" x2="210" y2="210" class="line-dim"/>
+  <!-- Double circle node -->
+  <circle cx="198" cy="198" r="13" fill="none" stroke="rgba(214,58,143,0.5)" stroke-width="1.5" filter="url(#glow)"/>
+  <circle cx="198" cy="198" r="7" fill="none" stroke="rgba(214,58,143,0.6)" stroke-width="1"/>
+  <circle class="node-pulse3" cx="198" cy="198" r="3" fill="#D63A8F"/>
+  <!-- Branch left-right -->
+  <line x1="170" y1="198" x2="185" y2="198" class="line-dim"/>
+  <circle cx="165" cy="198" r="4" fill="none" stroke="rgba(214,58,143,0.25)" stroke-width="1"/>
+  <line x1="198" y1="175" x2="198" y2="185" class="line-dim"/>
+  <circle cx="198" cy="170" r="4" fill="none" stroke="rgba(214,58,143,0.25)" stroke-width="1"/>
+  <line x1="225" y1="198" x2="260" y2="198" class="line-dim"/>
+  <line x1="260" y1="175" x2="260" y2="198" class="line-dim"/>
+  <circle cx="260" cy="170" r="5" fill="none" stroke="rgba(214,58,143,0.3)" stroke-width="1"/>
+  <!-- small ticks on diagonal -->
+  <line x1="314" y1="314" x2="308" y2="308" class="tick"/>
+  <line x1="298" y1="298" x2="292" y2="292" class="tick"/>
+  <line x1="284" y1="284" x2="278" y2="278" class="tick"/>
+
+  <!-- ═══════════════════════════════
+       SECONDARY HORIZONTAL / VERTICAL CONNECTIONS
+  ═══════════════════════════════ -->
+  <!-- Top mid junction -->
+  <line x1="295" y1="185" x2="198" y2="185" class="line-dim"/>
+  <line x1="198" y1="185" x2="198" y2="211" class="line-dim"/>
+  <!-- Bottom hexagon extra -->
+  <line x1="350" y1="560" x2="410" y2="560" class="line-dim"/>
+  <line x1="410" y1="560" x2="430" y2="540" class="line-dim"/>
+  <!-- Right cluster upper -->
+  <line x1="620" y1="280" x2="540" y2="280" class="line-dim"/>
+  <line x1="540" y1="280" x2="502" y2="208" class="line-dim"/>
+  <line x1="620" y1="260" x2="620" y2="280" class="line-dim"/>
+  <circle cx="620" cy="255" r="4" fill="none" stroke="rgba(214,58,143,0.25)" stroke-width="1"/>
+
+  <!-- ═══════════════════════════════
+       SIGNAL FLOW ANIMATIONS
+  ═══════════════════════════════ -->
+  <!-- Up arm signal -->
+  <line x1="350" y1="332" x2="350" y2="185" class="signal-flow sf1"/>
+  <!-- Up-right arm signal -->
+  <line x1="361" y1="339" x2="490" y2="208" class="signal-flow sf2"/>
+  <!-- Right arm signal -->
+  <line x1="368" y1="350" x2="570" y2="350" class="signal-flow sf3"/>
+  <!-- Down-left arm signal -->
+  <line x1="339" y1="361" x2="200" y2="500" class="signal-flow sf4"/>
+  <!-- Down arm signal -->
+  <line x1="350" y1="368" x2="350" y2="505" class="signal-flow sf5"/>
+  <!-- Left arm signal -->
+  <line x1="332" y1="350" x2="130" y2="350" class="signal-flow sf6"/>
+  <!-- Up-left arm signal -->
+  <line x1="339" y1="339" x2="198" y2="198" class="signal-flow sf7"/>
+  <!-- Down-right arm signal -->
+  <line x1="361" y1="361" x2="490" y2="491" class="signal-flow sf8"/>
+
+  <!-- ═══════════════════════════════
+       LABELS
+  ═══════════════════════════════ -->
+  <!-- REVENUE SYSTEM label (top-left) -->
+  <rect x="80" y="145" width="124" height="20" rx="2" fill="rgba(214,58,143,0.08)" stroke="rgba(214,58,143,0.5)" stroke-width="0.8"/>
+  <text x="87" y="159" class="label-text">REVENUE SYSTEM</text>
+  <line x1="165" y1="165" x2="198" y2="185" class="line-dim" stroke-dasharray="3 3"/>
+
+  <!-- CONVERSION label (right) -->
+  <rect x="498" y="340" width="90" height="20" rx="2" fill="rgba(214,58,143,0.08)" stroke="rgba(214,58,143,0.5)" stroke-width="0.8"/>
+  <text x="505" y="354" class="label-text">CONVERSION</text>
+  <line x1="498" y1="350" x2="488" y2="350" class="line-dim" stroke-dasharray="3 3"/>
+
+  <!-- SALES LAYER label (bottom-left) -->
+  <rect x="80" y="530" width="100" height="20" rx="2" fill="rgba(214,58,143,0.08)" stroke="rgba(214,58,143,0.5)" stroke-width="0.8"/>
+  <text x="87" y="544" class="label-text">SALES LAYER</text>
+  <line x1="157" y1="530" x2="200" y2="514" class="line-dim" stroke-dasharray="3 3"/>
+
+  <!-- Subtle corner decoration dots -->
+  <circle cx="80" cy="80" r="2" fill="rgba(214,58,143,0.2)" style="animation: blink 3s ease-in-out infinite;"/>
+  <circle cx="620" cy="80" r="2" fill="rgba(214,58,143,0.2)" style="animation: blink 3s ease-in-out infinite 1s;"/>
+  <circle cx="80" cy="620" r="2" fill="rgba(214,58,143,0.2)" style="animation: blink 3s ease-in-out infinite 2s;"/>
+  <circle cx="620" cy="620" r="2" fill="rgba(214,58,143,0.2)" style="animation: blink 3s ease-in-out infinite 0.5s;"/>
+</svg>

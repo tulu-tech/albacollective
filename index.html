@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alba Collective — Revenue Architecture</title>
+  <meta name="description" content="Alba Collective is a founder-led revenue architecture studio. We help premium brands fix the systems behind growth." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor">
+    <div class="cursor__dot"></div>
+    <div class="cursor__ring"></div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo" aria-label="Alba Collective">
+        <svg class="nav__logo-svg" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- A mark -->
+          <polygon points="18,32 30,8 42,32" fill="white"/>
+          <polygon points="22.5,32 30,17 37.5,32" fill="#0a0907"/>
+          <!-- A legs pink accent -->
+          <rect x="28.5" y="24" width="3" height="8" fill="#D63A8F"/>
+          <!-- C mark -->
+          <path d="M56,8 A16,16 0 1,0 56,32 L56,27 A11,11 0 1,1 56,13 Z" fill="white"/>
+          <!-- Wordmark -->
+          <text x="0" y="40" font-family="'Space Grotesk', sans-serif" font-size="7" font-weight="600" letter-spacing="3" fill="white" text-anchor="start">ALBA COLLECTIVE</text>
+        </svg>
+      </a>
+      <div class="nav__center">
+        <a href="#work" class="nav__link">Capabilities</a>
+        <a href="#model" class="nav__link">Model</a>
+        <a href="#founder" class="nav__link">Tulu</a>
+      </div>
+      <a href="#apply" class="nav__apply">
+        Apply <span class="nav__apply-arrow">→</span>
+      </a>
+      <button class="nav__burger" id="navBurger" aria-label="Menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu__close" id="mobileClose">✕</button>
+    <div class="mobile-menu__links">
+      <a href="#work" class="mm-link">Capabilities</a>
+      <a href="#model" class="mm-link">Model</a>
+      <a href="#founder" class="mm-link">Tulu</a>
+      <a href="#apply" class="mm-link mm-link--cta">Apply →</a>
+    </div>
+    <div class="mobile-menu__meta">
+      <span>albacollective.co</span>
+      <span>© 2025</span>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════════ -->
+    <section class="hero" id="hero">
+      <!-- Sculpture visual -->
+      <div class="hero__sculpture">
+        <img src="sculpture.png" alt="Alba Collective — Revenue Architecture" />
+      </div>
+
+      <!-- Animated noise grain -->
+      <div class="hero__noise"></div>
+
+      <!-- Content -->
+      <div class="hero__content">
+        <div class="hero__eyebrow" data-reveal>
+          <span class="tag-line">Revenue Architecture Studio</span>
+          <span class="tag-sep">——</span>
+          <span class="tag-line">Founded by Tulu</span>
+        </div>
+
+        <h1 class="hero__h1" data-split>
+          <span class="h1-line" data-reveal-line>Revenue</span>
+          <span class="h1-line h1-line--italic" data-reveal-line>architecture</span>
+          <span class="h1-line" data-reveal-line>for brands that</span>
+          <span class="h1-line h1-line--italic" data-reveal-line>need more</span>
+          <span class="h1-line" data-reveal-line>than marketing.</span>
+        </h1>
+
+        <div class="hero__body" data-reveal>
+          <p>I help premium brands fix lead quality, conversion performance,<br />sales effectiveness, and operational scalability —<br />by redesigning the systems behind growth.</p>
+        </div>
+
+        <div class="hero__selective" data-reveal>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg>
+          I only take on engagements where I can create material impact.
+        </div>
+
+        <div class="hero__ctas" data-reveal>
+          <a href="#apply" class="cta-primary" id="heroCTA">
+            <span>Apply to Work Together</span>
+            <svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </a>
+          <a href="#model" class="cta-ghost">Explore the Model</a>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="hero__scroll">
+        <div class="hero__scroll-line"></div>
+        <span>scroll</span>
+      </div>
+
+      <!-- Bottom stats bar -->
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <span class="stat-val">B2C · B2B · B2G</span>
+          <span class="stat-label">Markets</span>
+        </div>
+        <div class="hero__stat-sep"></div>
+        <div class="hero__stat">
+          <span class="stat-val">Europe &amp; USA</span>
+          <span class="stat-label">Geography</span>
+        </div>
+        <div class="hero__stat-sep"></div>
+        <div class="hero__stat">
+          <span class="stat-val">One founder.</span>
+          <span class="stat-label">Directly with you.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── MARQUEE TICKER ── -->
+    <div class="marquee">
+      <div class="marquee__track">
+        <div class="marquee__item"><span>Revenue Architecture</span><div class="mq-dot"></div></div>
+        <div class="marquee__item"><span>Sales Transformation</span><div class="mq-dot"></div></div>
+        <div class="marquee__item"><span>Systems Thinking</span><div class="mq-dot"></div></div>
+        <div class="marquee__item"><span>Conversion Design</span><div class="mq-dot"></div></div>
+        <div class="marquee__item"><span>CRM Architecture</span><div class="mq-dot"></div></div>
+        <div class="marquee__item"><span>AI-Enhanced Growth</span><div class="mq-dot"></div></div>
+        <div class="marquee__item"><span>Strategic Positioning</span><div class="mq-dot"></div></div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         MANIFESTO — Editorial Stacked
+    ══════════════════════════════════════════════ -->
+    <section class="manifesto" id="manifesto">
+      <div class="gradient-orb" style="top:10%;right:-5%;"></div>
+
+      <!-- Line 1: full-width statement -->
+      <div class="mf-row mf-row--1" data-reveal>
+        <span class="mf-tag">01 — Observation</span>
+        <h2 class="mf-headline mf-headline--normal">Most growth problems</h2>
+      </div>
+
+      <!-- Line 2: outlined / ghost text -->
+      <div class="mf-row mf-row--2" data-reveal style="transition-delay:0.08s">
+        <h2 class="mf-headline mf-headline--outline">are not caused by</h2>
+      </div>
+
+      <!-- Line 3: pink em + huge -->
+      <div class="mf-row mf-row--3" data-reveal style="transition-delay:0.16s">
+        <h2 class="mf-headline mf-headline--pink"><em>a lack of activity.</em></h2>
+        <div class="mf-aside">
+          <p>The real constraint<br />is structural.</p>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="mf-divider" data-clip style="transition-delay:0.24s">
+        <div class="mf-divider__line"></div>
+        <span class="mf-divider__dot"></span>
+        <div class="mf-divider__line"></div>
+      </div>
+
+      <!-- Line 4: smaller right-pushed -->
+      <div class="mf-row mf-row--4" data-reveal style="transition-delay:0.32s">
+        <span class="mf-tag mf-tag--right">02 — Root Cause</span>
+        <h2 class="mf-headline mf-headline--dim" style="text-align:right;">They are caused by</h2>
+      </div>
+
+      <!-- Line 5: giant outlined MISALIGNMENT -->
+      <div class="mf-row mf-row--5" data-reveal style="transition-delay:0.4s">
+        <h2 class="mf-headline mf-headline--giant"><em>misalignment</em></h2>
+      </div>
+
+      <!-- Line 6: small + attribution -->
+      <div class="mf-row mf-row--6" data-reveal style="transition-delay:0.48s">
+        <h2 class="mf-headline mf-headline--small">inside the system.</h2>
+        <span class="mf-attr">— Tulu, Founder &amp; Revenue Architect</span>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════
+         PROCESS — Bold dark, full-bleed (moved early)
+    ══════════════════════════════════════════════ -->
+    <section class="process" id="model">
+      <div class="process__intro">
+        <div class="proc-intro-left" data-slide-left>
+          <div class="sec-label light">How I Work</div>
+          <h2 class="proc-big-h">A structured<br /><em>path to fit.</em></h2>
+        </div>
+        <div class="proc-intro-right" data-slide-right>
+          <p>Not everyone gets a call. The process is designed to protect your time and mine — engagement begins only from genuine alignment.</p>
+        </div>
+      </div>
+
+      <div class="proc-grid">
+        <div class="proc-card" data-reveal>
+          <div class="proc-card__num">01</div>
+          <div class="proc-card__body">
+            <h3>Application</h3>
+            <p>A curated form — not a contact form. An intentional first step in understanding your commercial complexity.</p>
+          </div>
+          <div class="proc-card__arrow">↗</div>
+        </div>
+        <div class="proc-card" data-reveal style="transition-delay:0.06s">
+          <div class="proc-card__num">02</div>
+          <div class="proc-card__body">
+            <h3>Initial Review</h3>
+            <p>I review your application independently — your business, market, digital presence, and strategic fit.</p>
+          </div>
+          <div class="proc-card__arrow">↗</div>
+        </div>
+        <div class="proc-card" data-reveal style="transition-delay:0.12s">
+          <div class="proc-card__num">03</div>
+          <div class="proc-card__body">
+            <h3>Pre-Call Analysis</h3>
+            <p>Before any conversation, I conduct a preliminary review of your business framework. The eventual call is sharper, faster, more valuable.</p>
+          </div>
+          <div class="proc-card__arrow">↗</div>
+        </div>
+        <div class="proc-card proc-card--highlight" data-reveal style="transition-delay:0.18s">
+          <div class="proc-card__num">04</div>
+          <div class="proc-card__body">
+            <h3>30-Min Call <span class="selective-badge">By invitation only</span></h3>
+            <p>If there is strong fit, I invite a complimentary 30-minute call. Not a sales call — a direct, informed conversation about your business.</p>
+          </div>
+          <div class="proc-card__arrow">↗</div>
+        </div>
+        <div class="proc-card" data-reveal style="transition-delay:0.24s">
+          <div class="proc-card__num">05</div>
+          <div class="proc-card__body">
+            <h3>Accept or Decline</h3>
+            <p>I will be direct. If the engagement is right, I will say so and propose how we move forward. If not, I will tell you clearly.</p>
+          </div>
+          <div class="proc-card__arrow">↗</div>
+        </div>
+        <div class="proc-card" data-reveal style="transition-delay:0.30s">
+          <div class="proc-card__num">06</div>
+          <div class="proc-card__body">
+            <h3>Onboarding</h3>
+            <p>Deep and structured — data access, team context, commercial review, and priority mapping from day one.</p>
+          </div>
+          <div class="proc-card__arrow">↗</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         PROBLEMS — Editorial scroll section
+    ══════════════════════════════════════════════ -->
+    <section class="problems" id="problems">
+      <div class="problems__header" data-reveal>
+        <div class="sec-label">Pattern Recognition</div>
+        <h2 class="problems__h2">
+          The friction looks<br /><em>different on the surface.</em>
+        </h2>
+      </div>
+
+      <div class="problems__rail">
+        <div class="prob-item" data-reveal>
+          <span class="prob-n">01</span>
+          <div class="prob-body">
+            <h3>Leads come in.<br />Nothing converts.</h3>
+            <p>Traffic exists. Enquiries arrive. But something between first touch and decision is breaking trust before it forms.</p>
+          </div>
+        </div>
+        <div class="prob-item" data-reveal>
+          <span class="prob-n">02</span>
+          <div class="prob-body">
+            <h3>The team exists.<br />The system does not.</h3>
+            <p>People are working hard. Without shared process and pipeline discipline, effort becomes invisible noise.</p>
+          </div>
+        </div>
+        <div class="prob-item" data-reveal>
+          <span class="prob-n">03</span>
+          <div class="prob-body">
+            <h3>Marketing runs.<br />Sales is disconnected.</h3>
+            <p>Budget is spent. Campaigns run. The handoff between marketing and sales is where performance dies quietly.</p>
+          </div>
+        </div>
+        <div class="prob-item" data-reveal>
+          <span class="prob-n">04</span>
+          <div class="prob-body">
+            <h3>CRM exists.<br />Nobody really uses it.</h3>
+            <p>The tool is there. The data is incomplete. Decisions still depend on intuition and the pipeline stays invisible.</p>
+          </div>
+        </div>
+        <div class="prob-item" data-reveal>
+          <span class="prob-n">05</span>
+          <div class="prob-body">
+            <h3>Brand exists.<br />Positioning does not.</h3>
+            <p>Premium product. Unclear message. Competing on price instead of value. Attracting clients who drain energy.</p>
+          </div>
+        </div>
+        <div class="prob-item" data-reveal>
+          <span class="prob-n">06</span>
+          <div class="prob-body">
+            <h3>Founder still carries<br />everything commercial.</h3>
+            <p>Growth is real. But it is entirely dependent on one person. That dependency becomes the ceiling.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="problems__conclusion" data-reveal>
+        <div class="conc-line"></div>
+        <p>These are not channel problems. They are structural failures.<br />They require a different kind of thinking to solve.</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         DIAGRAM SECTION — System visual
+    ══════════════════════════════════════════════ -->
+    <section class="diag-section" id="diagram">
+      <div class="diag-section__inner">
+      <div class="diag-section__left" data-reveal>
+        <div class="sec-label light">The Revenue System</div>
+        <h2 class="diag-h2">
+          Not channels.<br /><em>Not campaigns.</em><br />A connected system.
+        </h2>
+        <p>Alba Collective approaches growth as an interconnected architecture — not as a list of isolated tasks. Every element of your revenue system is mapped, diagnosed, and redesigned to work together.</p>
+        <a href="#work" class="text-link">See what I fix →</a>
+      </div>
+      <div class="diag-section__right" data-reveal>
+        <div class="diag-img-wrap">
+          <img src="diagram.svg" alt="Revenue architecture system diagram" style="background:#09090f;border-radius:8px;" />
+        </div>
+      </div>
+      </div><!-- /.diag-section__inner -->
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         CAPABILITIES — Bold list
+    ══════════════════════════════════════════════ -->
+    <section class="work" id="work">
+      <div class="work__header" data-reveal>
+        <div class="sec-label">What I Actually Fix</div>
+        <div class="work__header-right">
+          <p>Not a list of services. These are transformation areas — each one built around commercial outcome, not task delivery.</p>
+        </div>
+      </div>
+
+      <div class="work__list">
+
+        <div class="work-item" data-reveal id="cap-01">
+          <div class="work-item__left">
+            <span class="work-n">01</span>
+          </div>
+          <div class="work-item__main">
+            <h3>Revenue &amp; Conversion</h3>
+            <p>Full-funnel diagnosis from first touch to closed deal. Where trust breaks, where intent dies, what mechanics need redesigning to convert at a material rate.</p>
+          </div>
+          <div class="work-item__right">
+            <span>Funnel Diagnosis</span>
+            <span>Conversion Mechanics</span>
+            <span>Revenue Architecture</span>
+          </div>
+          <div class="work-item__icon">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 60 L40 20 L70 45" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="40" cy="20" r="4" fill="currentColor" opacity="0.4"/>
+              <circle cx="70" cy="45" r="3" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M20 60 L50 35" stroke="currentColor" stroke-width="0.75" opacity="0.4" stroke-dasharray="3 4"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="work-item" data-reveal id="cap-02">
+          <div class="work-item__left">
+            <span class="work-n">02</span>
+          </div>
+          <div class="work-item__main">
+            <h3>Sales Enablement &amp; Performance</h3>
+            <p>Sales teams without discipline, structure, or coaching produce inconsistent results regardless of talent. I work directly with sales operations, communication, and performance mechanics.</p>
+          </div>
+          <div class="work-item__right">
+            <span>Pipeline Discipline</span>
+            <span>Team Performance</span>
+            <span>Sales Coaching</span>
+          </div>
+          <div class="work-item__icon">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="30" width="18" height="35" rx="1" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="31" y="20" width="18" height="45" rx="1" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="52" y="10" width="18" height="55" rx="1" fill="currentColor" opacity="0.15" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="work-item" data-reveal id="cap-03">
+          <div class="work-item__left">
+            <span class="work-n">03</span>
+          </div>
+          <div class="work-item__main">
+            <h3>Strategy &amp; Positioning</h3>
+            <p>Business diagnosis, market positioning, offer clarity, and competitive differentiation. Building the strategic layer that makes every other element more effective.</p>
+          </div>
+          <div class="work-item__right">
+            <span>Market Position</span>
+            <span>Offer Clarity</span>
+            <span>Business Diagnosis</span>
+          </div>
+          <div class="work-item__icon">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="28" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="40" cy="40" r="16" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+              <circle cx="40" cy="40" r="5" fill="currentColor"/>
+              <line x1="40" y1="12" x2="40" y2="25" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="40" y1="55" x2="40" y2="68" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="work-item" data-reveal id="cap-04">
+          <div class="work-item__left">
+            <span class="work-n">04</span>
+          </div>
+          <div class="work-item__main">
+            <h3>Systems, CRM &amp; Automation</h3>
+            <p>CRM structure, pipeline visibility, reporting logic, and operational workflows. Automation that reduces friction, not just complexity. Systems that scale the work that already exists.</p>
+          </div>
+          <div class="work-item__right">
+            <span>CRM Architecture</span>
+            <span>Automation Design</span>
+            <span>Operations</span>
+          </div>
+          <div class="work-item__icon">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="12" y="12" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="48" y="12" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="30" y="48" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M32 22 L48 22" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+              <path d="M22 32 L40 48" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+              <path d="M58 32 L40 48" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="work-item" data-reveal id="cap-05">
+          <div class="work-item__left">
+            <span class="work-n">05</span>
+          </div>
+          <div class="work-item__main">
+            <h3>Digital Growth &amp; Experience Design</h3>
+            <p>Channel performance, website conversion, UX redesign, customer journey architecture, and digital trust mechanics. Growth that compounds, not traffic that evaporates.</p>
+          </div>
+          <div class="work-item__right">
+            <span>UX &amp; Journey Design</span>
+            <span>Conversion Rate</span>
+            <span>Digital Performance</span>
+          </div>
+          <div class="work-item__icon">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="8" y="18" width="64" height="44" rx="3" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M8 28 L72 28" stroke="currentColor" stroke-width="1"/>
+              <circle cx="18" cy="23" r="2.5" fill="currentColor" opacity="0.4"/>
+              <circle cx="27" cy="23" r="2.5" fill="currentColor" opacity="0.4"/>
+              <path d="M24 42 L36 36 L48 44 L60 34" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="work-item" data-reveal id="cap-06">
+          <div class="work-item__left">
+            <span class="work-n">06</span>
+          </div>
+          <div class="work-item__main">
+            <h3>AI-Enhanced Capabilities</h3>
+            <p>AI as infrastructure, not novelty. Decision-support systems, automation intelligence, workflow enhancement, and practical AI integration where it genuinely improves commercial performance.</p>
+          </div>
+          <div class="work-item__right">
+            <span>AI Systems</span>
+            <span>Decision Support</span>
+            <span>Workflow Intelligence</span>
+          </div>
+          <div class="work-item__icon">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="40,8 55,32 72,38 55,48 40,72 25,48 8,38 25,32" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <circle cx="40" cy="40" r="8" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="40" cy="40" r="3" fill="currentColor" opacity="0.5"/>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         DIFFERENCE — Brand statement
+    ══════════════════════════════════════════════ -->
+    <section class="diff" id="difference">
+      <div class="gradient-orb" style="bottom:-30%;right:-15%;"></div>
+      <div class="diff__inner">
+        <div class="diff__top" data-reveal>
+          <div class="sec-label light">The Model</div>
+          <h2 class="diff__h2">
+            Not an agency.<br />
+            Not a freelancer.<br />
+            <em>Not just a strategist.</em>
+          </h2>
+        </div>
+
+        <div class="diff__pillars">
+          <div class="diff-pillar" data-reveal>
+            <div class="diff-pillar__num">I</div>
+            <h3>Founder-led<br />every time</h3>
+            <p>You work with Tulu directly. Not an account manager, not a junior team, not a relay race of handoffs.</p>
+          </div>
+          <div class="diff-pillar" data-reveal>
+            <div class="diff-pillar__num">II</div>
+            <h3>Strategy and<br />implementation</h3>
+            <p>Analysis, diagnosis, planning, and execution are not separated into different vendors. Thinking and doing live in the same place.</p>
+          </div>
+          <div class="diff-pillar" data-reveal>
+            <div class="diff-pillar__num">III</div>
+            <h3>Business lens<br />not channel lens</h3>
+            <p>The work moves across sales, marketing, systems, UX, CRM, and team dynamics to find what actually matters.</p>
+          </div>
+          <div class="diff-pillar" data-reveal>
+            <div class="diff-pillar__num">IV</div>
+            <h3>Selective<br />by design</h3>
+            <p>Capacity is finite. Impact is the standard. Every engagement receives full attention because that is the only structure that works at this level.</p>
+          </div>
+        </div>
+
+        <div class="diff__quote" data-reveal>
+          <blockquote>
+            "I only take on engagements<br />where I can create <em>material impact.</em>"
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         FOUNDER
+    ══════════════════════════════════════════════ -->
+    <section class="founder" id="founder">
+      <div class="founder__inner">
+      <div class="founder__visual" data-reveal>
+        <div class="founder__frame">
+          <div class="founder__portrait">
+            <div class="founder__portrait-bg"></div>
+            <div class="founder__portrait-text">
+              <span class="fp-name">Tulu</span>
+              <span class="fp-title">Revenue Architect</span>
+              <span class="fp-studio">Alba Collective</span>
+            </div>
+            <!-- Animated SVG decoration -->
+            <svg class="founder__svg-deco" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="150" cy="200" r="120" stroke="rgba(214,58,143,0.2)" stroke-width="1" class="deco-circle"/>
+              <circle cx="150" cy="200" r="80" stroke="rgba(214,58,143,0.12)" stroke-width="1" class="deco-circle2"/>
+              <path d="M150 80 Q230 150 150 200 Q70 250 150 320" stroke="rgba(214,58,143,0.3)" stroke-width="1.5" fill="none" class="deco-path"/>
+            </svg>
+          </div>
+          <div class="founder__badge">
+            <span>Founder</span>
+            <span>·</span>
+            <span>Revenue Architect</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="founder__content" data-reveal>
+        <div class="sec-label">The Founder</div>
+        <h2 class="founder__h2">
+          Built from<br />the inside.<br /><em>Not observed<br />from the outside.</em>
+        </h2>
+        <div class="founder__bio">
+          <p>Alba Collective was built after years of seeing the same structural failure: shallow execution, junior-led work, fragmented ownership, and no real attention to the mechanics that actually drive commercial performance.</p>
+          <p>Tulu's background spans architecture studies at Politecnico di Milano, cognitive behavioral psychology, AI systems, UX, business design, and sales — applied across real commercial environments from product brands to B2G operations and an AI decision-making platform for government contracting.</p>
+          <p>The model exists because the alternatives were not good enough.</p>
+        </div>
+        <div class="founder__domains">
+          <div class="domain-tag">Architecture <span>& Systems Thinking</span></div>
+          <div class="domain-tag">Behavioral Psychology <span>& Human Performance</span></div>
+          <div class="domain-tag">AI Systems <span>& Decision Design</span></div>
+          <div class="domain-tag">Sales Strategy <span>& Commercial Execution</span></div>
+          <div class="domain-tag">UX Design <span>& Digital Experience</span></div>
+        </div>
+      </div><!-- /.founder__content -->
+      </div><!-- /.founder__inner -->
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         FIT FILTER
+    ══════════════════════════════════════════════ -->
+    <section class="fit" id="fit">
+      <div class="fit__header" data-reveal>
+        <div class="sec-label">Selective by design</div>
+        <h2 class="fit__h2">
+          This is built for<br /><em>the right kind of business.</em>
+        </h2>
+        <p>The model is not for everyone. That selectivity is real — and it is what makes the work effective.</p>
+      </div>
+
+      <div class="fit__cols">
+        <div class="fit-col fit-col--yes" data-reveal>
+          <div class="fit-col__label">This is for you</div>
+          <ul>
+            <li>You lead a premium or high-consideration brand</li>
+            <li>You operate in B2C, B2B, or B2G</li>
+            <li>You are the founder, executive, or senior decision-maker</li>
+            <li>You have commercial potential blocked by structural friction</li>
+            <li>You want strategic depth combined with direct implementation</li>
+            <li>You are ready to share data, numbers, and honest context</li>
+            <li>You want long-term improvement, not a short-term campaign</li>
+          </ul>
+        </div>
+        <div class="fit-col fit-col--no" data-reveal>
+          <div class="fit-col__label">This is not for you</div>
+          <ul>
+            <li>You are looking exclusively for ad management</li>
+            <li>You expect results without structural change</li>
+            <li>You are not willing to share internal data or context</li>
+            <li>You want task execution without strategic alignment</li>
+            <li>You are not the decision-maker in this engagement</li>
+            <li>You are focused on low-margin commodity offerings</li>
+            <li>You want a traditional agency relationship</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         APPLY CTA
+    ══════════════════════════════════════════════ -->
+    <section class="apply" id="apply">
+      <div class="apply__bg">
+        <div class="apply__noise"></div>
+        <div class="apply__sculpture-echo"></div>
+      </div>
+
+      <div class="apply__inner">
+        <div class="apply__left" data-reveal>
+          <div class="sec-label light">Apply</div>
+          <h2 class="apply__h2">
+            Built for brands<br />that are ready to fix<br /><em>what is actually<br />blocking growth.</em>
+          </h2>
+          <p class="apply__note">The application takes five minutes. The review is personal. If there is genuine alignment, we speak directly.</p>
+          <div class="apply__guarantee">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>You will receive a personal response within 48 hours.</span>
+          </div>
+        </div>
+
+        <div class="apply__form-col" data-reveal>
+          <form class="apply-form" id="applyForm" novalidate>
+            <div class="af-row">
+              <div class="af-group">
+                <label for="f-name">Name</label>
+                <input type="text" id="f-name" name="name" placeholder="Full name" required />
+              </div>
+              <div class="af-group">
+                <label for="f-company">Company</label>
+                <input type="text" id="f-company" name="company" placeholder="Company name" required />
+              </div>
+            </div>
+            <div class="af-row">
+              <div class="af-group">
+                <label for="f-email">Email</label>
+                <input type="email" id="f-email" name="email" placeholder="your@email.com" required />
+              </div>
+              <div class="af-group">
+                <label for="f-role">Your Role</label>
+                <input type="text" id="f-role" name="role" placeholder="Founder / CEO / Director" required />
+              </div>
+            </div>
+            <div class="af-group">
+              <label for="f-problem">What is your most important growth problem right now?</label>
+              <textarea id="f-problem" name="problem" rows="3" placeholder="Be specific. The more context, the better the review." required></textarea>
+            </div>
+            <div class="af-group">
+              <label for="f-gap">Where do you believe you are underperforming?</label>
+              <textarea id="f-gap" name="gap" rows="3" placeholder="Leads, conversion, positioning, sales team, systems..." required></textarea>
+            </div>
+            <div class="af-row af-row--3">
+              <div class="af-group">
+                <label for="f-size">Team size</label>
+                <select id="f-size" name="size">
+                  <option value="">Select...</option>
+                  <option>1–5</option>
+                  <option>6–20</option>
+                  <option>21–50</option>
+                  <option>51–200</option>
+                  <option>200+</option>
+                </select>
+              </div>
+              <div class="af-group af-group--wide">
+                <label for="f-urgency">Why now?</label>
+                <input type="text" id="f-urgency" name="urgency" placeholder="What has changed or what is at stake?" required />
+              </div>
+            </div>
+            <div class="af-submit">
+              <button type="submit" class="submit-btn" id="formSubmitBtn">
+                <span>Submit Application</span>
+                <svg width="18" height="18" viewBox="0 0 18 18"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="#" aria-label="Alba Collective">
+          <svg class="footer__logo-svg" viewBox="0 0 90 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="14,24 22,6 30,24" fill="white"/>
+            <polygon points="17.5,24 22,13 26.5,24" fill="#0a0907"/>
+            <rect x="21" y="18" width="2.2" height="6" fill="#D63A8F"/>
+            <path d="M40,6 A12,12 0 1,0 40,24 L40,20 A8,8 0 1,1 40,10 Z" fill="white"/>
+            <text x="0" y="30" font-family="'Space Grotesk', sans-serif" font-size="5.5" font-weight="600" letter-spacing="2.5" fill="rgba(242,240,245,0.5)">ALBA COLLECTIVE</text>
+          </svg>
+        </a>
+        <p>Revenue architecture for brands<br />that need more than marketing.</p>
+      </div>
+      <nav class="footer__nav">
+        <a href="#hero">Home</a>
+        <a href="#founder">About</a>
+        <a href="#work">Capabilities</a>
+        <a href="#model">Engagement Model</a>
+        <a href="#apply">Apply</a>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">© 2025 Alba Collective. All rights reserved.</span>
+      <span class="footer__founder">Founded by Tulu — albacollective.co</span>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
