@@ -265,23 +265,47 @@ function initHorizontalScroll() {
 function initForm() {
   const form = document.getElementById('applyForm');
   if (!form) return;
+
+  // Sync _replyto hidden field with email input so replies go to applicant
+  const emailInput = document.getElementById('f-email');
+  const replyTo = document.getElementById('replyToField');
+  if (emailInput && replyTo) {
+    emailInput.addEventListener('input', () => { replyTo.value = emailInput.value; });
+  }
+
   form.querySelectorAll('input, textarea, select').forEach(field => {
     field.addEventListener('focus', () => { field.style.background = 'rgba(255,255,255,0.05)'; });
     field.addEventListener('blur', () => { field.style.background = ''; });
   });
+
   form.addEventListener('submit', async e => {
     e.preventDefault();
     const btn = document.getElementById('formSubmitBtn');
     if (btn) { btn.querySelector('span').textContent = 'Submitting…'; btn.disabled = true; }
-    await new Promise(r => setTimeout(r, 1200));
-    const wrap = form.parentElement;
-    if (wrap) {
-      wrap.innerHTML = `
-        <div class="form-success">
-          <div class="form-success__icon">✦</div>
-          <h3>Application received.</h3>
-          <p>I review every application personally.<br />You will hear back within 48 hours.</p>
-        </div>`;
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      const wrap = form.parentElement;
+      if (res.ok) {
+        if (wrap) wrap.innerHTML = `
+          <div class="form-success">
+            <div class="form-success__icon">✦</div>
+            <h3>Application received.</h3>
+            <p>I review every application personally.<br />You will hear back within 48 hours.</p>
+          </div>`;
+      } else {
+        const json = await res.json().catch(() => ({}));
+        const msg = json?.errors?.map(e => e.message).join(', ') || 'Something went wrong. Please try again.';
+        if (btn) { btn.querySelector('span').textContent = 'Submit Application'; btn.disabled = false; }
+        alert(msg);
+      }
+    } catch {
+      if (btn) { btn.querySelector('span').textContent = 'Submit Application'; btn.disabled = false; }
+      alert('Network error. Please check your connection and try again.');
     }
   });
 }

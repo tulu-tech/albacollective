@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Architecture — Alba Collective</title>
+  <meta name="description" content="The six disciplines that comprise Alba Collective's revenue architecture system. Not services. A fully integrated commercial operating model." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:     #09090f;
+      --black-soft:#0f0e18;
+      --pink:      #D63A8F;
+      --pink-dim:  rgba(214,58,143,0.25);
+      --pink-glow: rgba(214,58,143,0.12);
+      --off-white: #f2f0f5;
+      --ash:       #9e9aad;
+      --serif:     'Playfair Display', Georgia, serif;
+      --sans:      'Space Grotesk', system-ui, sans-serif;
+      --ease:      cubic-bezier(0.16, 1, 0.3, 1);
+      --max-w:     1240px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--off-white);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      background: rgba(9,9,15,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .nav-logo svg { width: 100px; height: 32px; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+    .nav-links a {
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--ash); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--off-white); }
+    .nav-links a.active { color: var(--pink); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--sans); font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--black); background: var(--pink);
+      padding: 0.55rem 1.4rem; border-radius: 2px;
+      text-decoration: none; transition: opacity 0.2s, transform 0.2s var(--ease);
+    }
+    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .arch-hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 3rem 7rem;
+      position: relative; overflow: hidden;
+    }
+    .arch-hero__bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 20%, rgba(214,58,143,0.10) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(214,58,143,0.06) 0%, transparent 70%);
+    }
+    /* Animated grid lines */
+    .arch-hero__grid {
+      position: absolute; inset: 0; pointer-events: none; opacity: 0.04;
+      background-image:
+        linear-gradient(var(--off-white) 1px, transparent 1px),
+        linear-gradient(90deg, var(--off-white) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .arch-hero__eyebrow {
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--pink);
+      margin-bottom: 2.5rem;
+      max-width: var(--max-w); width: 100%;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .arch-hero__eyebrow::before {
+      content: ''; width: 32px; height: 1px; background: var(--pink);
+    }
+    .arch-hero__inner { max-width: var(--max-w); width: 100%; position: relative; z-index: 1; }
+    .arch-hero__h1 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(4rem, 9vw, 10rem);
+      line-height: 0.92; letter-spacing: -0.04em;
+      color: var(--off-white);
+      margin-bottom: 3rem;
+    }
+    .arch-hero__h1 em { color: var(--pink); font-style: italic; }
+    .arch-hero__sub {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+      align-items: end;
+    }
+    .arch-hero__desc {
+      font-size: 1.05rem; line-height: 1.75; color: var(--ash);
+      max-width: 480px;
+    }
+    .arch-hero__desc strong { color: var(--off-white); font-weight: 500; }
+    .arch-hero__meta {
+      display: flex; flex-direction: column; gap: 1.25rem;
+      align-items: flex-end;
+    }
+    .arch-meta-tag {
+      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(242,240,245,0.3);
+    }
+    .arch-meta-tag span { color: var(--off-white); margin-left: 0.5rem; }
+    .arch-hero__cta {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      font-family: var(--sans); font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--black); background: var(--pink);
+      padding: 1rem 2.2rem; border-radius: 2px; text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s var(--ease);
+      align-self: flex-end;
+    }
+    .arch-hero__cta:hover { opacity: 0.85; transform: translateY(-2px); }
+
+    /* ── STATEMENT BAND ── */
+    .statement-band {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 3.5rem 3rem;
+      overflow: hidden;
+    }
+    .statement-band__track {
+      display: flex; gap: 4rem; white-space: nowrap;
+      animation: marquee 22s linear infinite;
+      font-family: var(--serif); font-size: 1.1rem; font-style: italic;
+      color: rgba(242,240,245,0.25);
+    }
+    .statement-band__track span { color: var(--pink); font-style: normal; font-family: var(--sans); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; margin: 0 1rem; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* ── PHILOSOPHY ── */
+    .philosophy {
+      padding: 9rem 3rem;
+      max-width: var(--max-w); margin: 0 auto;
+    }
+    .philosophy__top {
+      display: grid; grid-template-columns: 1fr 1.6fr; gap: 6rem;
+      align-items: start; margin-bottom: 6rem;
+    }
+    .sec-tag {
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--pink);
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .sec-tag::before { content: ''; width: 24px; height: 1px; background: var(--pink); }
+    .phil-h2 {
+      font-family: var(--serif); font-size: clamp(2.2rem, 3.5vw, 3.8rem);
+      font-weight: 400; line-height: 1.05; letter-spacing: -0.03em;
+      color: var(--off-white); margin-top: 1.5rem;
+    }
+    .phil-h2 em { color: var(--pink); font-style: italic; }
+    .phil-body { padding-top: 1.5rem; }
+    .phil-body p {
+      font-size: 1rem; line-height: 1.85; color: var(--ash);
+      margin-bottom: 1.5rem;
+    }
+    .phil-body p strong { color: var(--off-white); font-weight: 500; }
+    .phil-body p:last-child { margin-bottom: 0; }
+
+    .phil-principles {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.04);
+    }
+    .principle {
+      background: var(--black); padding: 2.5rem;
+      transition: background 0.3s var(--ease);
+    }
+    .principle:hover { background: rgba(214,58,143,0.04); }
+    .principle__num {
+      font-family: var(--sans); font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.18em; color: var(--pink); text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .principle h3 {
+      font-family: var(--serif); font-size: 1.4rem; font-weight: 400;
+      color: var(--off-white); margin-bottom: 1rem; line-height: 1.15;
+    }
+    .principle p {
+      font-size: 0.85rem; line-height: 1.7; color: var(--ash);
+    }
+
+    /* ── DISCIPLINES ── */
+    .disciplines {
+      padding: 0 3rem 10rem;
+    }
+    .disciplines__header {
+      max-width: var(--max-w); margin: 0 auto 5rem;
+      display: flex; align-items: end; justify-content: space-between;
+    }
+    .disciplines__h2 {
+      font-family: var(--serif); font-size: clamp(2.5rem, 4vw, 4.5rem);
+      font-weight: 400; line-height: 1.0; letter-spacing: -0.03em;
+      color: var(--off-white);
+    }
+    .disciplines__h2 em { color: var(--pink); font-style: italic; }
+    .disc-count { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ash); }
+
+    .disc-item {
+      max-width: var(--max-w); margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: grid; grid-template-columns: 80px 1.1fr 1fr;
+      gap: 4rem; padding: 4rem 0;
+      transition: background 0.3s var(--ease);
+      cursor: default;
+    }
+    .disc-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .disc-item:hover { background: transparent; }
+    .disc-item:hover .disc-num { color: var(--pink); }
+    .disc-item:hover .disc-arrow { opacity: 1; transform: translate(4px,-4px); }
+
+    .disc-num {
+      font-family: var(--sans); font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.18em; color: rgba(242,240,245,0.2);
+      text-transform: uppercase; padding-top: 0.4rem;
+      transition: color 0.3s var(--ease);
+    }
+    .disc-main { }
+    .disc-title {
+      font-family: var(--serif); font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+      font-weight: 400; line-height: 1.1; letter-spacing: -0.02em;
+      color: var(--off-white); margin-bottom: 0.5rem;
+    }
+    .disc-title em { color: var(--pink); font-style: italic; }
+    .disc-subtitle {
+      font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--pink); margin-bottom: 2rem;
+    }
+    .disc-desc {
+      font-size: 0.95rem; line-height: 1.8; color: var(--ash);
+      max-width: 520px;
+    }
+    .disc-desc p { margin-bottom: 1rem; }
+    .disc-desc p:last-child { margin-bottom: 0; }
+    .disc-desc strong { color: var(--off-white); font-weight: 500; }
+
+    .disc-detail { display: flex; flex-direction: column; justify-content: space-between; padding-top: 0.4rem; }
+    .disc-what {
+      margin-bottom: 2.5rem;
+    }
+    .disc-what h4 {
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--ash); margin-bottom: 1rem;
+    }
+    .disc-what ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .disc-what ul li {
+      font-size: 0.85rem; color: rgba(242,240,245,0.65);
+      display: flex; align-items: baseline; gap: 0.6rem;
+    }
+    .disc-what ul li::before {
+      content: '—'; color: var(--pink); font-size: 0.7rem; flex-shrink: 0;
+    }
+    .disc-outcome {
+      padding: 1.5rem;
+      background: rgba(214,58,143,0.06);
+      border-left: 2px solid var(--pink);
+    }
+    .disc-outcome h4 {
+      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--pink); margin-bottom: 0.75rem;
+    }
+    .disc-outcome p { font-size: 0.82rem; line-height: 1.65; color: rgba(242,240,245,0.7); }
+    .disc-arrow {
+      font-size: 1.2rem; color: var(--pink); opacity: 0;
+      transition: opacity 0.3s, transform 0.3s var(--ease);
+      align-self: flex-start;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-section {
+      background: var(--black-soft);
+      padding: 9rem 3rem;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .how-section__inner { max-width: var(--max-w); margin: 0 auto; }
+    .how-top {
+      display: grid; grid-template-columns: 1fr 1.5fr; gap: 6rem;
+      align-items: center; margin-bottom: 6rem;
+    }
+    .how-h2 {
+      font-family: var(--serif); font-size: clamp(2.5rem, 4vw, 4.5rem);
+      font-weight: 400; line-height: 1.0; letter-spacing: -0.03em;
+      color: var(--off-white);
+    }
+    .how-h2 em { color: var(--pink); font-style: italic; }
+    .how-intro { font-size: 1rem; line-height: 1.8; color: var(--ash); }
+    .how-intro strong { color: var(--off-white); font-weight: 500; }
+
+    .how-phases {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+      background: rgba(255,255,255,0.04);
+    }
+    .phase {
+      background: var(--black-soft); padding: 2.5rem 2rem;
+      position: relative;
+    }
+    .phase::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--pink); opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .phase:hover::before { opacity: 1; }
+    .phase__n {
+      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--pink); display: block;
+      margin-bottom: 1.5rem;
+    }
+    .phase h3 {
+      font-family: var(--sans); font-size: 1rem; font-weight: 600;
+      color: var(--off-white); margin-bottom: 1rem; line-height: 1.2;
+    }
+    .phase p { font-size: 0.82rem; line-height: 1.65; color: var(--ash); }
+    .phase__duration {
+      margin-top: 1.5rem; padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(242,240,245,0.3);
+    }
+    .phase__duration span { color: var(--ash); }
+
+    /* ── WHO IT'S FOR ── */
+    .who-section {
+      padding: 9rem 3rem;
+    }
+    .who-section__inner { max-width: var(--max-w); margin: 0 auto; }
+    .who-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+      align-items: start;
+    }
+    .who-h2 {
+      font-family: var(--serif); font-size: clamp(2.5rem, 4vw, 4.5rem);
+      font-weight: 400; line-height: 1.0; letter-spacing: -0.03em;
+      color: var(--off-white); margin-top: 1.5rem; margin-bottom: 2rem;
+    }
+    .who-h2 em { color: var(--pink); font-style: italic; }
+    .who-desc { font-size: 1rem; line-height: 1.8; color: var(--ash); margin-bottom: 2rem; }
+    .who-desc strong { color: var(--off-white); font-weight: 500; }
+
+    .fit-list, .notfit-list { display: flex; flex-direction: column; gap: 0; }
+    .fit-item, .notfit-item {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex; align-items: baseline; gap: 1rem;
+      font-size: 0.92rem; line-height: 1.6;
+    }
+    .fit-item { color: var(--off-white); }
+    .fit-item::before { content: '✓'; color: var(--pink); flex-shrink: 0; font-weight: 600; }
+    .notfit-item { color: rgba(242,240,245,0.4); }
+    .notfit-item::before { content: '✕'; color: rgba(242,240,245,0.2); flex-shrink: 0; }
+    .who-col-title {
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--ash);
+      margin-bottom: 1.5rem;
+    }
+    .who-right { display: flex; flex-direction: column; gap: 3rem; }
+
+    /* ── CTA SECTION ── */
+    .arch-cta {
+      background: var(--black-soft);
+      padding: 10rem 3rem;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      position: relative; overflow: hidden;
+    }
+    .arch-cta__orb {
+      position: absolute; width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(214,58,143,0.1) 0%, transparent 70%);
+      filter: blur(80px); top: -20%; right: -10%; pointer-events: none;
+    }
+    .arch-cta__inner {
+      max-width: var(--max-w); margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+      align-items: center; position: relative; z-index: 1;
+    }
+    .arch-cta__h2 {
+      font-family: var(--serif); font-size: clamp(2.5rem, 4.5vw, 5rem);
+      font-weight: 400; line-height: 1.0; letter-spacing: -0.03em;
+      color: var(--off-white);
+    }
+    .arch-cta__h2 em { color: var(--pink); font-style: italic; }
+    .arch-cta__body { display: flex; flex-direction: column; align-items: flex-start; gap: 2rem; }
+    .arch-cta__body p { font-size: 1rem; line-height: 1.8; color: var(--ash); }
+    .arch-cta__body p strong { color: var(--off-white); font-weight: 500; }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      font-family: var(--sans); font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--black); background: var(--pink);
+      padding: 1.1rem 2.5rem; border-radius: 2px; text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s var(--ease);
+    }
+    .cta-btn:hover { opacity: 0.85; transform: translateY(-2px); }
+    .cta-note {
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(242,240,245,0.3);
+    }
+
+    /* ── FOOTER ── */
+    .arch-footer {
+      padding: 2.5rem 3rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .arch-footer a {
+      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--ash); text-decoration: none; transition: color 0.2s;
+    }
+    .arch-footer a:hover { color: var(--off-white); }
+
+    /* ── REVEAL ANIMATIONS ── */
+    [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 0.65s var(--ease), transform 0.65s var(--ease); }
+    [data-reveal].visible { opacity: 1; transform: none; }
+    [data-reveal-left] { opacity: 0; transform: translateX(-32px); transition: opacity 0.65s var(--ease), transform 0.65s var(--ease); }
+    [data-reveal-left].visible { opacity: 1; transform: none; }
+    [data-reveal-right] { opacity: 0; transform: translateX(32px); transition: opacity 0.65s var(--ease), transform 0.65s var(--ease); }
+    [data-reveal-right].visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .arch-hero { padding: 0 1.5rem 5rem; min-height: 100svh; }
+      .arch-hero__h1 { font-size: clamp(3rem, 11vw, 5rem); }
+      .arch-hero__sub { grid-template-columns: 1fr; gap: 2rem; }
+      .arch-hero__meta { align-items: flex-start; }
+      .philosophy__top { grid-template-columns: 1fr; gap: 3rem; }
+      .phil-principles { grid-template-columns: 1fr; }
+      .disciplines { padding: 0 1.5rem 6rem; }
+      .disc-item { grid-template-columns: 40px 1fr; gap: 1.5rem; padding: 3rem 0; }
+      .disc-detail { display: none; }
+      .how-top { grid-template-columns: 1fr; gap: 3rem; }
+      .how-phases { grid-template-columns: 1fr 1fr; }
+      .who-grid { grid-template-columns: 1fr; gap: 4rem; }
+      .arch-cta__inner { grid-template-columns: 1fr; gap: 3rem; }
+      .philosophy { padding: 6rem 1.5rem; }
+      .how-section { padding: 6rem 1.5rem; }
+      .who-section { padding: 6rem 1.5rem; }
+      .arch-cta { padding: 7rem 1.5rem; }
+    }
+    @media (max-width: 600px) {
+      .how-phases { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo" aria-label="Alba Collective">
+      <svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="18,32 30,8 42,32" fill="white"/>
+        <polygon points="22.5,32 30,17 37.5,32" fill="#09090f"/>
+        <rect x="28.5" y="24" width="3" height="8" fill="#D63A8F"/>
+        <path d="M56,8 A16,16 0 1,0 56,32 L56,27 A11,11 0 1,1 56,13 Z" fill="white"/>
+        <text x="0" y="40" font-family="'Space Grotesk', sans-serif" font-size="7" font-weight="600" letter-spacing="3" fill="white">ALBA COLLECTIVE</text>
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="the-architecture.html" class="active">The Architecture</a>
+      <a href="index.html#model">How It Works</a>
+      <a href="index.html#founder">Tulu</a>
+    </div>
+    <a href="index.html#apply" class="nav-cta">Apply → </a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="arch-hero">
+    <div class="arch-hero__bg"></div>
+    <div class="arch-hero__grid"></div>
+    <div class="arch-hero__eyebrow" data-reveal>Alba Collective — The Architecture</div>
+    <div class="arch-hero__inner">
+      <h1 class="arch-hero__h1" data-reveal style="transition-delay:0.08s">
+        Not services.<br /><em>A system.</em>
+      </h1>
+      <div class="arch-hero__sub">
+        <p class="arch-hero__desc" data-reveal style="transition-delay:0.16s">
+          What I do cannot be ordered à la carte. These six disciplines exist as a
+          <strong>fully integrated commercial operating model</strong> — each one connected to the others,
+          each one feeding the system that drives sustainable revenue growth.
+          <br /><br />
+          The work begins with a diagnosis. What you think the problem is, is rarely the problem.
+        </p>
+        <div class="arch-hero__meta" data-reveal style="transition-delay:0.24s">
+          <div class="arch-meta-tag">Markets <span>B2C · B2B · B2G</span></div>
+          <div class="arch-meta-tag">Geography <span>Europe & USA</span></div>
+          <div class="arch-meta-tag">Engagement <span>Founder-led, always</span></div>
+          <a href="index.html#apply" class="arch-hero__cta" style="margin-top:1rem">Apply to Work Together →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATEMENT BAND -->
+  <div class="statement-band">
+    <div class="statement-band__track">
+      <span>Revenue Architecture</span> · <span>Commercial Strategy</span> · <span>Sales System Design</span> · <span>CRM Architecture</span> · <span>Conversion Engineering</span> · <span>AI-Enhanced Operations</span> · <span>Digital Experience</span> · <span>Revenue Architecture</span> · <span>Commercial Strategy</span> · <span>Sales System Design</span> · <span>CRM Architecture</span> · <span>Conversion Engineering</span> · <span>AI-Enhanced Operations</span> · <span>Digital Experience</span>
+    </div>
+  </div>
+
+  <!-- PHILOSOPHY -->
+  <section class="philosophy">
+    <div class="philosophy__top">
+      <div data-reveal-left>
+        <div class="sec-tag">The Philosophy</div>
+        <h2 class="phil-h2">
+          Growth is not a<br />marketing problem.<br />
+          It is a <em>systems problem.</em>
+        </h2>
+      </div>
+      <div class="phil-body" data-reveal>
+        <p>
+          Most businesses approaching revenue stagnation or growth plateaus make the same mistake:
+          they hire more people, run more campaigns, try more channels.
+          <strong>Activity is abundant. Alignment is absent.</strong>
+        </p>
+        <p>
+          Alba Collective operates on a single conviction: revenue growth is an architectural challenge.
+          It requires diagnosing the full commercial system — not optimising isolated elements of it.
+          Your lead generation cannot improve if your CRM is broken. Your CRM cannot work if your
+          sales process is undefined. Your sales process cannot close if your positioning is unclear.
+          <strong>Everything is connected.</strong>
+        </p>
+        <p>
+          This is not a consultancy that produces reports. It is a practice that produces outcomes.
+          The distinction matters. I am embedded in the work — not above it.
+        </p>
+      </div>
+    </div>
+
+    <div class="phil-principles">
+      <div class="principle" data-reveal>
+        <div class="principle__num">Principle 01</div>
+        <h3>Diagnosis before prescription</h3>
+        <p>Every engagement begins with a structured commercial review. What you believe is wrong and what is actually wrong are almost never the same thing. The work starts there.</p>
+      </div>
+      <div class="principle" data-reveal style="transition-delay:0.08s">
+        <div class="principle__num">Principle 02</div>
+        <h3>Systems over tactics</h3>
+        <p>Tactics produce spikes. Systems produce compounding. Every recommendation is evaluated against its contribution to the whole — not its performance in isolation.</p>
+      </div>
+      <div class="principle" data-reveal style="transition-delay:0.16s">
+        <div class="principle__num">Principle 03</div>
+        <h3>Implementation, not just strategy</h3>
+        <p>Strategy without execution is a document. Alba Collective is structured to move from insight to implementation without the handoff that kills most consulting engagements.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCIPLINES -->
+  <section class="disciplines">
+    <div class="disciplines__header" data-reveal>
+      <div>
+        <div class="sec-tag" style="margin-bottom:1.5rem">The Six Disciplines</div>
+        <h2 class="disciplines__h2">
+          Six disciplines.<br /><em>One architecture.</em>
+        </h2>
+      </div>
+      <div class="disc-count">Each discipline is a<br />subsystem of the whole.</div>
+    </div>
+
+    <!-- Discipline 01 -->
+    <div class="disc-item" data-reveal>
+      <div class="disc-num">01</div>
+      <div class="disc-main">
+        <div class="disc-subtitle">Commercial Strategy & Revenue Architecture</div>
+        <h3 class="disc-title">The <em>Foundation</em></h3>
+        <div class="disc-desc">
+          <p>
+            Before anything else, the commercial model must be legible — to you, to your team, and to the market.
+            <strong>Revenue Architecture is the process of making your growth logic explicit.</strong>
+            Where does revenue come from? Why does it not come from more places? Why are conversion rates where they are?
+            What is the actual cost of acquisition, and does it make the model viable at scale?
+          </p>
+          <p>
+            This discipline begins every engagement. It establishes the baseline, identifies the highest-leverage constraints,
+            and creates the commercial roadmap that everything else is built upon. Without this, all other work is optimisation
+            on top of a flawed foundation.
+          </p>
+        </div>
+      </div>
+      <div class="disc-detail">
+        <div class="disc-what">
+          <h4>This covers</h4>
+          <ul>
+            <li>Commercial model audit & diagnostic</li>
+            <li>Revenue stream mapping & prioritisation</li>
+            <li>Pricing architecture & margin analysis</li>
+            <li>Market segmentation & ICP definition</li>
+            <li>Competitive positioning & differentiation strategy</li>
+            <li>Growth roadmap design (90-day, 12-month)</li>
+          </ul>
+        </div>
+        <div class="disc-outcome">
+          <h4>The outcome</h4>
+          <p>A fully legible commercial architecture — the north star that aligns every decision across the business to a single growth logic.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Discipline 02 -->
+    <div class="disc-item" data-reveal>
+      <div class="disc-num">02</div>
+      <div class="disc-main">
+        <div class="disc-subtitle">Sales System Design & Optimisation</div>
+        <h3 class="disc-title">The <em>Engine</em></h3>
+        <div class="disc-desc">
+          <p>
+            A sales function that relies on talent, luck, or individual heroics is not a system — it is a dependency.
+            <strong>Sales performance is predictable when it is designed.</strong>
+            The process, the cadence, the criteria for qualification, the handoff points, the objection protocols —
+            each element shapes what the pipeline produces.
+          </p>
+          <p>
+            I design and rebuild sales architectures that create consistent, repeatable output. The goal is not a better
+            salesperson — it is a system that makes any capable person in that role more effective,
+            and makes the results forecastable.
+          </p>
+        </div>
+      </div>
+      <div class="disc-detail">
+        <div class="disc-what">
+          <h4>This covers</h4>
+          <ul>
+            <li>Sales process mapping & gap analysis</li>
+            <li>Pipeline design & stage definition</li>
+            <li>Qualification frameworks (MEDDIC, SPIN, custom)</li>
+            <li>Outbound & inbound playbook development</li>
+            <li>Sales team structure & role clarity</li>
+            <li>Forecasting models & performance cadence</li>
+            <li>Objection handling & closing protocol design</li>
+          </ul>
+        </div>
+        <div class="disc-outcome">
+          <h4>The outcome</h4>
+          <p>A sales system where revenue is no longer dependent on individual performance — it is a reliable output of a well-designed process.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Discipline 03 -->
+    <div class="disc-item" data-reveal>
+      <div class="disc-num">03</div>
+      <div class="disc-main">
+        <div class="disc-subtitle">CRM Architecture & Revenue Operations</div>
+        <h3 class="disc-title">The <em>Memory</em></h3>
+        <div class="disc-desc">
+          <p>
+            CRM systems fail not because of the software — but because of the thinking behind them.
+            <strong>A CRM is a map of how your business makes money.</strong>
+            When it reflects your actual commercial logic, it becomes one of the highest-leverage assets in the business.
+            When it does not, it becomes an administrative burden that sales teams abandon.
+          </p>
+          <p>
+            I design CRM architectures from first principles — structure, data model, automation logic, and integration
+            with the broader revenue stack. The result is a system that your team actually uses, that leadership can
+            trust for forecasting, and that scales without breaking.
+          </p>
+        </div>
+      </div>
+      <div class="disc-detail">
+        <div class="disc-what">
+          <h4>This covers</h4>
+          <ul>
+            <li>CRM audit & rebuild (HubSpot, Salesforce, Pipedrive)</li>
+            <li>Pipeline & lifecycle stage configuration</li>
+            <li>Lead scoring & routing logic</li>
+            <li>Automation design (nurture, alerts, tasks)</li>
+            <li>Revenue operations workflow design</li>
+            <li>Reporting architecture & dashboard build</li>
+            <li>Tech stack integration & data hygiene protocols</li>
+          </ul>
+        </div>
+        <div class="disc-outcome">
+          <h4>The outcome</h4>
+          <p>A CRM that is the single source of truth for revenue — used by the team, trusted by leadership, and built to scale with the business.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Discipline 04 -->
+    <div class="disc-item" data-reveal>
+      <div class="disc-num">04</div>
+      <div class="disc-main">
+        <div class="disc-subtitle">Brand Positioning & Market Narrative</div>
+        <h3 class="disc-title">The <em>Signal</em></h3>
+        <div class="disc-desc">
+          <p>
+            Positioning is not a tagline. It is the answer to a question every potential buyer asks:
+            <strong>"Why this, and why now?"</strong> When that question is answered clearly and credibly,
+            everything downstream becomes easier — the pitch, the price, the objections, the close.
+          </p>
+          <p>
+            Poor positioning is the silent killer of commercial performance. Businesses consistently underestimate
+            how much revenue they leave on the table because their market narrative is muddled, generic, or misaligned
+            with what the buyer actually needs to believe to say yes.
+            I build positioning frameworks that create commercial gravity — where the right buyer arrives already
+            half-convinced.
+          </p>
+        </div>
+      </div>
+      <div class="disc-detail">
+        <div class="disc-what">
+          <h4>This covers</h4>
+          <ul>
+            <li>Positioning diagnosis & competitive audit</li>
+            <li>Buyer persona & decision-maker mapping</li>
+            <li>Value proposition architecture</li>
+            <li>Messaging hierarchy & narrative framework</li>
+            <li>Category design & market narrative</li>
+            <li>Proof architecture (case studies, social proof)</li>
+            <li>Sales & marketing alignment on narrative</li>
+          </ul>
+        </div>
+        <div class="disc-outcome">
+          <h4>The outcome</h4>
+          <p>Positioning that creates commercial gravity — a market narrative so clear and credible that the right buyer arrives already predisposed to say yes.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Discipline 05 -->
+    <div class="disc-item" data-reveal>
+      <div class="disc-num">05</div>
+      <div class="disc-main">
+        <div class="disc-subtitle">Digital Growth & Experience Design</div>
+        <h3 class="disc-title">The <em>Surface</em></h3>
+        <div class="disc-desc">
+          <p>
+            The digital surface of a business is where positioning is tested in real time.
+            <strong>Your website, your funnel, your checkout, your email sequences</strong> — each is a moment where
+            the buyer decides to continue or leave. Most businesses optimise each of these elements in isolation,
+            rarely understanding how they interact as a system.
+          </p>
+          <p>
+            I approach digital growth holistically: channel performance, website conversion architecture,
+            UX redesign for commercial outcomes, and customer journey mapping from first touch to loyal customer.
+            The goal is not traffic — it is conversion, retention, and compounding growth.
+          </p>
+        </div>
+      </div>
+      <div class="disc-detail">
+        <div class="disc-what">
+          <h4>This covers</h4>
+          <ul>
+            <li>Full-funnel conversion audit</li>
+            <li>Website architecture & UX for commercial performance</li>
+            <li>Customer journey mapping (acquisition to retention)</li>
+            <li>Email marketing & lifecycle automation</li>
+            <li>Paid channel strategy & performance review</li>
+            <li>Landing page design & A/B testing frameworks</li>
+            <li>Digital trust mechanics & social proof architecture</li>
+          </ul>
+        </div>
+        <div class="disc-outcome">
+          <h4>The outcome</h4>
+          <p>A digital presence that converts — where every touchpoint is intentional, every handoff is smooth, and the system compounds rather than leaks.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Discipline 06 -->
+    <div class="disc-item" data-reveal>
+      <div class="disc-num">06</div>
+      <div class="disc-main">
+        <div class="disc-subtitle">AI-Enhanced Commercial Operations</div>
+        <h3 class="disc-title">The <em>Intelligence</em></h3>
+        <div class="disc-desc">
+          <p>
+            AI is not a feature. It is infrastructure — and the businesses that treat it that way are building moats
+            that their competitors cannot replicate quickly.
+            <strong>The question is not whether to use AI. It is how to integrate it in a way that creates
+            compounding commercial advantage.</strong>
+          </p>
+          <p>
+            I implement AI as a force-multiplier across the revenue architecture — not as a novelty layer on top of
+            existing processes, but as a structural redesign of how decisions are made, workflows are executed,
+            and intelligence is deployed. The result is an organisation that moves faster, decides better,
+            and scales without proportional headcount growth.
+          </p>
+        </div>
+      </div>
+      <div class="disc-detail">
+        <div class="disc-what">
+          <h4>This covers</h4>
+          <ul>
+            <li>AI readiness audit & opportunity mapping</li>
+            <li>Decision-support system design</li>
+            <li>Sales enablement AI tools & playbooks</li>
+            <li>Marketing automation & personalisation at scale</li>
+            <li>Workflow intelligence & process automation</li>
+            <li>Custom GPT / AI agent development</li>
+            <li>AI governance & implementation roadmap</li>
+          </ul>
+        </div>
+        <div class="disc-outcome">
+          <h4>The outcome</h4>
+          <p>An organisation where AI is embedded in operations — not as a tool people occasionally use, but as an intelligence layer that makes every commercial function faster, smarter, and more scalable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section">
+    <div class="how-section__inner">
+      <div class="how-top">
+        <div data-reveal-left>
+          <div class="sec-tag" style="margin-bottom:1.5rem">The Engagement</div>
+          <h2 class="how-h2">
+            How the<br />work <em>unfolds.</em>
+          </h2>
+        </div>
+        <p class="how-intro" data-reveal>
+          Every engagement follows a structured sequence designed to move from clarity to
+          confidence to outcomes. <strong>Nothing is skipped.</strong> The phases cannot be
+          reordered because each one creates the conditions for the next.
+          The result is a rhythm of work that builds understanding before it builds solutions.
+        </p>
+      </div>
+
+      <div class="how-phases">
+        <div class="phase" data-reveal>
+          <span class="phase__n">Phase 01</span>
+          <h3>Commercial Diagnostic</h3>
+          <p>A structured, deep review of the full commercial system. Revenue streams, sales process, digital presence, CRM, positioning, and team dynamics. This is where the real constraints surface.</p>
+          <div class="phase__duration">Duration <span>2–3 weeks</span></div>
+        </div>
+        <div class="phase" data-reveal style="transition-delay:0.06s">
+          <span class="phase__n">Phase 02</span>
+          <h3>Architecture Design</h3>
+          <p>Based on the diagnostic, a full revenue architecture is designed. Priorities are set. The roadmap is built. Not everything is fixed at once — the highest-leverage interventions come first.</p>
+          <div class="phase__duration">Duration <span>1–2 weeks</span></div>
+        </div>
+        <div class="phase" data-reveal style="transition-delay:0.12s">
+          <span class="phase__n">Phase 03</span>
+          <h3>Implementation Sprint</h3>
+          <p>Execution begins. Systems are rebuilt, processes are redesigned, infrastructure is put in place. This is where most consultancies exit — Alba Collective remains embedded throughout.</p>
+          <div class="phase__duration">Duration <span>6–12 weeks</span></div>
+        </div>
+        <div class="phase" data-reveal style="transition-delay:0.18s">
+          <span class="phase__n">Phase 04</span>
+          <h3>Calibration & Handover</h3>
+          <p>The system is reviewed, adjusted, and transferred to the internal team with full documentation, protocols, and the knowledge to maintain and evolve it. The work outlasts the engagement.</p>
+          <div class="phase__duration">Duration <span>2–4 weeks</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="who-section">
+    <div class="who-section__inner">
+      <div class="who-grid">
+        <div data-reveal-left>
+          <div class="sec-tag">The Right Fit</div>
+          <h2 class="who-h2">
+            This work is<br />not for <em>everyone.</em>
+          </h2>
+          <p class="who-desc">
+            Alba Collective is <strong>deliberately selective</strong>. Capacity is finite.
+            Impact is the standard. I only take on engagements where I believe I can create
+            material, measurable commercial change.
+            <br /><br />
+            If the fit is not right, I will say so — clearly and without ambiguity.
+            If the fit is strong, I will move quickly.
+          </p>
+        </div>
+        <div class="who-right" data-reveal>
+          <div>
+            <div class="who-col-title">This engagement is for you if</div>
+            <div class="fit-list">
+              <div class="fit-item">You are a founder, CEO, or commercial leader with decision-making authority</div>
+              <div class="fit-item">You have a functioning business with real revenue — not a pre-revenue startup</div>
+              <div class="fit-item">You know something is broken in the commercial system but cannot diagnose it precisely</div>
+              <div class="fit-item">You are ready to invest in the work, not just the strategy</div>
+              <div class="fit-item">You want one senior person accountable for outcomes — not a team of juniors</div>
+              <div class="fit-item">You operate in Europe or the USA, in B2C, B2B, or B2G markets</div>
+            </div>
+          </div>
+          <div>
+            <div class="who-col-title">This engagement is not right if</div>
+            <div class="notfit-list">
+              <div class="notfit-item">You need a campaign manager or marketing executor</div>
+              <div class="notfit-item">You are looking for a low-cost audit with a slide deck at the end</div>
+              <div class="notfit-item">You are not willing to change how the business operates</div>
+              <div class="notfit-item">You want a vendor who will validate your existing thinking</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="arch-cta">
+    <div class="arch-cta__orb"></div>
+    <div class="arch-cta__inner">
+      <h2 class="arch-cta__h2" data-reveal-left>
+        Ready to build<br />the <em>architecture?</em>
+      </h2>
+      <div class="arch-cta__body" data-reveal>
+        <p>
+          The first step is an application. Not a sales call — a structured form that helps me
+          understand your situation before we speak. <strong>I review every application personally.</strong>
+          <br /><br />
+          If there is strong fit, I will reach out within 48 hours to schedule a 30-minute conversation.
+          That conversation is not a pitch. It is a direct, informed discussion about your business
+          and whether this is the right engagement.
+        </p>
+        <a href="index.html#apply" class="cta-btn">Apply to Work Together →</a>
+        <span class="cta-note">By application only · Limited engagements per quarter</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="arch-footer">
+    <a href="index.html">← Back to Alba Collective</a>
+    <a href="mailto:hello@albacollective.co">hello@albacollective.co</a>
+    <span style="font-size:0.65rem;color:rgba(242,240,245,0.2);letter-spacing:0.1em;text-transform:uppercase;">© 2025 Alba Collective</span>
+  </footer>
+
+  <script>
+    // Reveal engine
+    document.addEventListener('DOMContentLoaded', () => {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('[data-reveal],[data-reveal-left],[data-reveal-right]').forEach(el => io.observe(el));
+    });
+  </script>
+
+</body>
+</html>

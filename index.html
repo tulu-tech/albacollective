@@ -35,8 +35,8 @@
         </svg>
       </a>
       <div class="nav__center">
-        <a href="#work" class="nav__link">Capabilities</a>
-        <a href="#model" class="nav__link">Model</a>
+        <a href="the-architecture.html" class="nav__link">The Architecture</a>
+        <a href="#model" class="nav__link">How It Works</a>
         <a href="#founder" class="nav__link">Tulu</a>
       </div>
       <a href="#apply" class="nav__apply">
@@ -664,7 +664,7 @@
         </div>
 
         <div class="apply__form-col" data-reveal>
-          <form class="apply-form" id="applyForm" novalidate>
+          <form class="apply-form" id="applyForm" action="https://formspree.io/f/hello@albacollective.co" method="POST" novalidate>
             <div class="af-row">
               <div class="af-group">
                 <label for="f-name">Name</label>
@@ -689,6 +689,8 @@
               <label for="f-problem">What is your most important growth problem right now?</label>
               <textarea id="f-problem" name="problem" rows="3" placeholder="Be specific. The more context, the better the review." required></textarea>
             </div>
+            <input type="hidden" name="_replyto" value="" id="replyToField" />
+            <input type="hidden" name="_subject" value="New Application — Alba Collective" />
             <div class="af-group">
               <label for="f-gap">Where do you believe you are underperforming?</label>
               <textarea id="f-gap" name="gap" rows="3" placeholder="Leads, conversion, positioning, sales team, systems..." required></textarea>
@@ -737,6 +739,9 @@
           </svg>
         </a>
         <p>Revenue architecture for brands<br />that need more than marketing.</p>
+      </div>
+      <div class="footer__contact">
+        <a href="mailto:hello@albacollective.co" class="footer__email">hello@albacollective.co</a>
       </div>
       <nav class="footer__nav">
         <a href="#hero">Home</a>

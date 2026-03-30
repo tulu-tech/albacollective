@@ -1080,6 +1080,24 @@ p { font-size: 1rem; line-height: 1.75; color: var(--ash-light); }
   font-family: var(--sans); font-size: 0.7rem;
   color: rgba(242,240,245,0.18); letter-spacing: 0.04em;
 }
+.footer__contact {
+  display: flex; align-items: center;
+}
+.footer__email {
+  font-family: var(--sans); font-size: 0.85rem;
+  font-weight: 500; color: var(--ash);
+  text-decoration: none; letter-spacing: 0.02em;
+  transition: color 0.2s var(--ease);
+  position: relative;
+}
+.footer__email::after {
+  content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+  height: 1px; background: var(--pink);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s var(--ease);
+}
+.footer__email:hover { color: var(--off-white); }
+.footer__email:hover::after { transform: scaleX(1); }
 
 /* ═══════════════════════════════════════
    RESPONSIVE
