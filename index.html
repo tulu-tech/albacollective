@@ -692,59 +692,176 @@
 
         <div class="apply__form-col" data-reveal>
           <form class="apply-form" id="applyForm" action="https://formspree.io/f/xjgpwklj" method="POST" novalidate>
+
+            <!-- Row 1: Name + Company -->
             <div class="af-row">
               <div class="af-group">
-                <label for="f-name">Name</label>
-                <input type="text" id="f-name" name="name" placeholder="Full name" required />
+                <label for="f-name">Full Name <span class="af-req">*</span></label>
+                <input type="text" id="f-name" name="name" placeholder="Your full name" required />
               </div>
               <div class="af-group">
-                <label for="f-company">Company</label>
+                <label for="f-company">Company <span class="af-req">*</span></label>
                 <input type="text" id="f-company" name="company" placeholder="Company name" required />
               </div>
             </div>
+
+            <!-- Row 2: Email + Role -->
             <div class="af-row">
               <div class="af-group">
-                <label for="f-email">Email</label>
+                <label for="f-email">Email <span class="af-req">*</span></label>
                 <input type="email" id="f-email" name="email" placeholder="your@email.com" required />
               </div>
               <div class="af-group">
-                <label for="f-role">Your Role</label>
-                <input type="text" id="f-role" name="role" placeholder="Founder / CEO / Director" required />
-              </div>
-            </div>
-            <div class="af-group">
-              <label for="f-problem">What is your most important growth problem right now?</label>
-              <textarea id="f-problem" name="problem" rows="3" placeholder="Be specific. The more context, the better the review." required></textarea>
-            </div>
-            <input type="hidden" name="_replyto" value="" id="replyToField" />
-            <input type="hidden" name="_subject" value="New Application — Alba Collective" />
-            <div class="af-group">
-              <label for="f-gap">Where do you believe you are underperforming?</label>
-              <textarea id="f-gap" name="gap" rows="3" placeholder="Leads, conversion, positioning, sales team, systems..." required></textarea>
-            </div>
-            <div class="af-row af-row--3">
-              <div class="af-group">
-                <label for="f-size">Team size</label>
-                <select id="f-size" name="size">
-                  <option value="">Select...</option>
-                  <option>1–5</option>
-                  <option>6–20</option>
-                  <option>21–50</option>
-                  <option>51–200</option>
-                  <option>200+</option>
+                <label for="f-role">Your Role <span class="af-req">*</span></label>
+                <select id="f-role" name="role" required>
+                  <option value="" disabled selected>Select your role</option>
+                  <option>Founder / Owner</option>
+                  <option>CEO / Managing Director</option>
+                  <option>CMO / Head of Marketing</option>
+                  <option>CSO / Head of Sales</option>
+                  <option>CRO / Revenue Lead</option>
+                  <option>Commercial Director</option>
+                  <option>VP / Director of Growth</option>
+                  <option>Board Member / Investor</option>
+                  <option>Other</option>
                 </select>
               </div>
-              <div class="af-group af-group--wide">
-                <label for="f-urgency">Why now?</label>
-                <input type="text" id="f-urgency" name="urgency" placeholder="What has changed or what is at stake?" required />
+            </div>
+
+            <!-- Row 3: Revenue + Team -->
+            <div class="af-row">
+              <div class="af-group">
+                <label for="f-revenue">Annual Revenue Range <span class="af-req">*</span></label>
+                <select id="f-revenue" name="revenue_range" required>
+                  <option value="" disabled selected>Select range</option>
+                  <option>Pre-revenue / Early stage</option>
+                  <option>Under €500K</option>
+                  <option>€500K – €2M</option>
+                  <option>€2M – €10M</option>
+                  <option>€10M – €50M</option>
+                  <option>€50M+</option>
+                </select>
+              </div>
+              <div class="af-group">
+                <label for="f-size">Team Size <span class="af-req">*</span></label>
+                <select id="f-size" name="size" required>
+                  <option value="" disabled selected>Select size</option>
+                  <option>Solo / 1 person</option>
+                  <option>2–5 people</option>
+                  <option>6–20 people</option>
+                  <option>21–50 people</option>
+                  <option>51–200 people</option>
+                  <option>200+ people</option>
+                </select>
               </div>
             </div>
+
+            <!-- Primary commercial challenge -->
+            <div class="af-group">
+              <label for="f-bottleneck">What is your biggest commercial bottleneck right now? <span class="af-req">*</span></label>
+              <select id="f-bottleneck" name="bottleneck" required>
+                <option value="" disabled selected>Select the closest match</option>
+                <option>We generate leads but can’t convert them to revenue</option>
+                <option>Our sales process is inconsistent — every rep does it differently</option>
+                <option>We can’t articulate what we do in a way that resonates</option>
+                <option>Our CRM is full of data that tells us nothing useful</option>
+                <option>We spend on paid media but can’t attribute results to revenue</option>
+                <option>We’re growing but the unit economics don’t make sense yet</option>
+                <option>Our pipeline looks healthy but deals never close</option>
+                <option>We’ve plateaued and don’t know exactly why</option>
+                <option>We know what to do — we just can’t get the team to do it</option>
+                <option>Our offer is strong but we’re not reaching the right people</option>
+                <option>We’re over-reliant on one channel or one client</option>
+                <option>Multiple issues — the system isn’t connected</option>
+              </select>
+            </div>
+
+            <!-- Where the problem sits -->
+            <div class="af-group">
+              <label for="f-problem-layer">Where do you believe the problem actually sits? <span class="af-req">*</span></label>
+              <select id="f-problem-layer" name="problem_layer" required>
+                <option value="" disabled selected>Be honest — this shapes the diagnostic</option>
+                <option>Marketing — wrong message, wrong channel, or wrong audience</option>
+                <option>Sales — low conversion, poor qualification, or weak process</option>
+                <option>Positioning — unclear offer or deep trust deficit in the market</option>
+                <option>CRM &amp; Systems — bad data, no visibility, no automation</option>
+                <option>The team — skills, motivation, or management clarity</option>
+                <option>The offer itself — it’s not packaged or priced correctly</option>
+                <option>Post-sale — we lose them after we win them</option>
+                <option>Honestly, I’m not sure — that’s part of why I’m applying</option>
+                <option>All of the above — nothing holds when we fix one part</option>
+              </select>
+            </div>
+
+            <!-- Primary acquisition channel -->
+            <div class="af-group">
+              <label for="f-channel">What is your primary acquisition channel right now? <span class="af-req">*</span></label>
+              <select id="f-channel" name="primary_channel" required>
+                <option value="" disabled selected>Select primary channel</option>
+                <option>Paid search (Google Ads)</option>
+                <option>Paid social (Meta, LinkedIn, TikTok)</option>
+                <option>Outbound / cold email or cold calling</option>
+                <option>Referrals and word of mouth</option>
+                <option>Content / SEO / organic</option>
+                <option>Partnerships and channel sales</option>
+                <option>Events and exhibitions</option>
+                <option>We don’t have a consistent channel — it’s random</option>
+                <option>Multiple channels but none performing at the level we need</option>
+              </select>
+            </div>
+
+            <!-- Previous consultant experience -->
+            <div class="af-group">
+              <label for="f-prev">Have you worked with a consultant or agency before? <span class="af-req">*</span></label>
+              <select id="f-prev" name="previous_experience" required>
+                <option value="" disabled selected>Select</option>
+                <option>No — this would be our first time</option>
+                <option>Yes — it worked well, we want to go deeper</option>
+                <option>Yes — it was average, we got deliverables but no real change</option>
+                <option>Yes — it was a disappointment, lots of frameworks, little results</option>
+                <option>Yes — the strategy was good but implementation never happened</option>
+                <option>Multiple times across different areas — mixed results</option>
+              </select>
+            </div>
+
+            <!-- Winning definition -->
+            <div class="af-group">
+              <label for="f-winning">What does winning look like for you in 12 months? <span class="af-req">*</span></label>
+              <textarea id="f-winning" name="winning_definition" rows="3" placeholder="Be specific — revenue targets, market position, team capability, systems in place. Vague answers get vague results." required></textarea>
+            </div>
+
+            <!-- Urgency -->
+            <div class="af-group">
+              <label for="f-urgency">Why are you applying now, specifically? <span class="af-req">*</span></label>
+              <textarea id="f-urgency" name="urgency" rows="2" placeholder="What has changed, what is at risk, or what opportunity are you trying to capture?" required></textarea>
+            </div>
+
+            <!-- How found -->
+            <div class="af-group">
+              <label for="f-source">How did you find Alba Collective? <span class="af-req">*</span></label>
+              <select id="f-source" name="source" required>
+                <option value="" disabled selected>Select</option>
+                <option>LinkedIn</option>
+                <option>Google search</option>
+                <option>Personal referral</option>
+                <option>Social media</option>
+                <option>Someone forwarded your work to me</option>
+                <option>I’ve followed Tulu’s work for a while</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <input type="hidden" name="_replyto" value="" id="replyToField" />
+            <input type="hidden" name="_subject" value="New Application — Alba Collective" />
+
             <div class="af-submit">
               <button type="submit" class="submit-btn" id="formSubmitBtn">
                 <span>Submit Application</span>
                 <svg width="18" height="18" viewBox="0 0 18 18"><path d="M4 9h10M9 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
               </button>
+              <p class="af-note">Every application is reviewed personally. You will hear back within 48 hours.</p>
             </div>
+
           </form>
         </div>
       </div>

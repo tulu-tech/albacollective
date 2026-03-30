@@ -1170,3 +1170,5 @@ p { font-size: 1rem; line-height: 1.75; color: var(--ash-light); }
   .hero__h1 { font-size: 2.6rem; }
   .hero__stats .hero__stat-sep { display: none; }
 }
+.af-req { color: #D63A8F; font-size: 0.75em; }
+.af-note { font-size: 0.72rem; color: rgba(158,154,173,0.55); margin-top: 0.75rem; line-height: 1.5; }
