@@ -1081,7 +1081,7 @@ p { font-size: 1rem; line-height: 1.75; color: var(--ash-light); }
   color: rgba(242,240,245,0.18); letter-spacing: 0.04em;
 }
 .footer__contact {
-  display: flex; align-items: center;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 0.25rem;
 }
 .footer__email {
   font-family: var(--sans); font-size: 0.85rem;
