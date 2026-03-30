@@ -1012,7 +1012,7 @@ p { font-size: 1rem; line-height: 1.75; color: var(--ash-light); }
 .af-group label {
   font-family: var(--sans); font-size: 0.62rem; font-weight: 500;
   letter-spacing: 0.12em; text-transform: uppercase;
-  color: rgba(242,240,245,0.3);
+  color: rgba(242,240,245,0.65);
 }
 .af-group input,
 .af-group textarea,
