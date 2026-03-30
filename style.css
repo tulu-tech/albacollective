@@ -1218,3 +1218,13 @@ p { font-size: 1rem; line-height: 1.75; color: var(--ash-light); }
     justify-content: center;
   }
 }
+.footer__get-to-know {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  margin-top: 1rem;
+  font-size: 0.7rem; font-weight: 500; font-family: var(--sans);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(242,240,245,0.35);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer__get-to-know:hover { color: #D63A8F; }
