@@ -1,7 +1,7 @@
 /**
- * Alba Collective — Consent Mode v2 + Cookie Banner
- * GDPR / KVKK compliant
- * Replace GA_MEASUREMENT_ID with your actual G-XXXXXXXX ID
+ * Alba Collective — Consent Banner & GA4 Loader
+ * Consent Mode v2 defaults are set inline in each page's <head>.
+ * This file handles: banner UI, consent updates, and GA4 loading.
  */
 
 const GA_ID = 'G-FXY4K6LT51';
@@ -9,20 +9,12 @@ const GA_ID = 'G-FXY4K6LT51';
 const CONSENT_KEY = 'ac_consent';
 const CONSENT_VERSION = '1';
 
-/* ── Initialise dataLayer immediately (before any scripts load) ── */
-window.dataLayer = window.dataLayer || [];
-function gtag() { window.dataLayer.push(arguments); }
-
-// Set all consent signals to DENIED by default (Consent Mode v2 requirement)
-gtag('consent', 'default', {
-  analytics_storage:  'denied',
-  ad_storage:         'denied',
-  ad_user_data:       'denied',
-  ad_personalization: 'denied',
-  functionality_storage:  'granted', // always allow (site works without it but UX suffers)
-  security_storage:       'granted', // always allow (session security)
-  wait_for_update: 500               // ms to wait for consent update before firing
-});
+// gtag and dataLayer already initialised inline in <head>
+// We just need the helper reference here
+if (typeof window.gtag !== 'function') {
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function() { dataLayer.push(arguments); };
+}
 
 /* ── Load GA4 tag (with denied defaults, GA4 still fires ping-only) ── */
 function loadGA4() {
