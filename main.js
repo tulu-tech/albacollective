@@ -283,6 +283,10 @@ function initForm() {
     const btn = document.getElementById('formSubmitBtn');
     if (btn) { btn.querySelector('span').textContent = 'Submitting…'; btn.disabled = true; }
 
+    // GTM: fire on every submit attempt
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'form_submit_attempt', form_id: 'applyForm' });
+
     try {
       const res = await fetch(form.action, {
         method: 'POST',
@@ -291,6 +295,8 @@ function initForm() {
       });
       const wrap = form.parentElement;
       if (res.ok) {
+        // GTM: successful submission
+        window.dataLayer.push({ event: 'form_submit_success', form_id: 'applyForm' });
         if (wrap) wrap.innerHTML = `
           <div class="form-success">
             <div class="form-success__icon">✦</div>
@@ -300,6 +306,8 @@ function initForm() {
       } else {
         const json = await res.json().catch(() => ({}));
         const msg = json?.errors?.map(e => e.message).join(', ') || 'Something went wrong. Please try again.';
+        // GTM: error
+        window.dataLayer.push({ event: 'form_submit_error', form_id: 'applyForm', error_msg: msg });
         if (btn) { btn.querySelector('span').textContent = 'Submit Application'; btn.disabled = false; }
         alert(msg);
       }
