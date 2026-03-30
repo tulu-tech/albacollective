@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Alba Collective</title>
+  <meta name="description" content="Privacy Policy for albacollective.co — how Alba Strategic Partners LLC collects, uses, and protects your information." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #09090f;
+      --surface: #10101a;
+      --border: rgba(255,255,255,0.06);
+      --pink: #D63A8F;
+      --ash: rgba(242,240,245,0.75);
+      --muted: rgba(242,240,245,0.38);
+      --sans: 'Space Grotesk', sans-serif;
+      --serif: 'Playfair Display', Georgia, serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ash);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 3rem;
+      background: rgba(9,9,15,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav__logo { text-decoration: none; }
+    .nav__back {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; display: flex; align-items: center; gap: 0.5rem;
+      transition: color 0.2s;
+    }
+    .nav__back:hover { color: var(--ash); }
+    .nav__back:hover svg { transform: translateX(-3px); }
+    .nav__back svg { transition: transform 0.2s; }
+    .terms-hero {
+      padding: 9rem 3rem 4rem;
+      max-width: 820px; margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+    .terms-hero__label {
+      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--pink);
+      margin-bottom: 1.25rem; display: block;
+    }
+    .terms-hero__title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 400; color: #f2f0f5;
+      line-height: 1.15; margin-bottom: 1.5rem;
+    }
+    .terms-hero__meta {
+      display: flex; flex-wrap: wrap; gap: 1.5rem;
+      font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em;
+    }
+    .terms-hero__meta strong { color: rgba(242,240,245,0.55); }
+    .terms-body {
+      max-width: 820px; margin: 0 auto;
+      padding: 4rem 3rem 8rem;
+    }
+    .terms-toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 2rem 2.25rem;
+      margin-bottom: 4rem;
+    }
+    .terms-toc__title {
+      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem;
+    }
+    .terms-toc ol {
+      list-style: none; counter-reset: toc;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem 2rem;
+    }
+    .terms-toc li { counter-increment: toc; }
+    .terms-toc a {
+      font-size: 0.75rem; color: var(--muted);
+      text-decoration: none; transition: color 0.15s;
+      display: flex; gap: 0.5rem; align-items: baseline;
+    }
+    .terms-toc a::before {
+      content: counter(toc, decimal-leading-zero) ".";
+      color: rgba(214,58,143,0.5); font-size: 0.65rem; flex-shrink: 0;
+    }
+    .terms-toc a:hover { color: var(--ash); }
+    .terms-section {
+      margin-bottom: 3.5rem;
+      padding-bottom: 3.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .terms-section:last-child { border-bottom: none; }
+    .terms-section__num {
+      font-size: 0.58rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--pink);
+      margin-bottom: 0.6rem; display: block;
+    }
+    .terms-section h2 {
+      font-family: var(--serif);
+      font-size: 1.35rem; font-weight: 400;
+      color: #f2f0f5; margin-bottom: 1.25rem; line-height: 1.3;
+    }
+    .terms-section h3 {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(242,240,245,0.5);
+      margin: 1.5rem 0 0.75rem;
+    }
+    .terms-section p {
+      font-size: 0.88rem; color: var(--ash);
+      margin-bottom: 1rem; line-height: 1.85;
+    }
+    .terms-section p:last-child { margin-bottom: 0; }
+    .terms-section ul, .terms-section ol {
+      padding-left: 1.4rem; margin: 0.75rem 0 1rem;
+    }
+    .terms-section li {
+      font-size: 0.86rem; color: var(--ash);
+      margin-bottom: 0.45rem; line-height: 1.7;
+    }
+    .terms-section ul li::marker { color: var(--pink); }
+    .terms-contact {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 2px; padding: 2rem 2.25rem;
+    }
+    .terms-contact p { font-size: 0.85rem; }
+    .terms-contact a { color: var(--pink); text-decoration: none; }
+    .terms-contact a:hover { text-decoration: underline; }
+    .terms-footer {
+      text-align: center; padding: 2.5rem 3rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.7rem; color: var(--muted); letter-spacing: 0.04em;
+    }
+    .terms-footer a { color: var(--muted); text-decoration: none; }
+    .terms-footer a:hover { color: var(--ash); }
+    @media (max-width: 640px) {
+      .nav { padding: 1.25rem 1.5rem; }
+      .terms-hero { padding: 8rem 1.5rem 3rem; }
+      .terms-body { padding: 3rem 1.5rem 5rem; }
+      .terms-toc ol { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="/" class="nav__logo" aria-label="Alba Collective">
+      <svg viewBox="0 0 133 68" fill="none" xmlns="http://www.w3.org/2000/svg" width="90" height="46">
+        <polygon points="32,46 44,22 56,46" fill="white"/>
+        <polygon points="36.5,46 44,31 51.5,46" fill="#09090f"/>
+        <rect x="42.5" y="38" width="3" height="7" fill="#D63A8F"/>
+        <path d="M73,22 A16,16 0 1,0 73,46 L73,41 A11,11 0 1,1 73,27 Z" fill="white"/>
+        <text x="14" y="66" font-family="'Space Grotesk', sans-serif" font-size="7" font-weight="600" letter-spacing="3" fill="rgba(242,240,245,0.45)">ALBA COLLECTIVE</text>
+      </svg>
+    </a>
+    <a href="/" class="nav__back">
+      <svg width="14" height="14" viewBox="0 0 18 18" fill="none"><path d="M14 9H4M9 4L4 9l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to Site
+    </a>
+  </nav>
+
+  <div class="terms-hero">
+    <span class="terms-hero__label">Legal</span>
+    <h1 class="terms-hero__title">Privacy Policy</h1>
+    <div class="terms-hero__meta">
+      <span><strong>Effective:</strong> March 30, 2026</span>
+      <span><strong>Last Updated:</strong> March 30, 2026</span>
+      <span><strong>Entity:</strong> Alba Strategic Partners LLC</span>
+    </div>
+  </div>
+
+  <div class="terms-body">
+
+    <nav class="terms-toc" aria-label="Table of contents">
+      <p class="terms-toc__title">Contents</p>
+      <ol>
+        <li><a href="#p1">Scope of This Policy</a></li>
+        <li><a href="#p2">Who We Are</a></li>
+        <li><a href="#p3">Information We Collect</a></li>
+        <li><a href="#p4">Information We Don't Collect</a></li>
+        <li><a href="#p5">How We Use Information</a></li>
+        <li><a href="#p6">Legal Bases for Processing</a></li>
+        <li><a href="#p7">How We Share Information</a></li>
+        <li><a href="#p8">Advertising &amp; Analytics</a></li>
+        <li><a href="#p9">California Privacy Rights</a></li>
+        <li><a href="#p10">Your Choices</a></li>
+        <li><a href="#p11">Data Retention</a></li>
+        <li><a href="#p12">Data Security</a></li>
+        <li><a href="#p13">International Transfers</a></li>
+        <li><a href="#p14">Sensitive Information</a></li>
+        <li><a href="#p15">Third-Party Sites</a></li>
+        <li><a href="#p16">Changes to This Policy</a></li>
+        <li><a href="#p17">Contact Us</a></li>
+      </ol>
+    </nav>
+
+    <div class="terms-section">
+      <p>Alba Strategic Partners LLC, doing business as Alba Collective ("Alba Collective," "Company," "we," "us," or "our"), respects your privacy and is committed to handling personal information responsibly and transparently.</p>
+      <p>This Privacy Policy explains how we collect, use, disclose, store, and protect personal information when you visit albacollective.co, submit an inquiry or application, communicate with us, engage with our content, or interact with our advertising, analytics, CRM, or automation systems.</p>
+      <p>By using our website or submitting information to us, you acknowledge this Privacy Policy.</p>
+    </div>
+
+    <div class="terms-section" id="p1">
+      <span class="terms-section__num">01</span>
+      <h2>Scope of This Policy</h2>
+      <p>This Privacy Policy applies to personal information collected through our website, forms, questionnaires, applications, intake flows, communications connected to prospective or existing business relationships, analytics and cookies, and certain third-party tools we use to operate, secure, measure, and improve our business.</p>
+      <p>This Policy does not apply to third-party websites, tools, or services that we do not control, even if they are linked on our website.</p>
+    </div>
+
+    <div class="terms-section" id="p2">
+      <span class="terms-section__num">02</span>
+      <h2>Who We Are</h2>
+      <p>Alba Collective is a founder-led strategic consulting business focused on revenue architecture, sales and marketing strategy, conversion improvement, CRM and automation systems, website and UX advisory, sales enablement, customer experience, and related consulting and implementation services.</p>
+      <p>Because our model includes business analysis, discovery, intake evaluation, and direct work with decision-makers, we may collect both personal information and business-related information in connection with inquiries and client discussions.</p>
+    </div>
+
+    <div class="terms-section" id="p3">
+      <span class="terms-section__num">03</span>
+      <h2>Information We Collect</h2>
+
+      <h3>A. Information You Provide Directly</h3>
+      <p>When you contact us, apply to work with us, book a call, or otherwise submit information, we may collect:</p>
+      <ul>
+        <li>name, company name, job title or role</li>
+        <li>email address, phone number, website URL</li>
+        <li>country, region, or market</li>
+        <li>team size, company size, or growth stage</li>
+        <li>business goals, challenges, and priorities</li>
+        <li>information about your systems, tools, workflows, or commercial model</li>
+        <li>any other information you voluntarily provide</li>
+      </ul>
+
+      <h3>B. Business and Commercial Information</h3>
+      <p>Depending on what you choose to share, we may collect high-level business context, brand positioning details, sales process information, website or funnel data, lead generation and conversion information, CRM usage, operational bottlenecks, performance concerns, and strategic priorities relevant to determining fit.</p>
+
+      <h3>C. Automatically Collected Information</h3>
+      <p>When you use the website, we or our service providers may automatically collect information such as IP address, browser type and version, device type, operating system, pages viewed, time on pages, referral source, clicks, scrolls, interactions, date and time of visits, and approximate location derived from IP.</p>
+
+      <h3>D. Cookies and Similar Technologies</h3>
+      <p>We may use cookies, pixels, tags, local storage, analytics identifiers, advertising-related technologies, and session and security technologies to operate the website, understand traffic and user behavior, improve performance and user experience, measure marketing effectiveness, support remarketing or advertising audiences, and maintain security.</p>
+
+      <h3>E. Communications Data</h3>
+      <p>If you contact us by email, phone, contact form, scheduling software, or other channels, we may retain the contents of those communications, related metadata, and follow-up records.</p>
+    </div>
+
+    <div class="terms-section" id="p4">
+      <span class="terms-section__num">04</span>
+      <h2>Information We Do Not Intend to Collect</h2>
+      <p>Our website is not directed to children under 13, and we do not knowingly collect personal information from children under 13. If we learn that we have collected such information without appropriate authorization, we will take reasonable steps to delete it.</p>
+      <p>You should not submit through the website: highly sensitive government-classified information, export-controlled information, regulated health records, payment card data, Social Security numbers, or any unusually sensitive data not reasonably necessary for an inquiry.</p>
+    </div>
+
+    <div class="terms-section" id="p5">
+      <span class="terms-section__num">05</span>
+      <h2>How We Use Information</h2>
+      <h3>A. To Respond to Inquiries</h3>
+      <p>To review and respond to contact requests, applications, fit inquiries, service questions, call requests, and consultation requests.</p>
+      <h3>B. To Evaluate Fit</h3>
+      <p>Because Alba Collective works selectively, we may use submitted information to determine whether there is a potential fit, whether the project aligns with our expertise, whether we have capacity, and whether we believe we can create material impact.</p>
+      <h3>C. To Provide and Improve Services</h3>
+      <p>To prepare for calls, understand your business context, provide consulting or implementation services, manage client relationships, create proposals or service agreements, and improve delivery quality and operations.</p>
+      <h3>D. For Analytics, Performance, and Optimization</h3>
+      <p>To understand website usage, improve user experience, analyze page performance, measure campaign and traffic effectiveness, and maintain and improve our website and systems.</p>
+      <h3>E. For Security and Fraud Prevention</h3>
+      <p>To detect misuse and prevent spam, abuse, fraud, and unauthorized access to protect the Site, our systems, and our users.</p>
+      <h3>F. For Marketing and Communications</h3>
+      <p>Where permitted by law, to send relevant business communications, follow up on requests, share updates about our services, and create relevant advertising audiences or remarketing segments.</p>
+      <h3>G. To Comply with Law</h3>
+      <p>To comply with applicable laws, regulations, legal process, or government requests, and to establish, exercise, or defend legal claims and enforce our terms, rights, and agreements.</p>
+    </div>
+
+    <div class="terms-section" id="p6">
+      <span class="terms-section__num">06</span>
+      <h2>Legal Bases for Processing</h2>
+      <p>If and to the extent applicable data protection laws require a legal basis for processing, we may rely on one or more of the following:</p>
+      <ul>
+        <li>your consent</li>
+        <li>performance of a contract or pre-contractual steps at your request</li>
+        <li>our legitimate interests in operating, securing, improving, and marketing our business</li>
+        <li>compliance with legal obligations</li>
+        <li>protection of our legal rights</li>
+      </ul>
+    </div>
+
+    <div class="terms-section" id="p7">
+      <span class="terms-section__num">07</span>
+      <h2>How We Share Information</h2>
+      <p>We do not sell personal information for money.</p>
+      <p>We may disclose personal information to the following categories of recipients when reasonably necessary:</p>
+      <h3>A. Service Providers and Contractors</h3>
+      <p>Including providers that support website hosting, analytics, CRM, marketing automation, email delivery, scheduling, form processing, cloud storage, security, communication tools, advertising platforms, and workflow infrastructure.</p>
+      <h3>B. Professional Advisors</h3>
+      <p>Including lawyers, accountants, auditors, insurers, and compliance advisors.</p>
+      <h3>C. Business Counterparties</h3>
+      <p>Where necessary in connection with prospective engagements, signed services, payment administration, operational coordination, and legal or contractual matters.</p>
+      <h3>D. Legal and Safety Disclosures</h3>
+      <p>Where required or appropriate to comply with law, respond to lawful requests, protect rights, safety, and property, investigate misuse or fraud, or enforce agreements.</p>
+      <h3>E. Corporate Transactions</h3>
+      <p>In connection with an actual or proposed merger, acquisition, financing, restructuring, sale of assets, or similar transaction.</p>
+    </div>
+
+    <div class="terms-section" id="p8">
+      <span class="terms-section__num">08</span>
+      <h2>Advertising, Analytics, and Tracking</h2>
+      <p>We may use website analytics and advertising tools that help us understand how visitors find and use the Site, measure campaign performance, build advertising audiences, understand conversions, retarget website visitors, and optimize our marketing efforts.</p>
+      <p>Depending on our setup, these tools may collect or receive identifiers, usage signals, browser information, device information, and event-based behavior.</p>
+      <p>If we engage in cross-context behavioral advertising or similar sharing activities under applicable law, residents of certain jurisdictions may have rights to opt out. See Section 9 (California Privacy Rights) and Section 10 (Your Choices) for more information.</p>
+    </div>
+
+    <div class="terms-section" id="p9">
+      <span class="terms-section__num">09</span>
+      <h2>California Privacy Rights</h2>
+      <p>If you are a California resident and applicable law covers our processing, you may have rights that can include:</p>
+      <ul>
+        <li>the right to know / access certain personal information</li>
+        <li>the right to request deletion</li>
+        <li>the right to request correction of inaccurate information</li>
+        <li>the right to opt out of sale or sharing</li>
+        <li>the right to limit the use and disclosure of sensitive personal information, in certain circumstances</li>
+        <li>the right not to be discriminated against for exercising applicable privacy rights</li>
+      </ul>
+      <h3>Exercising California Requests</h3>
+      <p>To submit a privacy request, contact us at:</p>
+      <p>Email: <a href="mailto:hello@albacollective.co">hello@albacollective.co</a><br />
+      Mail: Alba Strategic Partners LLC, 7901 4TH ST N STE 300, St. Petersburg, FL 33702, United States</p>
+      <p>We may need to verify your identity before acting on certain requests. We may also deny or limit requests where permitted by law.</p>
+    </div>
+
+    <div class="terms-section" id="p10">
+      <span class="terms-section__num">10</span>
+      <h2>Your Choices</h2>
+      <p>Depending on your location and the way you interact with us, you may have choices regarding cookies and tracking technologies, marketing emails, communications preferences, analytics consent, advertising preferences, and access, deletion, correction, or objection rights under applicable law.</p>
+      <p>You may: disable cookies in your browser (subject to site functionality limits), unsubscribe from marketing emails using the unsubscribe link where available, contact us to update or request deletion of certain information, or use available privacy choice tools if and when implemented on the site.</p>
+    </div>
+
+    <div class="terms-section" id="p11">
+      <span class="terms-section__num">11</span>
+      <h2>Data Retention</h2>
+      <p>We retain personal information for as long as reasonably necessary for the purposes described in this Policy, including to respond to inquiries, evaluate fit, manage business records, provide services, enforce agreements, comply with legal obligations, resolve disputes, and maintain security and fraud-prevention records.</p>
+      <p>Retention periods may vary depending on the nature of the information, the sensitivity of the data, applicable legal requirements, and our legitimate business needs.</p>
+    </div>
+
+    <div class="terms-section" id="p12">
+      <span class="terms-section__num">12</span>
+      <h2>Data Security</h2>
+      <p>We use reasonable administrative, technical, and organizational measures designed to protect personal information against unauthorized access, loss, misuse, alteration, or disclosure.</p>
+      <p>However, no website, email system, transmission method, or storage platform is completely secure, and we cannot guarantee absolute security.</p>
+    </div>
+
+    <div class="terms-section" id="p13">
+      <span class="terms-section__num">13</span>
+      <h2>International Data Transfers</h2>
+      <p>Alba Collective is based in the United States. If you access the Site or provide information from outside the United States, your information may be transferred to, stored in, and processed in the United States and other jurisdictions where our service providers operate.</p>
+      <p>Where required by applicable law, we will use appropriate safeguards for international data transfers.</p>
+    </div>
+
+    <div class="terms-section" id="p14">
+      <span class="terms-section__num">14</span>
+      <h2>Sensitive Information</h2>
+      <p>Unless specifically necessary and explicitly requested in a secure and appropriate context, please do not submit sensitive personal information through the general website or intake forms.</p>
+      <p>If a future engagement requires handling regulated or especially sensitive information, those obligations should be addressed in a separate written agreement with appropriate safeguards.</p>
+    </div>
+
+    <div class="terms-section" id="p15">
+      <span class="terms-section__num">15</span>
+      <h2>Third-Party Sites and Services</h2>
+      <p>The Site may link to third-party tools, calendars, payment tools, social platforms, or websites. We are not responsible for the privacy, security, or content practices of those third parties. Their own terms and policies will govern your interactions with them.</p>
+    </div>
+
+    <div class="terms-section" id="p16">
+      <span class="terms-section__num">16</span>
+      <h2>Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. The updated version will be posted on this page with a revised "Last Updated" date. Your continued use of the Site after changes become effective indicates your acknowledgment of the updated Policy.</p>
+    </div>
+
+    <div class="terms-section" id="p17">
+      <span class="terms-section__num">17</span>
+      <h2>Contact Us</h2>
+      <div class="terms-contact">
+        <p>If you have questions about this Privacy Policy or want to exercise applicable privacy rights, contact us at:</p>
+        <br />
+        <p><strong style="color:#f2f0f5;">Alba Strategic Partners LLC</strong><br />
+        7901 4TH ST N STE 300<br />
+        St. Petersburg, FL 33702<br />
+        United States<br />
+        <a href="mailto:hello@albacollective.co">hello@albacollective.co</a><br />
+        <a href="https://albacollective.co">albacollective.co</a></p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="terms-footer">
+    <p>© 2026 Alba Strategic Partners LLC · <a href="/">albacollective.co</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms &amp; Conditions</a></p>
+  </footer>
+
+</body>
+</html>
