@@ -1,10 +1,9 @@
 /**
- * Alba Collective — Consent Banner & GA4 Loader
- * Consent Mode v2 defaults are set inline in each page's <head>.
- * This file handles: banner UI, consent updates, and GA4 loading.
+ * Alba Collective — Consent Banner & GTM/GA4 Consent Controller
+ * Consent Mode v2 defaults are set inline in each page's <head> (before GTM).
+ * This file handles: banner UI and consent signal updates via dataLayer.
+ * GA4 loading is managed entirely by Google Tag Manager (GTM-N5D2R9BV).
  */
-
-const GA_ID = 'G-FXY4K6LT51';
 
 const CONSENT_KEY = 'ac_consent';
 const CONSENT_VERSION = '1';
@@ -14,18 +13,6 @@ const CONSENT_VERSION = '1';
 if (typeof window.gtag !== 'function') {
   window.dataLayer = window.dataLayer || [];
   window.gtag = function() { dataLayer.push(arguments); };
-}
-
-/* ── Load GA4 tag (with denied defaults, GA4 still fires ping-only) ── */
-function loadGA4() {
-  if (document.getElementById('ga4-script')) return;
-  const s = document.createElement('script');
-  s.id    = 'ga4-script';
-  s.async = true;
-  s.src   = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
-  document.head.appendChild(s);
-  gtag('js', new Date());
-  gtag('config', GA_ID, { send_page_view: true });
 }
 
 /* ── Read stored consent ── */
@@ -48,7 +35,8 @@ function storeConsent(accepted) {
   }));
 }
 
-/* ── Apply consent signals to Google ── */
+/* ── Apply consent signals to GTM/GA4 via dataLayer ── */
+/* GTM (GTM-N5D2R9BV) reads these signals and manages GA4 accordingly. */
 function applyConsent(accepted) {
   if (accepted) {
     gtag('consent', 'update', {
@@ -65,7 +53,6 @@ function applyConsent(accepted) {
       ad_personalization: 'denied',
     });
   }
-  loadGA4();
 }
 
 /* ── Banner HTML ── */
@@ -248,11 +235,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const stored = getStoredConsent();
   if (stored !== null) {
-    // Already decided — apply stored consent silently
+    // Already decided — apply stored consent silently via GTM dataLayer
     applyConsent(stored.accepted);
   } else {
-    // No decision yet — show banner
-    loadGA4(); // Load GA4 with default denied mode (ping-only)
+    // No decision yet — show banner (GTM handles GA4 with denied defaults)
     createBanner();
   }
 });
